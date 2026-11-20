@@ -31,6 +31,7 @@ import com.pureshield.app.databinding.ItemZoneRowBinding
 import com.pureshield.app.location.Fix
 import com.pureshield.app.location.LocationHelper
 import com.pureshield.app.ui.BottomNav
+import com.pureshield.app.ui.Polish
 import com.pureshield.app.ui.ThemeManager
 import com.pureshield.app.util.BnDigits
 import kotlinx.coroutines.flow.combine
@@ -91,6 +92,14 @@ class LocationActivity : AppCompatActivity() {
         b = ActivityLocationBinding.inflate(layoutInflater)
         setContentView(b.root)
         BottomNav.bind(this, BottomNav.Tab.LOCATION)
+
+        // Visual polish (demo glow): card glow + Zen page padding.
+        Polish.glowCard(b.masterCard, this)
+        Polish.glowCard(b.cardMap, this)
+        Polish.glowCard(b.legendCard, this)
+        Polish.glowCard(b.radiusCard, this)
+        Polish.glowCard(b.permCard, this)
+        Polish.applyZenPagePadding(this)
 
         b.rvZones.layoutManager = LinearLayoutManager(this)
         b.rvZones.adapter = adapter
@@ -166,7 +175,13 @@ class LocationActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        Polish.resumeScenery(this)
         refreshPermissions()
+    }
+
+    override fun onPause() {
+        Polish.pauseScenery(this)
+        super.onPause()
     }
 
     // ---- rendering ----------------------------------------------------------

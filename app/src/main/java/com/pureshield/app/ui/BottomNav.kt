@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.annotation.AttrRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
+import com.google.android.material.card.MaterialCardView
 import com.pureshield.app.R
 import com.pureshield.app.ui.blocking.BlockingActivity
 import com.pureshield.app.ui.location.LocationActivity
@@ -74,6 +75,11 @@ object BottomNav {
         paint(locationIcon, locationLabel, current == Tab.LOCATION, mint, faint, sub)
         paint(blockIcon, blockLabel, current == Tab.BLOCK, mint, faint, sub)
         paint(statsIcon, statsLabel, current == Tab.STATS, mint, faint, sub)
+
+        // Tab-bar + FAB glow (demo §2.4/§2.5: FAB 0 10px 24px green — cyan in
+        // Holo; bar 0 14px 34px with the theme shadow colour; Zen stays flat).
+        val navBar = activity.findViewById<MaterialCardView>(R.id.navBar)
+        navBar?.let { Polish.glowBottomNav(it, fabTimeLock, activity) }
 
         navHome.setOnClickListener { go(activity, current, Tab.HOME, MainActivity::class.java) }
         navLocation.setOnClickListener { go(activity, current, Tab.LOCATION, LocationActivity::class.java) }

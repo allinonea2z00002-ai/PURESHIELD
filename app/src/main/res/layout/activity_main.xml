@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Dashboard (MainActivity). Root matches the other screens: vertical
      LinearLayout, ScrollView (weight 1), shared bottom-nav include. -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?attr/appBackground"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+
+    <!-- Animated background: per-theme decor + drifting clouds / sun
+         (SceneryView). The old flat ?attr/appBackground root paint is
+         gone; the theme windowBackground still supplies the base colour
+         during transitions. -->
+    <com.pureshield.app.ui.widget.SceneryView
+        android:id="@+id/sceneryView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -28,7 +40,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:textColor="?attr/subColor"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
             <!-- Header -->
             <LinearLayout
@@ -46,7 +59,7 @@
                     android:gravity="center"
                     android:text="P"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp"
+                    android:textSize="17sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -61,7 +74,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/home_greeting"
                         android:textColor="?attr/subColor"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        android:lineSpacingMultiplier="1.2" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -69,7 +83,7 @@
                         android:fontFamily="?attr/displayFontFamily"
                         android:text="@string/home_dashboard_title"
                         android:textColor="?attr/inkColor"
-                        android:textSize="20sp"
+                        android:textSize="21sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -207,7 +221,8 @@
                         android:layout_marginTop="8dp"
                         android:text="@string/ring_state_active"
                         android:textColor="?attr/mintColor"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:letterSpacing="0.02" />
 
                     <TextView
                         android:id="@+id/ringBig"
@@ -217,6 +232,8 @@
                         android:text="@string/ring_big_ready"
                         android:textColor="?attr/inkColor"
                         android:textSize="27sp"
+                        android:fontFeatureSettings="tnum"
+                        android:lineSpacingMultiplier="1.1"
                         android:textStyle="bold" />
 
                     <TextView
@@ -225,7 +242,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/ring_small_no_lock"
                         android:textColor="?attr/subColor"
-                        android:textSize="13sp" />
+                        android:textSize="12.5sp" />
                 </LinearLayout>
             </FrameLayout>
 
@@ -289,6 +306,7 @@
                             android:text="0"
                             android:textColor="?attr/inkColor"
                             android:textSize="24sp"
+                            android:lineSpacingMultiplier="1.15"
                             android:textStyle="bold" />
 
                         <TextView
@@ -298,7 +316,7 @@
                             android:layout_marginTop="4dp"
                             android:text="@string/home_stat_blocked_label"
                             android:textColor="?attr/subColor"
-                            android:textSize="13sp" />
+                            android:textSize="13.5sp" />
 
                         <TextView
                             android:id="@+id/stat1Delta"
@@ -307,7 +325,8 @@
                             android:layout_marginTop="4dp"
                             android:text="@string/home_stat_blocked_empty"
                             android:textColor="?attr/subColor"
-                            android:textSize="12sp" />
+                            android:textSize="12.5sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -338,6 +357,7 @@
                             android:text="0 min"
                             android:textColor="?attr/inkColor"
                             android:textSize="24sp"
+                            android:lineSpacingMultiplier="1.15"
                             android:textStyle="bold" />
 
                         <TextView
@@ -347,7 +367,7 @@
                             android:layout_marginTop="4dp"
                             android:text="@string/home_stat_saved_label"
                             android:textColor="?attr/subColor"
-                            android:textSize="13sp" />
+                            android:textSize="13.5sp" />
 
                         <TextView
                             android:id="@+id/stat2Delta"
@@ -356,7 +376,8 @@
                             android:layout_marginTop="4dp"
                             android:text="@string/home_stat_saved_empty"
                             android:textColor="?attr/subColor"
-                            android:textSize="12sp" />
+                            android:textSize="12.5sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
             </GridLayout>
@@ -366,11 +387,11 @@
                 android:id="@+id/quickTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="22dp"
                 android:fontFamily="?attr/displayFontFamily"
                 android:text="@string/home_quick_title"
                 android:textColor="?attr/inkColor"
-                android:textSize="16sp"
+                android:textSize="16.5sp"
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -385,7 +406,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="22dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -397,7 +418,7 @@
                     android:fontFamily="?attr/displayFontFamily"
                     android:text="@string/home_guard_title"
                     android:textColor="?attr/inkColor"
-                    android:textSize="16sp"
+                    android:textSize="16.5sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -408,7 +429,8 @@
                     android:focusable="true"
                     android:text="@string/home_guard_see_all"
                     android:textColor="?attr/mintColor"
-                    android:textSize="13sp" />
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <!-- Guards live in one card with dividers between rows (demo .guards). -->
@@ -419,6 +441,7 @@
                 app:cardBackgroundColor="?attr/cardBackground"
                 app:cardCornerRadius="?attr/cardCornerRadius"
                 app:cardElevation="0dp"
+                android:id="@+id/guardCard"
                 app:contentPaddingBottom="4dp"
                 app:contentPaddingLeft="16dp"
                 app:contentPaddingRight="16dp"
@@ -440,7 +463,8 @@
                 android:gravity="center"
                 android:text="@string/home_hint"
                 android:textColor="?attr/subColor"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:lineSpacingMultiplier="1.5" />
 
             <View
                 android:layout_width="match_parent"
@@ -451,4 +475,5 @@
     <include
         android:id="@+id/bottomNav"
         layout="@layout/include_bottom_nav" />
-</LinearLayout>
+    </LinearLayout>
+</FrameLayout>

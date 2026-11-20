@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+
+    <!-- Animated background: per-theme decor + drifting clouds / sun
+         (SceneryView). The old flat ?attr/appBackground root paint is
+         gone; the theme windowBackground still supplies the base colour
+         during transitions. -->
+    <com.pureshield.app.ui.widget.SceneryView
+        android:id="@+id/sceneryView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,7 +37,7 @@
                 android:fontFamily="?attr/displayFontFamily"
                 android:text="@string/loc_title"
                 android:textColor="?attr/inkColor"
-                android:textSize="22sp"
+                android:textSize="21sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -34,9 +47,11 @@
                 android:layout_marginTop="6dp"
                 android:text="@string/loc_sub"
                 android:textColor="?attr/subColor"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:lineSpacingMultiplier="1.5" />
 
             <com.google.android.material.card.MaterialCardView
+            android:id="@+id/masterCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -121,6 +136,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
+            android:id="@+id/legendCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -207,6 +223,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
+            android:id="@+id/radiusCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -233,7 +250,7 @@
                             android:layout_weight="1"
                             android:text="@string/loc_saved_title"
                             android:textColor="?attr/inkColor"
-                            android:textSize="16sp"
+                            android:textSize="16.5sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -289,14 +306,15 @@
                         android:layout_marginTop="10dp"
                         android:text="@string/loc_radius_note"
                         android:textColor="?attr/subColor"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        android:lineSpacingMultiplier="1.5" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="22dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -307,7 +325,7 @@
                     android:layout_weight="1"
                     android:text="@string/loc_saved_title"
                     android:textColor="?attr/inkColor"
-                    android:textSize="16sp"
+                    android:textSize="16.5sp"
                     android:textStyle="bold" />
 
                 <com.google.android.material.button.MaterialButton
@@ -356,6 +374,7 @@
                 android:textSize="13sp" />
 
             <com.google.android.material.card.MaterialCardView
+            android:id="@+id/permCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -466,4 +485,5 @@
     <include
         android:id="@+id/bottomNav"
         layout="@layout/include_bottom_nav" />
-</LinearLayout>
+    </LinearLayout>
+</FrameLayout>

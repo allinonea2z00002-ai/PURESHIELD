@@ -24,6 +24,11 @@ class SplashActivity : AppCompatActivity() {
         b = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(b.root)
 
+        // Visual polish (demo §2.4): splash logo glow,
+        // 0 24px 50px rgba(31,122,95,.3) — the demo's green, not the Splash
+        // theme's neutral shadowColor.
+        Polish.applyShadow(b.logoTile, 10f, Polish.GLOW_GREEN_BUTTON)
+
         val density = resources.displayMetrics.density
         segmentAnimator = ObjectAnimator.ofFloat(
             b.loadSegment, "translationX", -48f * density, 120f * density

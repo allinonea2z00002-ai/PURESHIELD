@@ -2,16 +2,29 @@
 <!-- Block screen (BlockActivity): shown by the accessibility service when a
      blocked app/site opens while locked. No bottom nav; not dismissible by
      Back while locked (see BlockActivity). -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?attr/appBackground"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:layout_height="match_parent">
+
+    <!-- Animated background: per-theme decor + drifting clouds / sun
+         (SceneryView). The old flat ?attr/appBackground root paint is
+         gone; the theme windowBackground still supplies the base colour
+         during transitions. -->
+    <com.pureshield.app.ui.widget.SceneryView
+        android:id="@+id/sceneryView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp">
 
     <FrameLayout
+        android:id="@+id/shieldTile"
         android:layout_width="96dp"
         android:layout_height="96dp"
         android:background="@drawable/bg_shield_tile">
@@ -45,6 +58,7 @@
 
     <TextView
         android:id="@+id/remainingText"
+        android:fontFeatureSettings="tnum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="?attr/displayFontFamily"
@@ -79,4 +93,5 @@
         app:backgroundTint="@null"
         app:icon="@drawable/ic_home"
         app:iconTint="?attr/buttonText" />
-</LinearLayout>
+    </LinearLayout>
+</FrameLayout>

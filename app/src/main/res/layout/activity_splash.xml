@@ -2,14 +2,27 @@
 <!-- Splash: 1.1s, then fades to the dashboard. Logo is the real lotus-shield
      mark (ic_logo_splash) on the mint gradient tile; the demo's white shield
      + mint check is the same composition with the demo's check mark. -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/splashRoot"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?attr/appBackground"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:layout_height="match_parent">
+
+    <!-- Animated background: per-theme decor + drifting clouds / sun
+         (SceneryView). The old flat ?attr/appBackground root paint is
+         gone; the theme windowBackground still supplies the base colour
+         during transitions. -->
+    <com.pureshield.app.ui.widget.SceneryView
+        android:id="@+id/sceneryView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp">
 
     <FrameLayout
         android:id="@+id/logoTile"
@@ -38,6 +51,7 @@
             android:text="@string/splash_name_pure"
             android:textColor="?attr/inkColor"
             android:textSize="30sp"
+            android:letterSpacing="0.01"
             android:textStyle="bold" />
 
         <TextView
@@ -47,6 +61,7 @@
             android:text="@string/splash_name_shield"
             android:textColor="?attr/mintColor"
             android:textSize="30sp"
+            android:letterSpacing="0.01"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -70,4 +85,5 @@
             android:layout_height="4dp"
             android:background="@drawable/bg_segment" />
     </FrameLayout>
-</LinearLayout>
+    </LinearLayout>
+</FrameLayout>

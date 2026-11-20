@@ -39,6 +39,7 @@ import com.pureshield.app.domain.LockEvaluator
 import com.pureshield.app.domain.LockManager
 import com.pureshield.app.domain.LockSnapshot
 import com.pureshield.app.ui.BottomNav
+import com.pureshield.app.ui.Polish
 import com.pureshield.app.ui.ThemeManager
 import com.pureshield.app.ui.attrBoolean
 import com.pureshield.app.ui.attrColor
@@ -112,6 +113,13 @@ class TimeLockActivity : AppCompatActivity() {
         setupEmergency()
         setupTitles()
         applyThemeShapes()
+        // Visual polish (demo glow): card / primary-button glow, and Zen's
+        // wider page padding. Glow is never applied to text.
+        Polish.glowCard(b.setupCard, this)
+        Polish.glowCard(b.runningCard, this)
+        Polish.glowCard(b.lockRowsCard, this)
+        Polish.glowPrimaryButton(b.startButton, this)
+        Polish.applyZenPagePadding(this)
         buildLockRows()
         startPulse()
 
@@ -130,10 +138,16 @@ class TimeLockActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        Polish.resumeScenery(this)
         if (pendingPinSheet && Graph.secure.hasPartnerPin()) {
             pendingPinSheet = false
             showPinSheet()
         }
+    }
+
+    override fun onPause() {
+        Polish.pauseScenery(this)
+        super.onPause()
     }
 
     override fun onDestroy() {
@@ -172,6 +186,9 @@ class TimeLockActivity : AppCompatActivity() {
     private fun updateChips() {
         for ((view, minutes) in chipViews) {
             view.isSelected = selectedMinutes == minutes
+            // Demo selected-chip glow (0 6px 14px green .28).
+            if (view.isSelected) Polish.glowChipSelected(view, this)
+            else Polish.glowChipDeselected(view)
         }
     }
 
@@ -219,6 +236,8 @@ class TimeLockActivity : AppCompatActivity() {
     private fun updateDayPills() {
         pillBindings.forEachIndexed { index, pill ->
             pill.root.isSelected = (repeatMask and (1 shl index)) != 0
+            if (pill.root.isSelected) Polish.glowChipSelected(pill.root, this)
+            else Polish.glowChipDeselected(pill.root)
         }
     }
 

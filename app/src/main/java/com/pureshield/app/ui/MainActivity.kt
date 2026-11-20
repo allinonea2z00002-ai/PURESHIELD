@@ -97,11 +97,29 @@ class MainActivity : AppCompatActivity() {
 
         setupHeader(theme)
         setupSectionTitles()
+        // Visual polish (demo glow): card / avatar / shield-tile glow, and
+        // Zen's wider page padding. Glow is never applied to text.
+        Polish.glowCard(b.stat1Card, this)
+        Polish.glowCard(b.stat2Card, this)
+        Polish.glowCard(b.guardCard, this)
+        Polish.glowAvatar(b.avatarText, this)
+        Polish.glowShieldTile(b.shieldTile, this)
+        Polish.applyZenPagePadding(this)
         setupQuickActions(theme.quickActionColumns)
         buildGuards()
         startFloatAnimations()
         observeData()
         startTickers()
+    }
+
+    override fun onPause() {
+        Polish.pauseScenery(this)
+        super.onPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Polish.resumeScenery(this)
     }
 
     override fun onDestroy() {

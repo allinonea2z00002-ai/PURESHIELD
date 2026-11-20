@@ -18,6 +18,7 @@ import com.pureshield.app.data.db.FocusDay
 import com.pureshield.app.databinding.ActivityStatsBinding
 import com.pureshield.app.databinding.ItemStatRowBinding
 import com.pureshield.app.ui.BottomNav
+import com.pureshield.app.ui.Polish
 import com.pureshield.app.ui.ThemeManager
 import com.pureshield.app.ui.widget.BarChartView
 import com.pureshield.app.util.BnDigits
@@ -54,6 +55,11 @@ class StatsActivity : AppCompatActivity() {
         setContentView(b.root)
         BottomNav.bind(this, BottomNav.Tab.STATS)
 
+        // Visual polish (demo glow): card glow + Zen page padding.
+        Polish.glowCard(b.streakCard, this)
+        Polish.glowCard(b.chartCard, this)
+        Polish.applyZenPagePadding(this)
+
         b.rvTop.layoutManager = LinearLayoutManager(this)
         b.rvTop.adapter = topAdapter
 
@@ -76,6 +82,16 @@ class StatsActivity : AppCompatActivity() {
                     }
             }
         }
+    }
+
+    override fun onPause() {
+        Polish.pauseScenery(this)
+        super.onPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Polish.resumeScenery(this)
     }
 
     private fun render() {

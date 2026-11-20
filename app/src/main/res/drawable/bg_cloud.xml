@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Drifting cloud pill (demo §1.2: soft white pill, blur 1px — a soft edge
+     suffices natively). Colour/alpha are set in code via backgroundTint so
+     each theme gets its own cloud colour (white, Dawn #FFF5EC). -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="17dp" />
+    <solid android:color="#FFFFFF" />
+</shape>

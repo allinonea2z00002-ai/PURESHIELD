@@ -26,6 +26,7 @@ import com.pureshield.app.data.db.Keyword
 import com.pureshield.app.databinding.ActivityBlockingBinding
 import com.pureshield.app.databinding.ItemAppRowBinding
 import com.pureshield.app.ui.BottomNav
+import com.pureshield.app.ui.Polish
 import com.pureshield.app.ui.ThemeManager
 import com.pureshield.app.util.BnDigits
 import kotlinx.coroutines.Dispatchers
@@ -62,6 +63,13 @@ class BlockingActivity : AppCompatActivity() {
         b = ActivityBlockingBinding.inflate(layoutInflater)
         setContentView(b.root)
         BottomNav.bind(this, BottomNav.Tab.BLOCK)
+
+        // Visual polish (demo glow): card glow + Zen page padding.
+        Polish.glowCard(b.appsCountCard, this)
+        Polish.glowCard(b.sitesCountCard, this)
+        Polish.glowCard(b.reelsCard, this)
+        Polish.glowCard(b.dnsCard, this)
+        Polish.applyZenPagePadding(this)
 
         b.rvApps.layoutManager = LinearLayoutManager(this)
         b.rvApps.adapter = adapter
@@ -134,6 +142,16 @@ class BlockingActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onPause() {
+        Polish.pauseScenery(this)
+        super.onPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Polish.resumeScenery(this)
     }
 
     // ---- rendering ----------------------------------------------------------
