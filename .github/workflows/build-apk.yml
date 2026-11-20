@@ -1,0 +1,41 @@
+# Copy this file to .github/workflows/build-apk.yml to build PURESHIELD on GitHub.
+# (Pushing files under .github/workflows needs the "workflows" permission, so it is kept here.)
+# NOTE: this workflow uses the `gradle` command (installed by setup-gradle), NOT ./gradlew,
+# because the repo has no gradle-wrapper.jar (binary jars cannot be pushed by the Muse GitHub App).
+name: Build APK
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.11.1"
+
+      - name: Install Android SDK
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-36" "build-tools;36.0.0" "platform-tools"
+
+      - name: Unit tests
+        run: gradle testDebugUnitTest
+
+      - name: Build debug APK
+        run: gradle assembleDebug
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pureshield-debug-apk
+          path: app/build/outputs/apk/debug/*.apk
