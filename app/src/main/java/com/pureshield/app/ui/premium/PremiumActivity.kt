@@ -126,7 +126,7 @@ class PremiumActivity : AppCompatActivity() {
         val gold = attrColor(R.attr.goldColor, Color.rgb(0xDD, 0x94, 0x12))
         val drawable = GradientDrawable()
         drawable.setColor(gold)
-        drawable.cornerRadius = attrDimen(R.attr.chipCornerRadius, 8f)
+        drawable.cornerRadius = attrDimen(R.attr.psChipCornerRadius, 8f)
         tag.background = drawable
         tag.setTextColor(attrColor(R.attr.buttonText, Color.WHITE))
         val padH = (8 * resources.displayMetrics.density).toInt()

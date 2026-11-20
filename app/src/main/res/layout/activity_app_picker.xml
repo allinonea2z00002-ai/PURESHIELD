@@ -41,7 +41,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         app:cardBackgroundColor="?attr/cardBackground2"
-        app:cardCornerRadius="?attr/chipCornerRadius"
+        app:cardCornerRadius="?attr/psChipCornerRadius"
         app:cardElevation="0dp">
 
         <EditText

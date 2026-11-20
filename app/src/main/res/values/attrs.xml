@@ -3,7 +3,10 @@
     PureShield theme attributes.
     Every theme in themes.xml (values + values-night) sets ALL of these.
     UI code reads them via TypedArray / ?attr/ references in layouts.
-    DO NOT rename: ui.ThemeManager and the UI agents depend on these names.
+    NOTE (2026-11-20): tabBackground and chipCornerRadius were renamed to
+    psTabBackground / psChipCornerRadius — Material 1.12.0 already defines
+    attrs with those names, and AAPT fails the build on the duplicate.
+    Do not rename any attr back to a name Material/AppCompat already uses.
 -->
 <resources>
     <!-- Colours -->
@@ -22,7 +25,7 @@
     <attr name="redColor" format="color" />
     <attr name="blueColor" format="color" />
     <attr name="trackOffColor" format="color" />
-    <attr name="tabBackground" format="color" />
+    <attr name="psTabBackground" format="color" />
     <attr name="tileStart" format="color" />
     <attr name="tileEnd" format="color" />
     <attr name="accent1" format="color" />
@@ -49,7 +52,7 @@
          ShapeAppearance styles in themes.xml for the real leaf/fluid shapes) -->
     <attr name="cardCornerRadius" format="dimension" />
     <attr name="buttonCornerRadius" format="dimension" />
-    <attr name="chipCornerRadius" format="dimension" />
+    <attr name="psChipCornerRadius" format="dimension" />
     <attr name="tabCornerRadius" format="dimension" />
     <attr name="sheetCornerRadius" format="dimension" />
     <attr name="pinCornerRadius" format="dimension" />

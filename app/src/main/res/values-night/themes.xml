@@ -58,7 +58,7 @@
         <item name="redColor">#FF6B6B</item>
         <item name="blueColor">#4CC3FF</item>
         <item name="trackOffColor">#2A3A31</item>
-        <item name="tabBackground">#0E1512</item>
+        <item name="psTabBackground">#0E1512</item>
         <item name="tileStart">#14402F</item>
         <item name="tileEnd">#0B241A</item>
         <item name="accent1">#2EE6A8</item>
@@ -75,7 +75,7 @@
         <item name="displayFontFamily">sans-serif</item>
         <item name="cardCornerRadius">@dimen/original_card_radius</item>
         <item name="buttonCornerRadius">@dimen/original_button_radius</item>
-        <item name="chipCornerRadius">@dimen/original_chip_radius</item>
+        <item name="psChipCornerRadius">@dimen/original_chip_radius</item>
         <item name="tabCornerRadius">@dimen/original_tab_radius</item>
         <item name="sheetCornerRadius">@dimen/original_sheet_radius</item>
         <item name="pinCornerRadius">@dimen/original_pin_radius</item>
@@ -145,7 +145,7 @@
         <item name="redColor">#E2604F</item>
         <item name="blueColor">#5B9BD5</item>
         <item name="trackOffColor">#2A3D33</item>
-        <item name="tabBackground">#16241D</item>
+        <item name="psTabBackground">#16241D</item>
         <item name="tileStart">#1B3A2C</item>
         <item name="tileEnd">#122019</item>
         <item name="accent1">#57C9A4</item>
@@ -162,7 +162,7 @@
         <item name="displayFontFamily">sans-serif-light</item>
         <item name="cardCornerRadius">@dimen/relax_card_radius</item>
         <item name="buttonCornerRadius">@dimen/relax_button_radius</item>
-        <item name="chipCornerRadius">@dimen/relax_chip_radius</item>
+        <item name="psChipCornerRadius">@dimen/relax_chip_radius</item>
         <item name="tabCornerRadius">@dimen/relax_tab_radius</item>
         <item name="sheetCornerRadius">@dimen/relax_sheet_radius</item>
         <item name="pinCornerRadius">@dimen/relax_pin_radius</item>
@@ -232,7 +232,7 @@
         <item name="redColor">#E2604F</item>
         <item name="blueColor">#5B9BD5</item>
         <item name="trackOffColor">#3D2F42</item>
-        <item name="tabBackground">#2E2130</item>
+        <item name="psTabBackground">#2E2130</item>
         <item name="tileStart">#382A3A</item>
         <item name="tileEnd">#4A2F3D</item>
         <item name="accent1">#F6B17C</item>
@@ -249,7 +249,7 @@
         <item name="displayFontFamily">serif</item>
         <item name="cardCornerRadius">@dimen/dawn_card_radius</item>
         <item name="buttonCornerRadius">@dimen/dawn_button_radius</item>
-        <item name="chipCornerRadius">@dimen/dawn_chip_radius</item>
+        <item name="psChipCornerRadius">@dimen/dawn_chip_radius</item>
         <item name="tabCornerRadius">@dimen/dawn_tab_radius</item>
         <item name="sheetCornerRadius">@dimen/dawn_sheet_radius</item>
         <item name="pinCornerRadius">@dimen/dawn_pin_radius</item>
@@ -319,7 +319,7 @@
         <item name="redColor">#E2604F</item>
         <item name="blueColor">#5B9BD5</item>
         <item name="trackOffColor">#2A3D22</item>
-        <item name="tabBackground">#1A2E16</item>
+        <item name="psTabBackground">#1A2E16</item>
         <item name="tileStart">#1E3D18</item>
         <item name="tileEnd">#12240E</item>
         <item name="accent1">#81C784</item>
@@ -336,7 +336,7 @@
         <item name="displayFontFamily">serif</item>
         <item name="cardCornerRadius">@dimen/jungle_card_tl</item>
         <item name="buttonCornerRadius">@dimen/jungle_button_tl</item>
-        <item name="chipCornerRadius">@dimen/jungle_button_tl</item>
+        <item name="psChipCornerRadius">@dimen/jungle_button_tl</item>
         <item name="tabCornerRadius">@dimen/jungle_tab_tl</item>
         <item name="sheetCornerRadius">@dimen/jungle_sheet_tl</item>
         <item name="pinCornerRadius">@dimen/jungle_pin_tl</item>
@@ -406,7 +406,7 @@
         <item name="redColor">#E2604F</item>
         <item name="blueColor">#4CC3FF</item>
         <item name="trackOffColor">#1B3D52</item>
-        <item name="tabBackground">#0F2C40</item>
+        <item name="psTabBackground">#0F2C40</item>
         <item name="tileStart">#12394E</item>
         <item name="tileEnd">#0A2233</item>
         <item name="accent1">#4DD0E1</item>
@@ -423,7 +423,7 @@
         <item name="displayFontFamily">sans-serif</item>
         <item name="cardCornerRadius">@dimen/ocean_card_tl</item>
         <item name="buttonCornerRadius">@dimen/ocean_button_radius</item>
-        <item name="chipCornerRadius">@dimen/ocean_chip_radius</item>
+        <item name="psChipCornerRadius">@dimen/ocean_chip_radius</item>
         <item name="tabCornerRadius">@dimen/ocean_tab_radius</item>
         <item name="sheetCornerRadius">@dimen/ocean_sheet_radius</item>
         <item name="pinCornerRadius">@dimen/ocean_pin_radius</item>
@@ -493,7 +493,7 @@
         <item name="redColor">#C05A4A</item>
         <item name="blueColor">#7A9BB0</item>
         <item name="trackOffColor">#453F2C</item>
-        <item name="tabBackground">#2E2A1E</item>
+        <item name="psTabBackground">#2E2A1E</item>
         <item name="tileStart">#38331F</item>
         <item name="tileEnd">#3D3822</item>
         <item name="accent1">#B5BD85</item>
@@ -510,7 +510,7 @@
         <item name="displayFontFamily">serif</item>
         <item name="cardCornerRadius">@dimen/eye_card_radius</item>
         <item name="buttonCornerRadius">@dimen/eye_button_radius</item>
-        <item name="chipCornerRadius">@dimen/eye_chip_radius</item>
+        <item name="psChipCornerRadius">@dimen/eye_chip_radius</item>
         <item name="tabCornerRadius">@dimen/eye_tab_radius</item>
         <item name="sheetCornerRadius">@dimen/eye_sheet_radius</item>
         <item name="pinCornerRadius">@dimen/eye_pin_radius</item>
@@ -580,7 +580,7 @@
         <item name="redColor">#E2604F</item>
         <item name="blueColor">#5B9BD5</item>
         <item name="trackOffColor">#38325A</item>
-        <item name="tabBackground">#1B1830</item>
+        <item name="psTabBackground">#1B1830</item>
         <item name="tileStart">#2F2A4F</item>
         <item name="tileEnd">#332C55</item>
         <item name="accent1">#B8B0E8</item>
@@ -597,7 +597,7 @@
         <item name="displayFontFamily">sans-serif-light</item>
         <item name="cardCornerRadius">@dimen/zen_card_radius</item>
         <item name="buttonCornerRadius">@dimen/zen_button_radius</item>
-        <item name="chipCornerRadius">@dimen/zen_chip_radius</item>
+        <item name="psChipCornerRadius">@dimen/zen_chip_radius</item>
         <item name="tabCornerRadius">@dimen/zen_tab_radius</item>
         <item name="sheetCornerRadius">@dimen/zen_sheet_radius</item>
         <item name="pinCornerRadius">@dimen/zen_pin_radius</item>
@@ -667,7 +667,7 @@
         <item name="redColor">#FF6E8A</item>
         <item name="blueColor">#6E8BFF</item>
         <item name="trackOffColor">#2A3560</item>
-        <item name="tabBackground">#121736</item>
+        <item name="psTabBackground">#121736</item>
         <item name="tileStart">#123A4D</item>
         <item name="tileEnd">#3D1450</item>
         <item name="accent1">#00E5FF</item>
@@ -684,7 +684,7 @@
         <item name="displayFontFamily">monospace</item>
         <item name="cardCornerRadius">@dimen/holo_card_radius</item>
         <item name="buttonCornerRadius">@dimen/holo_button_radius</item>
-        <item name="chipCornerRadius">@dimen/holo_chip_radius</item>
+        <item name="psChipCornerRadius">@dimen/holo_chip_radius</item>
         <item name="tabCornerRadius">@dimen/holo_tab_radius</item>
         <item name="sheetCornerRadius">@dimen/holo_sheet_radius</item>
         <item name="pinCornerRadius">@dimen/holo_pin_radius</item>

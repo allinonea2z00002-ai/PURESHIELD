@@ -307,7 +307,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     app:cardBackgroundColor="?attr/cardBackground2"
-                    app:cardCornerRadius="?attr/chipCornerRadius"
+                    app:cardCornerRadius="?attr/psChipCornerRadius"
                     app:cardElevation="0dp">
 
                     <EditText
@@ -412,7 +412,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     app:cardBackgroundColor="?attr/cardBackground2"
-                    app:cardCornerRadius="?attr/chipCornerRadius"
+                    app:cardCornerRadius="?attr/psChipCornerRadius"
                     app:cardElevation="0dp">
 
                     <EditText

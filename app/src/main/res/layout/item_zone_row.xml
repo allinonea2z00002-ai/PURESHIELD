@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             app:cardBackgroundColor="?attr/mintSoftColor"
-            app:cardCornerRadius="?attr/chipCornerRadius"
+            app:cardCornerRadius="?attr/psChipCornerRadius"
             app:cardElevation="0dp">
 
             <TextView
