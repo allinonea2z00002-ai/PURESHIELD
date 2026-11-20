@@ -8,6 +8,7 @@
     <string name="timelock_chip_10">10</string>
     <string name="timelock_chip_30">30</string>
     <string name="timelock_chip_60">60</string>
+    <string name="timelock_chip_unit">min</string>
     <string name="timelock_custom_hint">Your own time (minutes)</string>
     <string name="timelock_min_note">Minimum 3 minutes</string>
     <string name="timelock_repeat_label">Days to lock again</string>
@@ -27,6 +28,9 @@
     <string name="timelock_running">Lock running</string>
     <string name="timelock_ends">Time left · ends at %1$s</string>
     <string name="timelock_footer">Power menu off · Uninstall off · New app install off</string>
+    <string name="timelock_footer_power">Power menu off</string>
+    <string name="timelock_footer_uninstall">Uninstall off</string>
+    <string name="timelock_footer_install">New app install off</string>
     <string name="timelock_finished">Time\'s up — lock is open</string>
     <string name="timelock_emergency">Emergency unlock — partner\'s PIN</string>
     <string name="timelock_pin_hint">The lock opens with your partner\'s PIN.</string>

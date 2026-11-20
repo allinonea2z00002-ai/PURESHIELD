@@ -94,6 +94,7 @@
         <item name="centerTitles">false</item>
         <item name="titleItalic">false</item>
         <item name="titleLeftBorder">true</item>
+        <item name="cardBorderless">false</item>
     </style>
 
     <!-- ============ DAWN — night ============ -->
@@ -182,6 +183,7 @@
         <item name="centerTitles">true</item>
         <item name="titleItalic">true</item>
         <item name="titleLeftBorder">false</item>
+        <item name="cardBorderless">false</item>
     </style>
 
     <!-- ============ JUNGLE — night ============ -->
@@ -270,6 +272,7 @@
         <item name="centerTitles">false</item>
         <item name="titleItalic">false</item>
         <item name="titleLeftBorder">false</item>
+        <item name="cardBorderless">false</item>
     </style>
 
     <!-- ============ OCEAN — night ============ -->
@@ -358,6 +361,7 @@
         <item name="centerTitles">false</item>
         <item name="titleItalic">false</item>
         <item name="titleLeftBorder">false</item>
+        <item name="cardBorderless">false</item>
     </style>
 
     <!-- ============ ZEN — night ============ -->
@@ -446,6 +450,7 @@
         <item name="centerTitles">false</item>
         <item name="titleItalic">false</item>
         <item name="titleLeftBorder">false</item>
+        <item name="cardBorderless">true</item>
     </style>
 
     <!-- ============ HOLOGRAM (same as day) ============ -->
@@ -534,5 +539,6 @@
         <item name="centerTitles">false</item>
         <item name="titleItalic">false</item>
         <item name="titleLeftBorder">false</item>
+        <item name="cardBorderless">false</item>
     </style>
 </resources>

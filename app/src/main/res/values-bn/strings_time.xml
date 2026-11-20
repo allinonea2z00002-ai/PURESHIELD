@@ -8,6 +8,7 @@
     <string name="timelock_chip_10">১০</string>
     <string name="timelock_chip_30">৩০</string>
     <string name="timelock_chip_60">৬০</string>
+    <string name="timelock_chip_unit">মিনিট</string>
     <string name="timelock_custom_hint">নিজের সময় (মিনিট)</string>
     <string name="timelock_min_note">সর্বনিম্ন ৩ মিনিট</string>
     <string name="timelock_repeat_label">যে দিনগুলোতে আবার লক হবে</string>
@@ -27,6 +28,9 @@
     <string name="timelock_running">লক চলছে</string>
     <string name="timelock_ends">বাকি সময় · শেষ হবে %1$s-এ</string>
     <string name="timelock_footer">পাওয়ার মেনু বন্ধ · আনইনস্টল বন্ধ · নতুন অ্যাপ ইনস্টল বন্ধ</string>
+    <string name="timelock_footer_power">পাওয়ার মেনু বন্ধ</string>
+    <string name="timelock_footer_uninstall">আনইনস্টল বন্ধ</string>
+    <string name="timelock_footer_install">নতুন অ্যাপ ইনস্টল বন্ধ</string>
     <string name="timelock_finished">সময় শেষ — লক খুলে গেছে</string>
     <string name="timelock_emergency">জরুরি আনলক — পার্টনারের PIN</string>
     <string name="timelock_pin_hint">পার্টনারের PIN দিলেই লক খুলে যাবে।</string>

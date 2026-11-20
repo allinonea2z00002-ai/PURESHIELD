@@ -73,4 +73,5 @@
     <attr name="centerTitles" format="boolean" />
     <attr name="titleItalic" format="boolean" />
     <attr name="titleLeftBorder" format="boolean" />
+    <attr name="cardBorderless" format="boolean" />
 </resources>

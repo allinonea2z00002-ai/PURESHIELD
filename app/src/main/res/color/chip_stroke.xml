@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Preset chip / day pill stroke: selected = mint (invisible on the mint
+     fill), default = 1.5dp line colour. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:state_selected="true"
+        android:color="?attr/mintColor" />
+    <item android:color="?attr/lineColor" />
+</selector>

@@ -3,11 +3,22 @@ package com.pureshield.app.ui.timelock
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.graphics.RectF
+import android.graphics.Typeface
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.RelativeSizeSpan
+import android.util.TypedValue
+import android.view.Gravity
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.datastore.preferences.core.booleanPreferencesKey
@@ -17,6 +28,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.google.android.material.shape.ShapeAppearanceModel
 import com.pureshield.app.Graph
 import com.pureshield.app.R
 import com.pureshield.app.data.db.LockState
@@ -28,6 +40,8 @@ import com.pureshield.app.domain.LockManager
 import com.pureshield.app.domain.LockSnapshot
 import com.pureshield.app.ui.BottomNav
 import com.pureshield.app.ui.ThemeManager
+import com.pureshield.app.ui.attrBoolean
+import com.pureshield.app.ui.attrColor
 import com.pureshield.app.ui.pin.PinActivity
 import com.pureshield.app.ui.pin.PinEntrySheet
 import com.pureshield.app.util.BnDigits
@@ -96,6 +110,8 @@ class TimeLockActivity : AppCompatActivity() {
         setupCombine()
         setupStart()
         setupEmergency()
+        setupTitles()
+        applyThemeShapes()
         buildLockRows()
         startPulse()
 
@@ -136,6 +152,7 @@ class TimeLockActivity : AppCompatActivity() {
             b.chip60 to 60L
         )
         for ((view, minutes) in chipViews) {
+            view.text = chipLabel(minutes)
             view.setOnClickListener {
                 b.customEdit.setText("")
                 selectedMinutes = minutes
@@ -155,6 +172,28 @@ class TimeLockActivity : AppCompatActivity() {
     private fun updateChips() {
         for ((view, minutes) in chipViews) {
             view.isSelected = selectedMinutes == minutes
+        }
+    }
+
+    /** Chip label: number + smaller unit suffix (e.g. "10 min" / "১০ মিনিট"). */
+    private fun chipLabel(minutes: Long): CharSequence {
+        val number = getString(
+            when (minutes) {
+                1L -> R.string.timelock_chip_1
+                3L -> R.string.timelock_chip_3
+                10L -> R.string.timelock_chip_10
+                30L -> R.string.timelock_chip_30
+                else -> R.string.timelock_chip_60
+            }
+        )
+        val unit = getString(R.string.timelock_chip_unit)
+        val text = "$number $unit"
+        return SpannableString(text).apply {
+            setSpan(
+                RelativeSizeSpan(0.8f),
+                number.length + 1, length,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
         }
     }
 
@@ -288,6 +327,93 @@ class TimeLockActivity : AppCompatActivity() {
         val installRow = ItemLockRowBinding.inflate(layoutInflater, b.lockList, true)
         installRow.lockTitle.setText(R.string.timelock_row_install)
         installRow.lockSub.setText(R.string.timelock_row_install_sub)
+        installRow.rowDivider.isVisible = false
+    }
+
+    /**
+     * Per-theme title treatment, mirroring MainActivity.setupSectionTitles():
+     * Dawn centres the titles and sets them italic; Original draws the mint
+     * left border + letter spacing on the section title.
+     */
+    private fun setupTitles() {
+        if (attrBoolean(R.attr.centerTitles, false)) {
+            b.titleText.gravity = Gravity.CENTER
+            b.subtitleText.gravity = Gravity.CENTER
+            b.whileTitle.gravity = Gravity.CENTER
+        }
+        if (attrBoolean(R.attr.titleItalic, false)) {
+            b.titleText.setTypeface(b.titleText.typeface, Typeface.BOLD_ITALIC)
+            b.whileTitle.setTypeface(b.whileTitle.typeface, Typeface.BOLD_ITALIC)
+        }
+        if (attrBoolean(R.attr.titleLeftBorder, false)) {
+            val density = resources.displayMetrics.density
+            b.whileTitle.background =
+                ContextCompat.getDrawable(this, R.drawable.bg_title_left_border)
+            b.whileTitle.setPadding(
+                (10 * density).toInt(),
+                b.whileTitle.paddingTop,
+                b.whileTitle.paddingEnd,
+                b.whileTitle.paddingBottom
+            )
+            b.whileTitle.letterSpacing = 0.05f
+        }
+    }
+
+    /**
+     * Per-theme button/card shapes. The preset chips and day pills are
+     * MaterialButtons, so their radii already follow the theme's Small shape
+     * appearance (incl. Jungle's asymmetric leaf radii). The Start and
+     * Emergency buttons keep their gradient/ghost drawables, so their corner
+     * radii are mutated at runtime from the theme's Medium shape appearance.
+     * Zen (outlineButtons) gets a transparent Start button with a 1.5dp
+     * mint-deep stroke and mint-deep text instead of the gradient; Zen
+     * (cardBorderless) gets borderless cards.
+     */
+    private fun applyThemeShapes() {
+        val radii = mediumCornerRadii()
+        if (attrBoolean(R.attr.outlineButtons, false)) {
+            val density = resources.displayMetrics.density
+            val mintDeep = attrColor(R.attr.mintDeepColor)
+            val outline = GradientDrawable().apply {
+                shape = GradientDrawable.RECTANGLE
+                setColor(Color.TRANSPARENT)
+                setStroke((1.5f * density).toInt(), mintDeep)
+                cornerRadii = radii
+            }
+            b.startButton.background = outline
+            b.startButton.setTextColor(mintDeep)
+            b.startButton.iconTint = ColorStateList.valueOf(mintDeep)
+        } else {
+            (b.startButton.background?.mutate() as? GradientDrawable)?.cornerRadii = radii
+        }
+        (b.emergencyButton.background?.mutate() as? GradientDrawable)?.cornerRadii = radii
+        if (attrBoolean(R.attr.cardBorderless, false)) {
+            b.setupCard.strokeWidth = 0
+            b.runningCard.strokeWidth = 0
+            b.lockRowsCard.strokeWidth = 0
+        }
+    }
+
+    /** Per-corner radii (px) of the theme's Medium shape appearance. */
+    private fun mediumCornerRadii(): FloatArray {
+        val density = resources.displayMetrics.density
+        val fallback = FloatArray(8) { 14f * density }
+        val value = TypedValue()
+        if (!theme.resolveAttribute(
+                com.google.android.material.R.attr.shapeAppearanceMediumComponent,
+                value, true
+            ) || value.resourceId == 0
+        ) return fallback
+        val model = ShapeAppearanceModel.builder(this, value.resourceId, 0).build()
+        val bounds = RectF(0f, 0f, 100f, 100f)
+        val topLeft = model.topLeftCornerSize.getCornerSize(bounds)
+        val topRight = model.topRightCornerSize.getCornerSize(bounds)
+        val bottomRight = model.bottomRightCornerSize.getCornerSize(bounds)
+        val bottomLeft = model.bottomLeftCornerSize.getCornerSize(bounds)
+        return floatArrayOf(
+            topLeft, topLeft, topRight, topRight,
+            bottomRight, bottomRight, bottomLeft, bottomLeft
+        )
     }
 
     private fun startPulse() {
@@ -371,7 +497,6 @@ class TimeLockActivity : AppCompatActivity() {
     private fun updateRunning(snap: LockSnapshot) {
         val running = snap.active
         b.setupCard.isVisible = !running
-        b.startButton.isVisible = !running
         b.runningCard.isVisible = running
         if (!running) return
 

@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Repeat-day pill (Time Lock). Selected state toggled in code. -->
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Repeat-day pill (Time Lock). Selected state toggled in code.
+     MaterialButton so the shape follows the theme's Small shape appearance
+     (incl. Jungle's asymmetric leaf radii). -->
+<com.google.android.material.button.MaterialButton xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="0dp"
-    android:layout_height="40dp"
+    android:layout_height="44dp"
     android:layout_margin="3dp"
     android:layout_weight="1"
-    android:background="@drawable/bg_chip"
-    android:clickable="true"
-    android:focusable="true"
-    android:gravity="center"
-    android:textColor="@color/chip_text"
-    android:textSize="13sp" />
+    android:insetLeft="0dp"
+    android:insetRight="0dp"
+    android:insetTop="0dp"
+    android:insetBottom="0dp"
+    android:minHeight="0dp"
+    android:minWidth="0dp"
+    android:padding="0dp"
+    android:stateListAnimator="@null"
+    android:textAllCaps="false"
+    android:textColor="@color/pill_text"
+    android:textSize="14sp"
+    android:textStyle="bold"
+    app:backgroundTint="@color/chip_background"
+    app:elevation="0dp"
+    app:strokeColor="@color/chip_stroke"
+    app:strokeWidth="1.5dp" />

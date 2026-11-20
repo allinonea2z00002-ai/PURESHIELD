@@ -53,7 +53,7 @@
     <string name="guard_uninstall_sub">PURESHIELD can\'t be removed while locked</string>
     <string name="guard_strict_title">Strict mode</string>
     <string name="guard_strict_sub">Lock can\'t be broken even by changing settings</string>
-    <string name="home_hint">Tap the middle shield button below for Time Lock · tap the half-moon button above to cycle through the 8 themes.</string>
+    <string name="home_hint">Tap the middle shield button below for Time Lock · tap the half-moon button above to cycle through the 6 themes.</string>
     <string name="home_theme_toast">Theme: %1$s</string>
     <string name="home_toggle_on">%1$s turned on</string>
     <string name="home_toggle_off">%1$s turned off</string>

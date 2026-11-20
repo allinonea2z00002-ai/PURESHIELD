@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    PureShield themes — 8 FULL UI themes (colours + radii + fonts + layout flags).
+    PureShield themes — 6 FULL UI themes (colours + radii + fonts + layout flags).
     Each theme sets every custom attr from attrs.xml.
     ShapeAppearance styles use @dimen/... (never ?attr/... for sizes).
     Font mapping (demo web font -> closest Android SYSTEM family):
@@ -196,6 +196,7 @@
         <item name="centerTitles">false</item>
         <item name="titleItalic">false</item>
         <item name="titleLeftBorder">true</item>
+        <item name="cardBorderless">false</item>
     </style>
 
     <!-- ============ DAWN (Lora serif -> serif) ============ -->
@@ -284,6 +285,7 @@
         <item name="centerTitles">true</item>
         <item name="titleItalic">true</item>
         <item name="titleLeftBorder">false</item>
+        <item name="cardBorderless">false</item>
     </style>
 
     <!-- ============ JUNGLE (Zilla Slab -> serif) ============ -->
@@ -372,6 +374,7 @@
         <item name="centerTitles">false</item>
         <item name="titleItalic">false</item>
         <item name="titleLeftBorder">false</item>
+        <item name="cardBorderless">false</item>
     </style>
 
     <!-- ============ OCEAN (Manrope -> sans-serif) ============ -->
@@ -460,6 +463,7 @@
         <item name="centerTitles">false</item>
         <item name="titleItalic">false</item>
         <item name="titleLeftBorder">false</item>
+        <item name="cardBorderless">false</item>
     </style>
 
     <!-- ============ ZEN (Jost -> sans-serif-light, minimal) ============ -->
@@ -548,6 +552,7 @@
         <item name="centerTitles">false</item>
         <item name="titleItalic">false</item>
         <item name="titleLeftBorder">false</item>
+        <item name="cardBorderless">true</item>
     </style>
 
     <!-- ============ HOLOGRAM (Orbitron -> monospace) ============ -->
@@ -636,6 +641,7 @@
         <item name="centerTitles">false</item>
         <item name="titleItalic">false</item>
         <item name="titleLeftBorder">false</item>
+        <item name="cardBorderless">false</item>
     </style>
 
     <!-- ============ SPLASH (fixed Relax Mint look) ============ -->
@@ -711,5 +717,6 @@
         <item name="centerTitles">false</item>
         <item name="titleItalic">false</item>
         <item name="titleLeftBorder">false</item>
+        <item name="cardBorderless">false</item>
     </style>
 </resources>

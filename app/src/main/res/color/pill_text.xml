@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Day-pill text: selected = button text (on mint), default = sub colour. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:state_selected="true"
+        android:color="?attr/buttonText" />
+    <item android:color="?attr/subColor" />
+</selector>
