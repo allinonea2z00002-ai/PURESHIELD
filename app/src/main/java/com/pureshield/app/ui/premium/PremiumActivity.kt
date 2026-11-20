@@ -34,20 +34,22 @@ class PremiumActivity : AppCompatActivity() {
 
     private var selectedPlan: Plan = Plan.MONTHLY
 
-    private val planAdapter = PlanAdapter { plan ->
-        selectedPlan = plan
-        planAdapter.submit(plans(), selectedPlan)
-        b.tvFooterPrice.setText(
-            if (plan == Plan.YEARLY) R.string.premium_price_yearly
-            else R.string.premium_price_monthly
-        )
-    }
+    private lateinit var planAdapter: PlanAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         ThemeManager.apply(this)
         super.onCreate(savedInstanceState)
         b = ActivityPremiumBinding.inflate(layoutInflater)
         setContentView(b.root)
+
+        planAdapter = PlanAdapter { plan ->
+            selectedPlan = plan
+            planAdapter.submit(plans(), selectedPlan)
+            b.tvFooterPrice.setText(
+                if (plan == Plan.YEARLY) R.string.premium_price_yearly
+                else R.string.premium_price_monthly
+            )
+        }
 
         b.tvBack.setOnClickListener { finish() }
 

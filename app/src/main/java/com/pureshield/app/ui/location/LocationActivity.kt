@@ -144,7 +144,7 @@ class LocationActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 val fixFlow = LocationHelper.updates(this@LocationActivity, 10_000)
-                    .map<Fix?> { it }
+                    .map<Fix, Fix?> { it }
                     .onStart { emit(null) }
                 combine(
                     Graph.db.safeZoneDao().observeAll(),

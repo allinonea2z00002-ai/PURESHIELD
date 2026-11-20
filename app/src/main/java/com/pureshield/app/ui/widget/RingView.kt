@@ -11,6 +11,7 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.Keep
 import com.pureshield.app.R
+import com.pureshield.app.ui.attrBoolean
 import com.pureshield.app.ui.attrColor
 
 /**
