@@ -9,6 +9,7 @@ import com.pureshield.app.data.db.AppDatabase
 import com.pureshield.app.data.db.LockState
 import com.pureshield.app.data.prefs.SecureStore
 import com.pureshield.app.data.prefs.SettingsStore
+import com.pureshield.app.service.KeepAliveService
 import com.pureshield.app.service.WorkScheduler
 import com.pureshield.app.util.Notifier
 import kotlinx.coroutines.flow.Flow
@@ -118,6 +119,11 @@ class LockManager(
         refreshStateLocked()
         WorkScheduler.scheduleUnlock(context, durationMs)
         WorkScheduler.schedulePeriodic(context)
+        // A lock with no foreground service dies on a Recents swipe: the
+        // process is killed, the accessibility service dies with it, and the
+        // restart logic never runs because it lives in this service. Start
+        // it here so protection actually survives the swipe.
+        KeepAliveService.start(context)
         StartResult.Started
     }
 
@@ -176,6 +182,13 @@ class LockManager(
         }
         dao.upsert(updated)
         refreshStateLocked()
+        // Location protection just turned on or off: keep the foreground
+        // service in step, so the location lock also survives a swipe.
+        if (updated.locProtecting) {
+            KeepAliveService.start(context)
+        } else if (!updated.active) {
+            KeepAliveService.stop(context)
+        }
     }
 
     /** Location lock master off / last place disabled or deleted: clears the flag. */
@@ -184,6 +197,7 @@ class LockManager(
         if (!cfg.locProtecting) return@withLock
         dao.upsert(cfg.copy(locProtecting = false))
         refreshStateLocked()
+        if (!cfg.active) KeepAliveService.stop(context)
     }
 
     // ------------------------------------------------------------- evaluation
@@ -261,6 +275,9 @@ class LockManager(
         dao.upsert(finished)
         refreshStateLocked()
         WorkScheduler.cancelUnlock(context)
+        // Time session over: stop the keep-alive service unless the location
+        // lock is still protecting (then it must keep running).
+        if (!finished.locProtecting) KeepAliveService.stop(context)
         if (reason == LockEndReason.COMPLETED || reason == LockEndReason.DISTANCE) {
             notifier.event(
                 Notifier.ID_UNLOCKED,

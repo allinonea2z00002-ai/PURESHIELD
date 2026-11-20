@@ -20,7 +20,12 @@ import com.pureshield.app.service.PureShieldAccessibilityService
 enum class PermissionKind(
     val notifId: Int,
     @StringRes val titleRes: Int,
-    @StringRes val textRes: Int
+    @StringRes val textRes: Int,
+    /** When set, tapping the notification (or the Home-card Allow button)
+     *  grants this permission with the system dialog inside the app instead
+     *  of opening Settings — only runtime permissions can be granted that
+     *  way; the special kinds below keep their settings deep-link. */
+    val requestKey: String? = null
 ) {
     ACCESSIBILITY(2001, R.string.perm_accessibility_title, R.string.perm_accessibility_text) {
         override fun intent(context: Context) = Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
@@ -28,13 +33,13 @@ enum class PermissionKind(
     USAGE(2002, R.string.perm_usage_title, R.string.perm_usage_text) {
         override fun intent(context: Context) = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
     },
-    LOCATION_FINE(2003, R.string.perm_location_title, R.string.perm_location_text) {
+    LOCATION_FINE(2003, R.string.perm_location_title, R.string.perm_location_text, "location") {
         override fun intent(context: Context) = appDetailsIntent(context)
     },
     LOCATION_BACKGROUND(2004, R.string.perm_background_title, R.string.perm_background_text) {
         override fun intent(context: Context) = appDetailsIntent(context)
     },
-    NOTIFICATIONS(2005, R.string.perm_notifications_title, R.string.perm_notifications_text) {
+    NOTIFICATIONS(2005, R.string.perm_notifications_title, R.string.perm_notifications_text, "notifications") {
         override fun intent(context: Context) =
             Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
                 .putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
@@ -48,6 +53,20 @@ enum class PermissionKind(
 
     /** The settings screen (or system dialog) that grants this permission. */
     abstract fun intent(context: Context): Intent
+
+    /**
+     * Notification tap target. Runtime kinds open MainActivity, which fires
+     * the same in-app system dialog; special kinds open their settings
+     * screen directly (Android lets no app grant those itself).
+     */
+    fun notifIntent(context: Context): Intent {
+        val key = requestKey
+            ?: return intent(context).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        return Intent()
+            .setClassName(context.packageName, "com.pureshield.app.ui.MainActivity")
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            .putExtra(EXTRA_REQUEST_PERMISSION, key)
+    }
 }
 
 /** App-details settings, where Location ("Allow all the time" included) is granted. */
@@ -67,8 +86,29 @@ private fun appDetailsIntent(context: Context) =
  */
 object PermissionPrompter {
 
+    /** Intent extra telling MainActivity to fire an in-app permission dialog
+     *  on resume; value is the kind's [PermissionKind.requestKey]
+     *  ("location" / "notifications"). */
+    const val EXTRA_REQUEST_PERMISSION = "extra_request_permission"
+
     private const val PREFS = "perm_prompts"
     private const val KEY_NOTIFIED = "notified_kinds"
+
+    /**
+     * Cold start: forget the permissions that are STILL missing, so their
+     * notifications come back automatically. A once-dismissed prompt must
+     * not stay silent forever — that is why the user felt nothing ever came.
+     * Within one session nothing is re-posted (only onCreate calls this).
+     */
+    suspend fun resetStillMissing(context: Context) {
+        val missingNames = missing(context).map { it.name }.toSet()
+        if (missingNames.isEmpty()) return
+        val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+        val notified = prefs.getStringSet(KEY_NOTIFIED, emptySet())?.toMutableSet() ?: return
+        if (notified.removeAll(missingNames)) {
+            prefs.edit().putStringSet(KEY_NOTIFIED, notified).apply()
+        }
+    }
 
     /** Every permission the lock needs right now that is still missing. */
     suspend fun missing(context: Context): List<PermissionKind> {
@@ -129,7 +169,7 @@ object PermissionPrompter {
                     kind.notifId,
                     context.getString(kind.titleRes),
                     context.getString(kind.textRes),
-                    kind.intent(context).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    kind.notifIntent(context)
                 )
                 notified.add(kind.name)
             }

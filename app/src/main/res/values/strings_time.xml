@@ -25,6 +25,7 @@
     <string name="timelock_min_toast">Set a lock of at least 3 minutes</string>
     <string name="timelock_max_toast">Maximum 24 hours (1440 minutes)</string>
     <string name="timelock_started">%1$s minute lock started</string>
+    <string name="timelock_no_apps_toast">No apps selected yet — only the time lock will run. Pick apps from the Block list to block them too.</string>
     <string name="timelock_running">Lock running</string>
     <string name="timelock_ends">Time left · ends at %1$s</string>
     <string name="timelock_footer">Power menu off · Uninstall off · New app install off</string>

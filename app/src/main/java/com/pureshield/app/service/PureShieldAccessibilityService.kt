@@ -334,6 +334,22 @@ class PureShieldAccessibilityService : AccessibilityService() {
 
     override fun onInterrupt() {}
 
+    /**
+     * Swiped away from Recents: the accessibility service dies with the
+     * process, so restart the keep-alive service (which re-anchors the
+     * protection) while protection is on. The 5 s alarm is the reliable
+     * path; the immediate start is best-effort.
+     */
+    override fun onTaskRemoved(rootIntent: Intent?) {
+        if (protecting) {
+            KeepAliveService.restartSoon(this)
+            runCatching {
+                startForegroundService(Intent(this, KeepAliveService::class.java))
+            }
+        }
+        super.onTaskRemoved(rootIntent)
+    }
+
     override fun onUnbind(intent: Intent?): Boolean {
         connected = false
         return super.onUnbind(intent)

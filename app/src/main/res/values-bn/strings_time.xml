@@ -25,6 +25,7 @@
     <string name="timelock_min_toast">সর্বনিম্ন ৩ মিনিটের লক দিন</string>
     <string name="timelock_max_toast">সর্বোচ্চ ২৪ ঘণ্টা (১৪৪০ মিনিট)</string>
     <string name="timelock_started">%1$s মিনিটের লক শুরু হয়েছে</string>
+    <string name="timelock_no_apps_toast">কোনো অ্যাপ বেছে নেওয়া হয়নি — শুধু টাইম লক চলবে। অ্যাপ ব্লক করতে Block list থেকে অ্যাপ বেছে নিন।</string>
     <string name="timelock_running">লক চলছে</string>
     <string name="timelock_ends">বাকি সময় · শেষ হবে %1$s-এ</string>
     <string name="timelock_footer">পাওয়ার মেনু বন্ধ · আনইনস্টল বন্ধ · নতুন অ্যাপ ইনস্টল বন্ধ</string>

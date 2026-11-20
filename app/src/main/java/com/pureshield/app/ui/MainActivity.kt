@@ -1,11 +1,13 @@
 package com.pureshield.app.ui
 
+import android.Manifest
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
+import android.os.Build
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.Spanned
@@ -15,6 +17,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
@@ -73,6 +76,41 @@ class MainActivity : AppCompatActivity() {
      *  toggles refuse changes while this is true — the lock must end first. */
     private var lockActive = false
 
+    /**
+     * In-app system dialogs for the two runtime permissions, so tapping Allow
+     * on the Home card grants them without leaving the app. On grant the card
+     * refreshes (and the prompt notification is cancelled by the sync); on a
+     * permanent denial ("don't ask again") Settings is the only way left, so
+     * the deep-link opens instead.
+     */
+    private val locationPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        refreshPermissions()
+        if (!granted &&
+            !shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)
+        ) {
+            startActivity(
+                PermissionKind.LOCATION_FINE.intent(this)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            )
+        }
+    }
+
+    private val notificationsPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        refreshPermissions()
+        if (!granted &&
+            !shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)
+        ) {
+            startActivity(
+                PermissionKind.NOTIFICATIONS.intent(this)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            )
+        }
+    }
+
     private data class GuardRow(
         @DrawableRes val iconRes: Int,
         /** Theme colour attr for this guard's icon + tile (mint / blue / gold). */
@@ -109,6 +147,20 @@ class MainActivity : AppCompatActivity() {
         startFloatAnimations()
         observeData()
         startTickers()
+        // Cold start: permissions that are STILL missing get their
+        // notifications again automatically (see resetStillMissing) — a
+        // once-dismissed prompt must not stay silent forever.
+        lifecycleScope.launch {
+            PermissionPrompter.resetStillMissing(this@MainActivity)
+            PermissionPrompter.checkAndPrompt(this@MainActivity)
+        }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        // A notification tap arrives here when this activity is already on
+        // top: keep the new intent so onResume sees its request extra.
+        setIntent(intent)
     }
 
     override fun onResume() {
@@ -117,6 +169,19 @@ class MainActivity : AppCompatActivity() {
         // The user may just have granted a permission in Settings: re-check,
         // clear the prompts that are granted now, and sync the Home card.
         refreshPermissions()
+        // A permission notification was tapped: fire the in-app system dialog
+        // once, then drop the extra so coming back from the dialog does not
+        // re-fire it.
+        when (intent.getStringExtra(PermissionPrompter.EXTRA_REQUEST_PERMISSION)) {
+            PermissionKind.LOCATION_FINE.requestKey -> {
+                intent.removeExtra(PermissionPrompter.EXTRA_REQUEST_PERMISSION)
+                requestLocationPermission()
+            }
+            PermissionKind.NOTIFICATIONS.requestKey -> {
+                intent.removeExtra(PermissionPrompter.EXTRA_REQUEST_PERMISSION)
+                requestNotificationPermission()
+            }
+        }
     }
 
     override fun onPause() {
@@ -344,8 +409,39 @@ class MainActivity : AppCompatActivity() {
             row.permRowTitle.setText(kind.titleRes)
             row.permRowSub.setText(kind.textRes)
             row.permRowButton.setOnClickListener {
-                startActivity(kind.intent(this@MainActivity).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                // Runtime permissions are granted with the system dialog
+                // inside the app; the special kinds open their settings
+                // screen (Android lets no app grant those itself).
+                when (kind) {
+                    PermissionKind.LOCATION_FINE -> requestLocationPermission()
+                    PermissionKind.NOTIFICATIONS -> requestNotificationPermission()
+                    else -> startActivity(
+                        kind.intent(this@MainActivity)
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    )
+                }
             }
+        }
+    }
+
+    /** Fine location is a runtime permission: ask with the system dialog. */
+    private fun requestLocationPermission() {
+        locationPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+    }
+
+    /**
+     * Notifications are a runtime permission on Android 13+; below that
+     * there is no system dialog, so open the app notification settings
+     * directly.
+     */
+    private fun requestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            notificationsPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        } else {
+            startActivity(
+                PermissionKind.NOTIFICATIONS.intent(this)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            )
         }
     }
 

@@ -47,6 +47,7 @@ class KeepAliveService : Service() {
 
     override fun onCreate() {
         super.onCreate()
+        isRunning = true
         startForeground(NOTIF_ID, Graph.notifier.ongoingLockNotification(getString(R.string.notif_lock_running_text)))
         handler.postDelayed(tickRunnable, TICK_MS)
         scope.launch {
@@ -74,6 +75,7 @@ class KeepAliveService : Service() {
     override fun onDestroy() {
         handler.removeCallbacks(tickRunnable)
         PlaceWatcher.stopForegroundLoop()
+        isRunning = false
         // If protection is still on, the service being destroyed must not end it.
         // Read the in-memory snapshot (no suspend call: the scope is being torn down).
         if (runCatching { Graph.lockManager.state.value.protecting }.getOrDefault(false)) {
@@ -106,9 +108,21 @@ class KeepAliveService : Service() {
     }
 
     companion object {
-        const val NOTIF_ID = 2001
+        // NOTE: 2100 on purpose — the permission prompts use 2001-2006, and
+        // sharing an id would let one notification cancel/replace the other.
+        const val NOTIF_ID = 2100
         private const val TICK_MS = 30_000L
-        private const val RESTART_DELAY_MS = 60_000L
+        // Restart gap after a Recents swipe: 5 s, not a minute — setAlarmClock
+        // is exact and needs no permission, so there is no reason to leave
+        // protection down for 60 s. (Vivo force-stop is still unrecoverable:
+        // see the class comment.)
+        private const val RESTART_DELAY_MS = 5_000L
+
+        /** True while the service object is alive in this process. A fresh
+         *  process (e.g. after a swipe-kill) starts with false, which is
+         *  exactly what the GuardWorker watchdog checks. */
+        @Volatile var isRunning = false
+            private set
 
         fun start(context: Context) {
             runCatching {

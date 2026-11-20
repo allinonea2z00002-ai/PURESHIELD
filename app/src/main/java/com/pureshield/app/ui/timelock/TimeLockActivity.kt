@@ -86,6 +86,9 @@ class TimeLockActivity : AppCompatActivity() {
     private var wasActive = false
     private var lastSnap: LockSnapshot = LockSnapshot.INACTIVE
     private var lastState: LockState? = null
+    /** Blocked apps right now (from the DAO flow): 0 means a Time Lock would
+     *  only lock the time, with no app actually blocked. */
+    private var blockedAppCount = 0
     private var unlockedByPin = false
     private var pendingPinSheet = false
     private var runningPulseAnimator: ObjectAnimator? = null
@@ -279,6 +282,16 @@ class TimeLockActivity : AppCompatActivity() {
                         // Protection just turned on: prompt for any permission
                         // the lock still needs (one notification per permission).
                         PermissionPrompter.checkAndPrompt(this@TimeLockActivity)
+                        if (blockedAppCount == 0) {
+                            // The lock still starts — it just blocks nothing.
+                            // Say so plainly instead of letting the user think
+                            // their apps are blocked.
+                            Toast.makeText(
+                                this@TimeLockActivity,
+                                R.string.timelock_no_apps_toast,
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
                         Toast.makeText(
                             this@TimeLockActivity,
                             getString(
@@ -458,6 +471,7 @@ class TimeLockActivity : AppCompatActivity() {
                 launch {
                     Graph.db.blockedAppDao().observeAll().collect { apps ->
                         val count = apps.count { it.blocked }
+                        blockedAppCount = count
                         appsRow.lockSub.text = if (count > 0) {
                             getString(
                                 R.string.timelock_row_apps_sub,

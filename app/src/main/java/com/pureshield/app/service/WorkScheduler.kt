@@ -57,6 +57,15 @@ class GuardWorker(context: Context, params: WorkerParameters) : CoroutineWorker(
         Graph.lockManager.checkpoint()
         runCatching { PlaceWatcher.checkNow(applicationContext) }
         runCatching { RepeatLock.checkAndStart(applicationContext) }
+        // Watchdog: protection is on but the keep-alive service is not
+        // running (e.g. the process was swiped away and the alarm restart
+        // did not fire) — bring it back. The service's own onTaskRemoved
+        // alarm covers the fast path; this is the 15-minute backstop.
+        runCatching {
+            if (Graph.lockManager.snapshotNow().protecting && !KeepAliveService.isRunning) {
+                KeepAliveService.start(applicationContext)
+            }
+        }
         // Prune old rows so the database stays small.
         val now = System.currentTimeMillis()
         runCatching { Graph.db.blockEventDao().deleteOlderThan(now - 30L * 86_400_000L) }
