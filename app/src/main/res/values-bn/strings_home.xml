@@ -57,6 +57,7 @@
     <string name="home_theme_toast">থিম: %1$s</string>
     <string name="home_toggle_on">%1$s চালু হয়েছে</string>
     <string name="home_toggle_off">%1$s বন্ধ হয়েছে</string>
+    <string name="locked_change_blocked">লক চলছে — আগে লক শেষ করুন, অথবা Time Lock স্ক্রিন থেকে পার্টনারের PIN দিয়ে আগেই খুলুন</string>
 
     <!-- Bottom nav -->
     <string name="nav_home">হোম</string>

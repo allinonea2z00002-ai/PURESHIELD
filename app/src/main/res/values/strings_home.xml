@@ -57,6 +57,7 @@
     <string name="home_theme_toast">Theme: %1$s</string>
     <string name="home_toggle_on">%1$s turned on</string>
     <string name="home_toggle_off">%1$s turned off</string>
+    <string name="locked_change_blocked">A lock is running — finish it first, or unlock early with the partner PIN on the Time Lock screen</string>
 
     <!-- Bottom nav -->
     <string name="nav_home">Home</string>

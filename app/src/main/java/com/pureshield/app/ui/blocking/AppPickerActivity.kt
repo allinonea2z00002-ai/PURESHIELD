@@ -79,6 +79,11 @@ class AppPickerActivity : AppCompatActivity() {
 
     private fun addApp(app: BlockingActivity.InstalledApp) {
         lifecycleScope.launch {
+            // Defence in depth: no new block-list entries while a lock is running.
+            if (Graph.lockManager.protecting()) {
+                Toast.makeText(this@AppPickerActivity, R.string.locked_change_blocked, Toast.LENGTH_LONG).show()
+                return@launch
+            }
             Graph.db.blockedAppDao().upsert(
                 BlockedApp(
                     packageName = app.packageName,

@@ -48,6 +48,8 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var b: ActivitySettingsBinding
 
     private var strictLocked: Boolean = false
+    /** True while any protection is active (time session OR location lock). */
+    private var lockActive: Boolean = false
     private var updatingUi = false
     private var currentLanguage: String = "bn"
 
@@ -90,7 +92,7 @@ class SettingsActivity : AppCompatActivity() {
             startActivity(Intent(this, RouteHistoryActivity::class.java))
         }
 
-        bindSettingSwitch(b.switchStrict, { on -> Graph.settings.setStrictMode(on) }) { on ->
+        bindSettingSwitch(b.switchStrict, { on -> Graph.settings.setStrictMode(on) }, guardRow = true) { on ->
             Toast.makeText(
                 this,
                 getString(
@@ -100,8 +102,8 @@ class SettingsActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
         }
-        bindSettingSwitch(b.switchGuard, { on -> Graph.settings.setSettingsGuard(on) }, null)
-        bindSettingSwitch(b.switchBoundary, { on -> Graph.settings.setBoundaryAlert(on) }, null)
+        bindSettingSwitch(b.switchGuard, { on -> Graph.settings.setSettingsGuard(on) }, guardRow = true, onChanged = null)
+        bindSettingSwitch(b.switchBoundary, { on -> Graph.settings.setBoundaryAlert(on) }, onChanged = null)
         b.switchReport.setOnCheckedChangeListener { _, on ->
             if (updatingUi) return@setOnCheckedChangeListener
             lifecycleScope.launch {
@@ -121,6 +123,7 @@ class SettingsActivity : AppCompatActivity() {
                 ) { settings, lock -> Pair(settings, lock) }
                     .collect { (settings, lock) ->
                         strictLocked = settings.strictMode && lock?.active == true
+                        lockActive = lock?.active == true || lock?.locProtecting == true
                         currentLanguage = settings.language
                         updatingUi = true
                         try {
@@ -166,15 +169,28 @@ class SettingsActivity : AppCompatActivity() {
     /**
      * A security switch that refuses changes while Strict mode is on during
      * an active lock — with a toast explaining why, instead of silently
-     * ignoring the tap.
+     * ignoring the tap. Guard rows ([guardRow] = true) also refuse changes
+     * while ANY lock is active, even without Strict mode: the lock must end
+     * first (or be ended early with the partner PIN on the Time Lock screen).
      */
     private fun bindSettingSwitch(
         switch: com.google.android.material.switchmaterial.SwitchMaterial,
         save: suspend (Boolean) -> Unit,
+        guardRow: Boolean = false,
         onChanged: ((Boolean) -> Unit)?
     ) {
         switch.setOnCheckedChangeListener { _, on ->
             if (updatingUi) return@setOnCheckedChangeListener
+            if (guardRow && lockActive) {
+                updatingUi = true
+                try {
+                    switch.isChecked = !on
+                } finally {
+                    updatingUi = false
+                }
+                Toast.makeText(this, R.string.locked_change_blocked, Toast.LENGTH_LONG).show()
+                return@setOnCheckedChangeListener
+            }
             if (strictLocked) {
                 updatingUi = true
                 try {

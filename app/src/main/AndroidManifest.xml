@@ -12,6 +12,12 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <!-- Needed to open the battery-exemption dialog (ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS). -->
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <!-- Declaring PACKAGE_USAGE_STATS does NOT grant Usage access — it only makes
+         PURESHIELD appear in the Usage Access settings list so the user can grant it.
+         Without this declaration Android hides the app from that list entirely. -->
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 

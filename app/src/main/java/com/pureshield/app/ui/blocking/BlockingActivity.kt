@@ -54,6 +54,10 @@ class BlockingActivity : AppCompatActivity() {
     private var installed: List<InstalledApp> = emptyList()
     private var updatingSwitches = false
 
+    /** True while any protection is active (time session OR location lock).
+     *  Block-list edits are refused while this is true — the lock must end first. */
+    private var lockActive = false
+
     private val adapter = AppAdapter { app, on -> onAppToggle(app, on) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,6 +71,10 @@ class BlockingActivity : AppCompatActivity() {
         b.rvApps.adapter = adapter
 
         b.btnAddApp.setOnClickListener {
+            if (lockActive) {
+                Toast.makeText(this, R.string.locked_change_blocked, Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
             startActivity(Intent(this, AppPickerActivity::class.java))
         }
         b.btnAddSite.setOnClickListener { addSiteFromInput() }
@@ -119,6 +127,11 @@ class BlockingActivity : AppCompatActivity() {
                             renderKeywordChips()
                             renderAppList()
                         }
+                }
+                launch {
+                    Graph.db.lockStateDao().observe().collect { lock ->
+                        lockActive = lock?.active == true || lock?.locProtecting == true
+                    }
                 }
                 launch {
                     Graph.settings.flow.collect { settings ->
@@ -182,6 +195,10 @@ class BlockingActivity : AppCompatActivity() {
                 .inflate(R.layout.item_site_chip, b.chipGroupSites, false) as Chip
             chip.text = site.host
             chip.setOnCloseIconClickListener {
+                if (lockActive) {
+                    Toast.makeText(this, R.string.locked_change_blocked, Toast.LENGTH_LONG).show()
+                    return@setOnCloseIconClickListener
+                }
                 lifecycleScope.launch {
                     Graph.db.blockedSiteDao().delete(site.host)
                     Toast.makeText(
@@ -202,6 +219,10 @@ class BlockingActivity : AppCompatActivity() {
                 .inflate(R.layout.item_site_chip, b.chipGroupKeywords, false) as Chip
             chip.text = kw.word
             chip.setOnCloseIconClickListener {
+                if (lockActive) {
+                    Toast.makeText(this, R.string.locked_change_blocked, Toast.LENGTH_LONG).show()
+                    return@setOnCloseIconClickListener
+                }
                 lifecycleScope.launch {
                     Graph.db.keywordDao().delete(kw.word)
                     Toast.makeText(
@@ -218,6 +239,12 @@ class BlockingActivity : AppCompatActivity() {
     // ---- app toggles ----------------------------------------------------------
 
     private fun onAppToggle(row: InstalledAppRow, on: Boolean) {
+        if (lockActive) {
+            Toast.makeText(this, R.string.locked_change_blocked, Toast.LENGTH_LONG).show()
+            // Re-render from the database so the row switch flips back.
+            renderAppList()
+            return
+        }
         lifecycleScope.launch {
             val dao = Graph.db.blockedAppDao()
             val existing = dao.get(row.app.packageName)
@@ -246,6 +273,10 @@ class BlockingActivity : AppCompatActivity() {
     // ---- sites ----------------------------------------------------------
 
     private fun addSiteFromInput() {
+        if (lockActive) {
+            Toast.makeText(this, R.string.locked_change_blocked, Toast.LENGTH_LONG).show()
+            return
+        }
         val raw = b.etSite.text?.toString().orEmpty()
         val host = normalizeDomain(raw)
         when {
@@ -282,6 +313,10 @@ class BlockingActivity : AppCompatActivity() {
     // ---- keywords ----------------------------------------------------------
 
     private fun addKeywordFromInput() {
+        if (lockActive) {
+            Toast.makeText(this, R.string.locked_change_blocked, Toast.LENGTH_LONG).show()
+            return
+        }
         val raw = b.etKeyword.text?.toString().orEmpty().trim().lowercase()
         when {
             raw.isEmpty() -> Toast.makeText(this, R.string.block_kw_empty, Toast.LENGTH_SHORT).show()
@@ -327,6 +362,17 @@ class BlockingActivity : AppCompatActivity() {
     ) {
         switch.setOnCheckedChangeListener { _, on ->
             if (updatingSwitches) return@setOnCheckedChangeListener
+            if (lockActive) {
+                // Revert the tap: Reels/Shorts blocking cannot be weakened mid-lock.
+                updatingSwitches = true
+                try {
+                    switch.isChecked = !on
+                } finally {
+                    updatingSwitches = false
+                }
+                Toast.makeText(this, R.string.locked_change_blocked, Toast.LENGTH_LONG).show()
+                return@setOnCheckedChangeListener
+            }
             lifecycleScope.launch {
                 save(on)
                 Toast.makeText(

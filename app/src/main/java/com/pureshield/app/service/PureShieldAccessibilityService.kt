@@ -111,12 +111,17 @@ class PureShieldAccessibilityService : AccessibilityService() {
         val pkg = event.packageName?.toString() ?: return
         if (pkg == packageName) return
 
-        // Power menu: SystemUI GlobalActions window while protection is active.
-        if (pkg == "com.android.systemui") {
+        // Power menu: any SystemUI package's power window while protection is active.
+        // Vivo ships its own SystemUI package, so match by substring, not the AOSP name.
+        if (pkg.contains("systemui")) {
             if (protecting && powerMenuBlock) guardPowerMenu(event)
             return
         }
-        if (pkg in SETTINGS_PACKAGES) {
+        // Settings family: exact AOSP/Samsung/Vivo packages, plus any installer
+        // (covers com.vivo.packageinstaller). The text check in
+        // guardSettingsScreen() keeps this safe — it only fires on a screen
+        // that actually shows PURESHIELD's name.
+        if (pkg in SETTINGS_PACKAGES || pkg.contains("packageinstaller")) {
             if (protecting && uninstallProtection) guardSettingsScreen()
             return
         }
@@ -221,9 +226,15 @@ class PureShieldAccessibilityService : AccessibilityService() {
      * permission manager). Unlike Settings screens, the package match alone is enough here —
      * because these screens never show PURESHIELD's name. Fires only while protection is
      * active and "Uninstall protection" is on.
+     *
+     * Vivo packages (verified): iManager/security centre = com.iqoo.secure and
+     * com.vivo.imanager, permission manager = com.vivo.permissionmanager.
      */
     private fun isGuardedSystemApp(pkg: String): Boolean =
-        pkg.contains("securitycenter") || pkg.contains("permissioncontroller")
+        pkg == "com.iqoo.secure" || pkg == "com.vivo.imanager" ||
+            pkg == "com.vivo.permissionmanager" ||
+            pkg.contains("securitycenter") || pkg.contains("permissioncontroller") ||
+            pkg.contains("permissionmanager")
 
     private fun guardSystemApp(pkg: String) {
         val now = System.currentTimeMillis()
@@ -235,12 +246,17 @@ class PureShieldAccessibilityService : AccessibilityService() {
     /**
      * Power-menu dismiss (best-effort): the SystemUI power menu is the GlobalActions window.
      * The class name check keeps the notification shade and other SystemUI windows untouched.
+     * Vivo's power dialog uses different class names (Shutdown / Reboot / PowerDialog), so
+     * those are matched too — but ONLY on a class that looks like a power menu.
      */
     private fun guardPowerMenu(event: AccessibilityEvent) {
         if (event.eventType != AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) return
         val className = event.className?.toString() ?: ""
         if (!className.contains("GlobalActions", ignoreCase = true) &&
-            !className.contains("PowerMenu", ignoreCase = true)
+            !className.contains("PowerMenu", ignoreCase = true) &&
+            !className.contains("Shutdown", ignoreCase = true) &&
+            !className.contains("Reboot", ignoreCase = true) &&
+            !className.contains("PowerDialog", ignoreCase = true)
         ) return
         val now = System.currentTimeMillis()
         if (now - lastPowerMenuAt < 1_500) return
@@ -346,6 +362,7 @@ class PureShieldAccessibilityService : AccessibilityService() {
 
         private val SETTINGS_PACKAGES = setOf(
             "com.android.settings",
+            "com.vivo.settings",
             "com.android.packageinstaller",
             "com.google.android.packageinstaller",
             "com.samsung.android.packageinstaller"

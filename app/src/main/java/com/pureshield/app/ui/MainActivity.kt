@@ -69,6 +69,10 @@ class MainActivity : AppCompatActivity() {
     private var bannerPulseAnimator: ObjectAnimator? = null
     private var guardRows: List<Pair<GuardRow, ItemGuardRowBinding>> = emptyList()
 
+    /** True while any protection is active (time session OR location lock). Guard
+     *  toggles refuse changes while this is true — the lock must end first. */
+    private var lockActive = false
+
     private data class GuardRow(
         @DrawableRes val iconRes: Int,
         /** Theme colour attr for this guard's icon + tile (mint / blue / gold). */
@@ -282,6 +286,17 @@ class MainActivity : AppCompatActivity() {
             row.guardSwitch.setOnCheckedChangeListener { button, checked ->
                 // Programmatic updates (from the settings flow) must not re-write.
                 if (!button.isPressed) return@setOnCheckedChangeListener
+                // While a lock is running the guard switches cannot be flipped:
+                // revert the tap and point at the partner-PIN emergency unlock.
+                if (lockActive) {
+                    button.isChecked = !checked
+                    Toast.makeText(
+                        this@MainActivity,
+                        R.string.locked_change_blocked,
+                        Toast.LENGTH_LONG
+                    ).show()
+                    return@setOnCheckedChangeListener
+                }
                 lifecycleScope.launch {
                     guard.setOn(checked)
                     // Protection just turned on: prompt for any permission the
@@ -419,6 +434,7 @@ class MainActivity : AppCompatActivity() {
     // ----------------------------------------------------------------- lock UI
 
     private fun updateLockUi(snap: LockSnapshot) {
+        lockActive = snap.protecting
         when {
             snap.active -> {
                 b.lockBanner.isVisible = true
