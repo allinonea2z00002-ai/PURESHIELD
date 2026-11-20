@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- OCEAN composite decor: blue hills underneath, bubble dot-grids on top.
+     NOTE: the vector bubble layer stretches to fill the view, so bubble
+     spacing scales slightly with screen aspect (see report). -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/decor_hills_ocean" />
+    <item android:drawable="@drawable/decor_bubbles" />
+</layer-list>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Mint gradient tile for the shield logo (splash + ring centre). -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:angle="135"
+        android:endColor="?attr/mintDeepColor"
+        android:startColor="?attr/mintColor"
+        android:type="linear" />
+    <corners android:radius="20dp" />
+</shape>

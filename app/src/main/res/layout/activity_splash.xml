@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Splash: 1.1s, then fades to the dashboard. Logo is the real lotus-shield
+     mark (ic_logo_splash) on the mint gradient tile; the demo's white shield
+     + mint check is the same composition with the demo's check mark. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/splashRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/appBackground"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <FrameLayout
+        android:id="@+id/logoTile"
+        android:layout_width="108dp"
+        android:layout_height="108dp"
+        android:background="@drawable/bg_shield_tile">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_logo_splash" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="?attr/displayFontFamily"
+            android:text="@string/splash_name_pure"
+            android:textColor="?attr/inkColor"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="?attr/displayFontFamily"
+            android:text="@string/splash_name_shield"
+            android:textColor="?attr/mintColor"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/splash_tagline"
+        android:textColor="?attr/subColor"
+        android:textSize="15sp" />
+
+    <FrameLayout
+        android:layout_width="120dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/bg_track">
+
+        <View
+            android:id="@+id/loadSegment"
+            android:layout_width="48dp"
+            android:layout_height="4dp"
+            android:background="@drawable/bg_segment" />
+    </FrameLayout>
+</LinearLayout>

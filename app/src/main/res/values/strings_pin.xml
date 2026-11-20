@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Partner PIN sheet + PIN set/change screen -->
+    <string name="pin_title">Enter partner\'s PIN</string>
+    <string name="pin_sub">4-digit PIN for emergency unlock</string>
+    <string name="pin_set_title">Set partner PIN</string>
+    <string name="pin_change_title">Change partner PIN</string>
+    <string name="pin_set_sub">Choose a 4-digit PIN</string>
+    <string name="pin_confirm_sub">Enter the same PIN again</string>
+    <string name="pin_close">Close</string>
+    <string name="pin_wrong">Wrong PIN — try again</string>
+    <string name="pin_mismatch">PINs don\'t match — try again</string>
+    <string name="pin_unlocked">Lock opened with partner PIN</string>
+    <string name="pin_set_done">PIN set</string>
+    <string name="pin_changed_done">PIN changed</string>
+
+    <!-- Block screen (shown by the accessibility service while locked) -->
+    <string name="blockscreen_title">%1$s is blocked</string>
+    <string name="blockscreen_remaining">Time left</string>
+    <string name="blockscreen_emergency">Emergency unlock</string>
+    <string name="blockscreen_home">Back to home</string>
+</resources>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="timelock_title">Time Lock</string>
+    <string name="timelock_sub">সময় বেছে লক চালু করুন। সময় শেষ না হওয়া পর্যন্ত ব্লক করা অ্যাপ, সাইট — এমনকি পাওয়ার মেনুও বন্ধ থাকবে। খুলবে শুধু সময় শেষ হলে, অথবা পার্টনারের PIN দিয়ে।</string>
+    <string name="timelock_duration_label">কতক্ষণের জন্য লক?</string>
+    <string name="timelock_chip_1">১</string>
+    <string name="timelock_chip_3">৩</string>
+    <string name="timelock_chip_10">১০</string>
+    <string name="timelock_chip_30">৩০</string>
+    <string name="timelock_chip_60">৬০</string>
+    <string name="timelock_custom_hint">নিজের সময় (মিনিট)</string>
+    <string name="timelock_min_note">সর্বনিম্ন ৩ মিনিট</string>
+    <string name="timelock_repeat_label">যে দিনগুলোতে আবার লক হবে</string>
+    <string name="timelock_day_sat">শনি</string>
+    <string name="timelock_day_sun">রবি</string>
+    <string name="timelock_day_mon">সোম</string>
+    <string name="timelock_day_tue">মঙ্গল</string>
+    <string name="timelock_day_wed">বুধ</string>
+    <string name="timelock_day_thu">বৃহঃ</string>
+    <string name="timelock_day_fri">শুক্র</string>
+    <string name="timelock_combine_title">Location Lock-এর সাথে মিলিয়ে</string>
+    <string name="timelock_combine_sub">সময় অথবা দূরত্ব — যেটা আগে শেষ, লক খুলবে</string>
+    <string name="timelock_start">লক শুরু করুন</string>
+    <string name="timelock_min_toast">সর্বনিম্ন ৩ মিনিটের লক দিন</string>
+    <string name="timelock_max_toast">সর্বোচ্চ ২৪ ঘণ্টা (১৪৪০ মিনিট)</string>
+    <string name="timelock_started">%1$s মিনিটের লক শুরু হয়েছে</string>
+    <string name="timelock_running">লক চলছে</string>
+    <string name="timelock_ends">বাকি সময় · শেষ হবে %1$s-এ</string>
+    <string name="timelock_footer">পাওয়ার মেনু বন্ধ · আনইনস্টল বন্ধ · নতুন অ্যাপ ইনস্টল বন্ধ</string>
+    <string name="timelock_finished">সময় শেষ — লক খুলে গেছে</string>
+    <string name="timelock_emergency">জরুরি আনলক — পার্টনারের PIN</string>
+    <string name="timelock_pin_hint">পার্টনারের PIN দিলেই লক খুলে যাবে।</string>
+    <string name="timelock_while_title">লক চলাকালে যা যা বন্ধ</string>
+    <string name="timelock_row_apps">ব্লক করা অ্যাপ</string>
+    <string name="timelock_row_apps_sub">%1$sটি অ্যাপের তালিকা অনুযায়ী</string>
+    <string name="timelock_row_apps_none">কোনো অ্যাপ বেছে নেওয়া হয়নি</string>
+    <string name="timelock_row_web">ওয়েবসাইট ফিল্টার</string>
+    <string name="timelock_row_web_sub">Private DNS (Kahf Guard) + URL পর্যবেক্ষণ</string>
+    <string name="timelock_row_power">পাওয়ার অফ / রিস্টার্ট</string>
+    <string name="timelock_row_power_sub">পাওয়ার মেনু এলেই Back + Home দিয়ে সরিয়ে দেয়</string>
+    <string name="timelock_row_install">নতুন অ্যাপ ইনস্টল</string>
+    <string name="timelock_row_install_sub">ইনস্টলার স্ক্রিন থেকে বের করে দেয়</string>
+    <string name="timelock_active_tag">সক্রিয়</string>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ocean droplet: 0 / 50% / 50% / 50% corners. Rotate the VIEW 45 degrees
+     (android:rotation="45") to get the demo droplet orientation.
+     Solid uses ?attr/mintColor; tint at runtime for picker dots. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="?attr/mintColor" />
+    <corners
+        android:topLeftRadius="0dp"
+        android:topRightRadius="16dp"
+        android:bottomRightRadius="16dp"
+        android:bottomLeftRadius="16dp" />
+</shape>

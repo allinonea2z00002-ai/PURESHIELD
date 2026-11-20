@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Engine strings only. All other user-facing text lives in the UI layer's strings.xml. -->
+
+    <string name="accessibility_service_label">PURESHIELD</string>
+    <string name="accessibility_service_description">PURESHIELD reads only which app is in front so it can block the apps you chose. Nothing is stored or sent.</string>
+
+    <string name="channel_lock">Protection running</string>
+    <string name="channel_alerts">Protection alerts</string>
+    <string name="channel_events">Activity</string>
+    <string name="channel_daily">Daily summary</string>
+
+    <string name="notif_lock_running_title">PURESHIELD protection is running</string>
+    <string name="notif_lock_running_text">PURESHIELD protection is running</string>
+    <string name="notif_lock_countdown_text">Lock ends in %1$s</string>
+    <string name="notif_location_lock_text">Location lock is active</string>
+
+    <string name="notif_completed_title">Lock completed</string>
+    <string name="notif_completed_text">Well done. Your lock has finished and your progress was saved.</string>
+
+    <string name="notif_zone_entered_title">You entered a saved place</string>
+    <string name="notif_zone_entered_text">You entered %1$s. Location lock is now active.</string>
+    <string name="notif_zone_left_title">You left a saved place</string>
+    <string name="notif_zone_left_text">You left %1$s. Location lock is now off.</string>
+
+    <string name="notif_boundary_near_title">You are near a place boundary</string>
+    <string name="notif_boundary_near_text">You are about %2$d m from the edge of %1$s.</string>
+
+    <string name="notif_location_denied_title">Background location is off</string>
+    <string name="notif_location_denied_text">PURESHIELD needs “Allow all the time” location access, or the location lock may not fire with the screen off.</string>
+
+    <string name="notif_daily_title">Your PURESHIELD day</string>
+    <string name="notif_daily_text">%1$d focused minutes today, %2$d blocks.</string>
+</resources>

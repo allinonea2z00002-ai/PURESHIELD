@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="stats_title">Statistics</string>
+    <string name="stats_sub">Your focus record — daily lock time, blocks and streak.</string>
+    <string name="stats_streak_days">%1$s-day streak</string>
+    <string name="stats_streak_sub">%1$s days in a row — personal best %2$s days</string>
+    <string name="stats_chart_title">Daily focus time</string>
+    <string name="stats_range_7">7 days</string>
+    <string name="stats_range_30">30 days</string>
+    <string name="stats_empty">No data yet — start a lock and the numbers will build up</string>
+    <string name="stats_total_focus">%1$s / total focus</string>
+    <string name="stats_daily_avg">%1$s / daily average</string>
+    <string name="stats_total_blocks">%1$s / total blocks</string>
+    <string name="stats_top_title">Blocked most often</string>
+    <string name="stats_top_empty">Nothing blocked yet</string>
+    <string name="stats_top_times">%1$s×</string>
+    <string name="stats_hours_mins">%1$sh %2$sm</string>
+    <string name="stats_hours_only">%1$sh</string>
+    <string name="stats_mins_only">%1$s min</string>
+    <string name="stats_zero_time">0 min</string>
+    <string name="stats_detail_app">Tried to open the app</string>
+    <string name="stats_detail_site">Tried to open the site</string>
+    <string name="stats_detail_reels">Tried to open Reels</string>
+    <string name="stats_detail_keyword">Blocked by keyword</string>
+    <string name="history_title">Route &amp; history</string>
+    <string name="history_sub">Which zone you entered or left in the last 30 days</string>
+    <string name="history_empty">No route or lock history in the last 30 days</string>
+    <string name="history_entered">Entered %1$s</string>
+    <string name="history_exited">Left %1$s</string>
+    <string name="history_lock_started">Time lock started</string>
+    <string name="history_lock_ended">Time lock ended</string>
+</resources>

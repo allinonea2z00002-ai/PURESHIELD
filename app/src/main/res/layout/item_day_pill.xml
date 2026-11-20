@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Repeat-day pill (Time Lock). Selected state toggled in code. -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="0dp"
+    android:layout_height="40dp"
+    android:layout_margin="3dp"
+    android:layout_weight="1"
+    android:background="@drawable/bg_chip"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center"
+    android:textColor="@color/chip_text"
+    android:textSize="13sp" />

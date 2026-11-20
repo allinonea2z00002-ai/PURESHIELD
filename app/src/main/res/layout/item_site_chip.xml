@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/chipSite"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="?attr/inkColor"
+    android:textSize="14sp"
+    app:chipBackgroundColor="?attr/cardBackground2"
+    app:chipStrokeColor="?attr/lineColor"
+    app:chipStrokeWidth="1dp"
+    app:closeIconVisible="true" />

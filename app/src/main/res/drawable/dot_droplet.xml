@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Theme-picker dot, DROPLET (Ocean): 0 / 50% / 50% / 50%.
+     Rotate the VIEW 45 degrees (android:rotation="45") for the droplet look.
+     Shape only — tint at runtime with ShieldTheme.dotColors[i]. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#FFFFFFFF" />
+    <corners
+        android:topLeftRadius="0dp"
+        android:topRightRadius="8dp"
+        android:bottomRightRadius="8dp"
+        android:bottomLeftRadius="8dp" />
+</shape>

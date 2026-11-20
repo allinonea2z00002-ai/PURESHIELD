@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Partner PIN emergency-unlock sheet (PinEntrySheet). Root card corners are
+     top-only (shapeAppearanceModel adjusted in code); the dialog window
+     background is transparent so the rounded top shows. -->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sheetCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="?attr/cardBackground"
+    app:cardCornerRadius="?attr/sheetCornerRadius"
+    app:cardElevation="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <View
+            android:layout_width="36dp"
+            android:layout_height="4dp"
+            android:background="@drawable/bg_track" />
+
+        <TextView
+            android:id="@+id/sheetTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="?attr/displayFontFamily"
+            android:text="@string/pin_title"
+            android:textColor="?attr/inkColor"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/sheetSub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/pin_sub"
+            android:textColor="?attr/subColor"
+            android:textSize="13sp" />
+
+        <LinearLayout
+            android:id="@+id/sheetDots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/dot1"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/bg_pin_dot"
+                android:backgroundTint="?attr/faintColor" />
+
+            <View
+                android:id="@+id/dot2"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/bg_pin_dot"
+                android:backgroundTint="?attr/faintColor" />
+
+            <View
+                android:id="@+id/dot3"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/bg_pin_dot"
+                android:backgroundTint="?attr/faintColor" />
+
+            <View
+                android:id="@+id/dot4"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/bg_pin_dot"
+                android:backgroundTint="?attr/faintColor" />
+        </LinearLayout>
+
+        <GridLayout
+            android:id="@+id/keypad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:columnCount="3">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/key1"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_margin="6dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:text="1"
+                android:textColor="?attr/inkColor"
+                android:textSize="22sp"
+                app:backgroundTint="?attr/cardBackground2"
+                app:cornerRadius="29dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/key2"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_margin="6dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:text="2"
+                android:textColor="?attr/inkColor"
+                android:textSize="22sp"
+                app:backgroundTint="?attr/cardBackground2"
+                app:cornerRadius="29dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/key3"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_margin="6dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:text="3"
+                android:textColor="?attr/inkColor"
+                android:textSize="22sp"
+                app:backgroundTint="?attr/cardBackground2"
+                app:cornerRadius="29dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/key4"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_margin="6dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:text="4"
+                android:textColor="?attr/inkColor"
+                android:textSize="22sp"
+                app:backgroundTint="?attr/cardBackground2"
+                app:cornerRadius="29dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/key5"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_margin="6dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:text="5"
+                android:textColor="?attr/inkColor"
+                android:textSize="22sp"
+                app:backgroundTint="?attr/cardBackground2"
+                app:cornerRadius="29dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/key6"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_margin="6dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:text="6"
+                android:textColor="?attr/inkColor"
+                android:textSize="22sp"
+                app:backgroundTint="?attr/cardBackground2"
+                app:cornerRadius="29dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/key7"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_margin="6dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:text="7"
+                android:textColor="?attr/inkColor"
+                android:textSize="22sp"
+                app:backgroundTint="?attr/cardBackground2"
+                app:cornerRadius="29dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/key8"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_margin="6dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:text="8"
+                android:textColor="?attr/inkColor"
+                android:textSize="22sp"
+                app:backgroundTint="?attr/cardBackground2"
+                app:cornerRadius="29dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/key9"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_margin="6dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:text="9"
+                android:textColor="?attr/inkColor"
+                android:textSize="22sp"
+                app:backgroundTint="?attr/cardBackground2"
+                app:cornerRadius="29dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/keyClose"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_margin="6dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:text="@string/pin_close"
+                android:textColor="?attr/inkColor"
+                android:textSize="14sp"
+                app:backgroundTint="?attr/cardBackground2"
+                app:cornerRadius="29dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/key0"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_margin="6dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:text="0"
+                android:textColor="?attr/inkColor"
+                android:textSize="22sp"
+                app:backgroundTint="?attr/cardBackground2"
+                app:cornerRadius="29dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/keyDelete"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_margin="6dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:text="⌫"
+                android:textColor="?attr/inkColor"
+                android:textSize="22sp"
+                app:backgroundTint="?attr/cardBackground2"
+                app:cornerRadius="29dp" />
+        </GridLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dashboard (MainActivity). Root matches the other screens: vertical
+     LinearLayout, ScrollView (weight 1), shared bottom-nav include. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/appBackground"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Live Bengali clock (12-hour, updates every 20s). The system
+                 status bar keeps the signal/battery icons; this is the clock. -->
+            <TextView
+                android:id="@+id/clockText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:textColor="?attr/subColor"
+                android:textSize="13sp" />
+
+            <!-- Header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/avatarText"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:background="@drawable/bg_avatar"
+                    android:gravity="center"
+                    android:text="P"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_greeting"
+                        android:textColor="?attr/subColor"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="?attr/displayFontFamily"
+                        android:text="@string/home_dashboard_title"
+                        android:textColor="?attr/inkColor"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/themeButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/home_theme_change"
+                    android:src="@drawable/ic_moon"
+                    app:tint="?attr/subColor" />
+
+                <FrameLayout
+                    android:layout_width="48dp"
+                    android:layout_height="48dp">
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/bellButton"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/home_notif_settings"
+                        android:src="@drawable/ic_bell"
+                        app:tint="?attr/subColor" />
+
+                    <View
+                        android:id="@+id/bellDot"
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_gravity="top|end"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/bg_pin_dot"
+                        android:backgroundTint="?attr/redColor" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Lock banner: visible only while a time lock runs. -->
+            <FrameLayout
+                android:id="@+id/lockBanner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:visibility="gone">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0.12"
+                    android:background="@drawable/bg_lock_banner" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <View
+                        android:id="@+id/lockBannerDot"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:background="@drawable/bg_pin_dot"
+                        android:backgroundTint="?attr/redColor" />
+
+                    <TextView
+                        android:id="@+id/lockBannerText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:text="@string/home_lock_banner"
+                        android:textColor="?attr/redColor"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/lockBannerTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="?attr/redColor"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- Protection ring: 218x218, custom RingView + centred overlay. -->
+            <FrameLayout
+                android:id="@+id/ringFrame"
+                android:layout_width="218dp"
+                android:layout_height="218dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp">
+
+                <com.pureshield.app.ui.widget.RingView
+                    android:id="@+id/ringView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:importantForAccessibility="no" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/shieldTile"
+                        android:layout_width="74dp"
+                        android:layout_height="74dp"
+                        android:background="@drawable/bg_shield_tile"
+                        android:contentDescription="@string/app_name"
+                        android:padding="9dp"
+                        android:src="@drawable/ic_logo_splash" />
+
+                    <TextView
+                        android:id="@+id/ringState"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/ring_state_active"
+                        android:textColor="?attr/mintColor"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/ringBig"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="?attr/displayFontFamily"
+                        android:text="@string/ring_big_ready"
+                        android:textColor="?attr/inkColor"
+                        android:textSize="27sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ringSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ring_small_no_lock"
+                        android:textColor="?attr/subColor"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- Ring progress bar: visible only while a time lock runs. -->
+            <ProgressBar
+                android:id="@+id/ringProgress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="32dp"
+                android:max="1000"
+                android:progressDrawable="@drawable/bg_progress_fill"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/focusLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:text="@string/home_focus_line_empty"
+                android:textColor="?attr/subColor"
+                android:textSize="14sp" />
+
+            <!-- Stat cards: columns come from the theme (Zen = 1, others = 2). -->
+            <GridLayout
+                android:id="@+id/statsGrid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-6dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="-6dp"
+                android:columnCount="2">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/stat1Card"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    app:cardBackgroundColor="?attr/cardBackground"
+                    app:cardCornerRadius="?attr/cardCornerRadius"
+                    app:cardElevation="0dp"
+                    app:layout_columnWeight="1"
+                    app:layout_gravity="fill_horizontal"
+                    app:strokeColor="?attr/lineColor"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/stat1Value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="?attr/displayFontFamily"
+                            android:text="০"
+                            android:textColor="?attr/inkColor"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/stat1Label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/home_stat_blocked_label"
+                            android:textColor="?attr/subColor"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/stat1Delta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/home_stat_blocked_empty"
+                            android:textColor="?attr/subColor"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/stat2Card"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    app:cardBackgroundColor="?attr/cardBackground"
+                    app:cardCornerRadius="?attr/cardCornerRadius"
+                    app:cardElevation="0dp"
+                    app:layout_columnWeight="1"
+                    app:layout_gravity="fill_horizontal"
+                    app:strokeColor="?attr/lineColor"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/stat2Value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="?attr/displayFontFamily"
+                            android:text="০ মি"
+                            android:textColor="?attr/inkColor"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/stat2Label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/home_stat_saved_label"
+                            android:textColor="?attr/subColor"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/stat2Delta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/home_stat_saved_empty"
+                            android:textColor="?attr/subColor"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </GridLayout>
+
+            <!-- Quick actions -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="?attr/displayFontFamily"
+                android:text="@string/home_quick_title"
+                android:textColor="?attr/inkColor"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/quickGrid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never" />
+
+            <!-- Protection guards -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="?attr/displayFontFamily"
+                    android:text="@string/home_guard_title"
+                    android:textColor="?attr/inkColor"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/guardSeeAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="@string/home_guard_see_all"
+                    android:textColor="?attr/mintColor"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/guardList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="@string/home_hint"
+                android:textColor="?attr/subColor"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/bottomNav"
+        layout="@layout/include_bottom_nav" />
+</LinearLayout>

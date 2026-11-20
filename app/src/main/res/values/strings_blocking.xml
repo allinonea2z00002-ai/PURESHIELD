@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="block_title">App &amp; Website Blocking</string>
+    <string name="block_sub">While a lock is running, opening these apps shows the block screen. Websites are stopped by Private DNS together with URL monitoring.</string>
+    <string name="block_apps_count">%1$s / blocked apps</string>
+    <string name="block_sites_count">%1$s / blocked sites + DNS filter</string>
+    <string name="block_apps_section">Apps</string>
+    <string name="block_add_app">+ Add app</string>
+    <string name="block_app_added">%1$s added to the block list</string>
+    <string name="block_app_removed">%1$s removed from the block list</string>
+    <string name="block_app_today">Blocked %1$s times today</string>
+    <string name="block_app_not_blocked">Not in the block list</string>
+    <string name="block_toggle_on">%1$s turned on</string>
+    <string name="block_toggle_off">%1$s turned off</string>
+    <string name="block_reels_section">Reels / Shorts feeds</string>
+    <string name="block_reels_youtube">YouTube Shorts</string>
+    <string name="block_reels_youtube_sub">Stops the Shorts feed from scrolling</string>
+    <string name="block_reels_instagram">Instagram Reels</string>
+    <string name="block_reels_instagram_sub">Block screen when the Reels tab opens</string>
+    <string name="block_reels_facebook">Facebook Reels</string>
+    <string name="block_reels_facebook_sub">Warning screen when the video feed opens</string>
+    <string name="block_sites_section">Blocked websites</string>
+    <string name="block_site_hint">e.g. example.com</string>
+    <string name="block_add">Add</string>
+    <string name="block_site_empty">Enter a site address first</string>
+    <string name="block_site_duplicate">This site is already in the list</string>
+    <string name="block_site_added">%1$s added to the block list</string>
+    <string name="block_site_removed">%1$s removed</string>
+    <string name="block_site_invalid">Enter a valid site address</string>
+    <string name="block_dns_title">Private DNS filter</string>
+    <string name="block_dns_sub">medium.kahfguard.com — adult, gambling and dating sites auto-blocked</string>
+    <string name="block_dns_guide">Setup guide</string>
+    <string name="block_dns_guide_title">Private DNS setup</string>
+    <string name="block_dns_guide_msg">1. Open Settings\n2. Network &amp; internet → Private DNS\n3. Choose “Private DNS provider hostname”\n4. Enter: medium.kahfguard.com\n5. Tap Save\n\nPURESHIELD cannot read the phone’s Private DNS setting, so no on/off state is shown here.</string>
+    <string name="block_dns_open_settings">Open settings</string>
+    <string name="block_kw_section">Keyword blocking</string>
+    <string name="block_kw_hint">e.g. casino</string>
+    <string name="block_kw_note">When these words appear on screen, the page is blocked — in the browser and in apps.</string>
+    <string name="block_kw_added">%1$s added to the keyword list</string>
+    <string name="block_kw_removed">%1$s removed</string>
+    <string name="block_kw_empty">Enter a keyword first</string>
+    <string name="block_kw_duplicate">This keyword is already in the list</string>
+    <string name="block_no_apps">No apps found</string>
+    <string name="block_picker_title">Add an app</string>
+    <string name="block_picker_hint">Search apps</string>
+    <string name="block_picker_empty">No more apps to block</string>
+</resources>

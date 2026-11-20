@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Hologram hexagon: flat-top hexagon for shield / avatar / QA icons /
+     splash logo. Fill uses ?attr/cardBackground (colour attrs resolve in
+     vector drawables); UI code may tint it via android:tint instead. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:pathData="M54,4 L96,28 L96,80 L54,104 L12,80 L12,28 Z"
+        android:fillColor="?attr/cardBackground"
+        android:strokeColor="?attr/lineColor"
+        android:strokeWidth="2" />
+</vector>

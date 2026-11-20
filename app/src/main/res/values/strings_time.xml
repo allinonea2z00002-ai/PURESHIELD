@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="timelock_title">Time Lock</string>
+    <string name="timelock_sub">Pick a time to start the lock. Until the time ends, blocked apps, sites — even the power menu — stay closed. It opens only when the time ends, or with your partner\'s PIN.</string>
+    <string name="timelock_duration_label">Lock for how long?</string>
+    <string name="timelock_chip_1">1</string>
+    <string name="timelock_chip_3">3</string>
+    <string name="timelock_chip_10">10</string>
+    <string name="timelock_chip_30">30</string>
+    <string name="timelock_chip_60">60</string>
+    <string name="timelock_custom_hint">Your own time (minutes)</string>
+    <string name="timelock_min_note">Minimum 3 minutes</string>
+    <string name="timelock_repeat_label">Days to lock again</string>
+    <string name="timelock_day_sat">Sat</string>
+    <string name="timelock_day_sun">Sun</string>
+    <string name="timelock_day_mon">Mon</string>
+    <string name="timelock_day_tue">Tue</string>
+    <string name="timelock_day_wed">Wed</string>
+    <string name="timelock_day_thu">Thu</string>
+    <string name="timelock_day_fri">Fri</string>
+    <string name="timelock_combine_title">Combine with Location Lock</string>
+    <string name="timelock_combine_sub">Time or distance — whichever ends first, the lock opens</string>
+    <string name="timelock_start">Start lock</string>
+    <string name="timelock_min_toast">Set a lock of at least 3 minutes</string>
+    <string name="timelock_max_toast">Maximum 24 hours (1440 minutes)</string>
+    <string name="timelock_started">%1$s minute lock started</string>
+    <string name="timelock_running">Lock running</string>
+    <string name="timelock_ends">Time left · ends at %1$s</string>
+    <string name="timelock_footer">Power menu off · Uninstall off · New app install off</string>
+    <string name="timelock_finished">Time\'s up — lock is open</string>
+    <string name="timelock_emergency">Emergency unlock — partner\'s PIN</string>
+    <string name="timelock_pin_hint">The lock opens with your partner\'s PIN.</string>
+    <string name="timelock_while_title">What\'s closed while locked</string>
+    <string name="timelock_row_apps">Blocked apps</string>
+    <string name="timelock_row_apps_sub">%1$s apps in your list</string>
+    <string name="timelock_row_apps_none">No apps chosen yet</string>
+    <string name="timelock_row_web">Website filter</string>
+    <string name="timelock_row_web_sub">Private DNS (Kahf Guard) + URL watch</string>
+    <string name="timelock_row_power">Power off / Restart</string>
+    <string name="timelock_row_power_sub">Power menu is dismissed with Back + Home</string>
+    <string name="timelock_row_install">New app install</string>
+    <string name="timelock_row_install_sub">Kicked out of the installer screen</string>
+    <string name="timelock_active_tag">Active</string>
+</resources>

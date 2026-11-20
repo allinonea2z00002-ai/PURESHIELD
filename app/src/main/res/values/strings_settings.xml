@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_title">Settings</string>
+    <string name="settings_sub">All protection controls in one place.</string>
+    <string name="settings_premium_title">PURESHIELD Premium ✦</string>
+    <string name="settings_premium_sub">Unlimited zones, advanced statistics and priority support — start with a free trial.</string>
+    <string name="settings_premium_cta">7-day free trial →</string>
+    <string name="settings_theme_section">App theme</string>
+    <string name="settings_theme_changed">Theme changed — %1$s</string>
+    <string name="settings_security_section">Security</string>
+    <string name="settings_pin_title">Partner PIN</string>
+    <string name="settings_pin_sub">4-digit PIN for emergency unlock is set</string>
+    <string name="settings_pin_sub_not_set">4-digit PIN for emergency unlock is not set yet</string>
+    <string name="settings_pin_change">Change</string>
+    <string name="settings_pin_set">Set</string>
+    <string name="settings_strict_title">Strict mode</string>
+    <string name="settings_strict_sub">While on, settings cannot be changed during a lock</string>
+    <string name="settings_guard_title">Settings app guard</string>
+    <string name="settings_guard_sub">Kicks you out of Settings/permission screens during a lock</string>
+    <string name="settings_boundary_title">Boundary alert</string>
+    <string name="settings_boundary_sub">Notification 10 metres before entering or leaving a zone</string>
+    <string name="settings_general_section">General</string>
+    <string name="settings_lang_title">Language</string>
+    <string name="settings_lang_sub">English (Bengali available)</string>
+    <string name="settings_lang_current_bn">বাংলা ›</string>
+    <string name="settings_lang_current_en">English ›</string>
+    <string name="settings_lang_dialog_title">Choose language</string>
+    <string name="settings_lang_changed">Language changed</string>
+    <string name="settings_report_title">Daily report</string>
+    <string name="settings_report_sub">Summary notification every day at 10 PM</string>
+    <string name="settings_history_title">Route &amp; history (30 days)</string>
+    <string name="settings_history_sub">When you entered or left each zone</string>
+    <string name="settings_history_open">View ›</string>
+    <string name="settings_footer">PURESHIELD · version 1.0</string>
+    <string name="settings_strict_locked">Strict mode is on — settings cannot be changed during a lock</string>
+</resources>

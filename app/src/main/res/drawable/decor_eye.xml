@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- EYE composite decor: faint olive hills (0.25) underneath, notebook
+     ruled lines on top. Sun/clouds/halo are hidden for Eye Comfort. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/decor_hills_eye" />
+    <item android:drawable="@drawable/decor_ruled" />
+</layer-list>

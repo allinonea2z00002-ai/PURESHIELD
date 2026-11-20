@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- DAWN scenery: peach sky, peach sun, cream clouds, lavender hills.
+     Abstract layered shapes (no bitmaps). Used as decorBackground for Dawn. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="90"
+                android:startColor="#FDF4EC"
+                android:endColor="#F6ECF7"
+                android:type="linear" />
+        </shape>
+    </item>
+    <!-- sun -->
+    <item
+        android:width="110dp"
+        android:height="110dp"
+        android:gravity="top|right"
+        android:top="44dp"
+        android:right="28dp">
+        <shape android:shape="oval">
+            <solid android:color="#F6B17C" />
+        </shape>
+    </item>
+    <item
+        android:width="130dp"
+        android:height="130dp"
+        android:gravity="top|right"
+        android:top="34dp"
+        android:right="18dp">
+        <shape android:shape="oval">
+            <solid android:color="#1AF6B17C" />
+        </shape>
+    </item>
+    <!-- clouds -->
+    <item
+        android:width="120dp"
+        android:height="36dp"
+        android:gravity="top|left"
+        android:top="96dp"
+        android:left="24dp">
+        <shape android:shape="oval">
+            <solid android:color="#CCFFF6EC" />
+        </shape>
+    </item>
+    <item
+        android:width="84dp"
+        android:height="28dp"
+        android:gravity="top|left"
+        android:top="150dp"
+        android:left="140dp">
+        <shape android:shape="oval">
+            <solid android:color="#B3FFF6EC" />
+        </shape>
+    </item>
+    <!-- hills (back, lavender) -->
+    <item
+        android:width="560dp"
+        android:height="200dp"
+        android:gravity="bottom|left"
+        android:bottom="-110dp"
+        android:left="-100dp">
+        <shape android:shape="oval">
+            <solid android:color="#CBB8E0" />
+        </shape>
+    </item>
+    <!-- hills (front, deeper lavender) -->
+    <item
+        android:width="560dp"
+        android:height="200dp"
+        android:gravity="bottom|right"
+        android:bottom="-130dp"
+        android:right="-120dp">
+        <shape android:shape="oval">
+            <solid android:color="#B7A6D9" />
+        </shape>
+    </item>
+</layer-list>

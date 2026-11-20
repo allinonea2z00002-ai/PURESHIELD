@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App name (also referenced by the manifest). -->
+    <string name="app_name">PURESHIELD</string>
+
+    <!-- Splash -->
+    <string name="splash_tagline">Focus protection, on your terms</string>
+    <string name="splash_name_pure">PURE</string>
+    <string name="splash_name_shield">SHIELD</string>
+
+    <!-- Dashboard header -->
+    <string name="home_greeting">Assalamu Alaikum</string>
+    <string name="home_dashboard_title">Protection Dashboard</string>
+    <string name="home_theme_change">Change theme</string>
+    <string name="home_notif_settings">Notifications &amp; settings</string>
+    <string name="home_lock_banner">Time Lock running — all blocked apps are closed</string>
+
+    <!-- Protection ring -->
+    <string name="ring_state_active">Protection active</string>
+    <string name="ring_big_ready">Ready</string>
+    <string name="ring_small_no_lock">No lock is running</string>
+    <string name="ring_state_lock">Time Lock running</string>
+    <string name="ring_small_remaining">Time left</string>
+    <string name="ring_loc_big">Active</string>
+    <string name="ring_loc_small">Location lock active</string>
+    <string name="home_focus_line">Today\'s focus time %1$s · Streak %2$s days</string>
+    <string name="home_focus_line_empty">No focus time yet · Streak 0 days</string>
+
+    <!-- Stat cards -->
+    <string name="home_stat_blocked_label">blocked today (apps + sites)</string>
+    <string name="home_stat_saved_label">time saved today</string>
+    <string name="home_stat_blocked_empty">No blocks yet</string>
+    <string name="home_stat_saved_empty">No focus time yet</string>
+    <string name="home_blocks_delta_more">▲ More attempts than yesterday</string>
+    <string name="home_blocks_delta_less">▼ Fewer attempts than yesterday</string>
+    <string name="home_blocks_delta_same">Same attempts as yesterday</string>
+    <string name="home_streak_delta">▲ Streak %1$s days</string>
+    <string name="home_streak_delta_none">Streak hasn\'t started yet</string>
+
+    <!-- Quick actions -->
+    <string name="home_quick_title">Quick Actions</string>
+    <string name="home_quick_time_lock">Time Lock</string>
+    <string name="home_quick_location">Location</string>
+    <string name="home_quick_block_list">Block list</string>
+    <string name="home_quick_report">Report</string>
+
+    <!-- Protection guards -->
+    <string name="home_guard_title">Protection Guards</string>
+    <string name="home_guard_see_all">See all</string>
+    <string name="guard_power_title">Power menu block</string>
+    <string name="guard_power_sub">Phone can\'t be switched off while locked</string>
+    <string name="guard_uninstall_title">Uninstall protection</string>
+    <string name="guard_uninstall_sub">PURESHIELD can\'t be removed while locked</string>
+    <string name="guard_strict_title">Strict mode</string>
+    <string name="guard_strict_sub">Lock can\'t be broken even by changing settings</string>
+    <string name="home_hint">Tap the middle shield button below for Time Lock · tap the half-moon button above to cycle through the 8 themes.</string>
+    <string name="home_theme_toast">Theme: %1$s</string>
+    <string name="home_toggle_on">%1$s turned on</string>
+    <string name="home_toggle_off">%1$s turned off</string>
+
+    <!-- Bottom nav -->
+    <string name="nav_home">Home</string>
+    <string name="nav_location">Location</string>
+    <string name="nav_time_lock">Time Lock</string>
+    <string name="nav_block">Block</string>
+    <string name="nav_stats">Stats</string>
+</resources>

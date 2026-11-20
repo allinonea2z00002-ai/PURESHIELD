@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- RELAX scenery: mint sky, warm sun, drifting white clouds, green hills.
+     Abstract layered shapes (no bitmaps). Used as decorBackground for Relax. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="90"
+                android:startColor="#EEF6F1"
+                android:endColor="#E3F0EA"
+                android:type="linear" />
+        </shape>
+    </item>
+    <!-- sun -->
+    <item
+        android:width="110dp"
+        android:height="110dp"
+        android:gravity="top|right"
+        android:top="44dp"
+        android:right="28dp">
+        <shape android:shape="oval">
+            <solid android:color="#F2C94C" />
+        </shape>
+    </item>
+    <item
+        android:width="130dp"
+        android:height="130dp"
+        android:gravity="top|right"
+        android:top="34dp"
+        android:right="18dp">
+        <shape android:shape="oval">
+            <solid android:color="#1AF2C94C" />
+        </shape>
+    </item>
+    <!-- clouds -->
+    <item
+        android:width="120dp"
+        android:height="36dp"
+        android:gravity="top|left"
+        android:top="96dp"
+        android:left="24dp">
+        <shape android:shape="oval">
+            <solid android:color="#CCFFFFFF" />
+        </shape>
+    </item>
+    <item
+        android:width="84dp"
+        android:height="28dp"
+        android:gravity="top|left"
+        android:top="150dp"
+        android:left="140dp">
+        <shape android:shape="oval">
+            <solid android:color="#B3FFFFFF" />
+        </shape>
+    </item>
+    <item
+        android:width="96dp"
+        android:height="30dp"
+        android:gravity="top|right"
+        android:top="190dp"
+        android:right="48dp">
+        <shape android:shape="oval">
+            <solid android:color="#B3FFFFFF" />
+        </shape>
+    </item>
+    <!-- hills (back) -->
+    <item
+        android:width="560dp"
+        android:height="200dp"
+        android:gravity="bottom|left"
+        android:bottom="-110dp"
+        android:left="-100dp">
+        <shape android:shape="oval">
+            <solid android:color="#A8D5BA" />
+        </shape>
+    </item>
+    <!-- hills (front) -->
+    <item
+        android:width="560dp"
+        android:height="200dp"
+        android:gravity="bottom|right"
+        android:bottom="-130dp"
+        android:right="-120dp">
+        <shape android:shape="oval">
+            <solid android:color="#7FC8BC" />
+        </shape>
+    </item>
+</layer-list>

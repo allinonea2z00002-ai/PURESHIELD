@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Per-theme corner radii (demo px values mapped 1:1 to dp).
+    ShapeAppearance styles in themes.xml reference these dimens directly;
+    drawable XML must NEVER use ?attr/... for sizes (not resolved there).
+    Asymmetric themes (Jungle leaf, Ocean fluid) use per-corner dimens.
+-->
+<resources>
+    <!-- ORIGINAL DARK: cyber-sharp -->
+    <dimen name="original_card_radius">8dp</dimen>
+    <dimen name="original_button_radius">10dp</dimen>
+    <dimen name="original_chip_radius">8dp</dimen>
+    <dimen name="original_tab_radius">14dp</dimen>
+    <dimen name="original_sheet_radius">16dp</dimen>
+    <dimen name="original_pin_radius">10dp</dimen>
+    <dimen name="original_small_radius">8dp</dimen>
+    <dimen name="original_large_radius">10dp</dimen>
+    <dimen name="original_bar_radius">2dp</dimen>
+
+    <!-- RELAX MINT: extra-round -->
+    <dimen name="relax_card_radius">26dp</dimen>
+    <dimen name="relax_button_radius">22dp</dimen>
+    <dimen name="relax_chip_radius">22dp</dimen>
+    <dimen name="relax_tab_radius">30dp</dimen>
+    <dimen name="relax_sheet_radius">32dp</dimen>
+    <dimen name="relax_pin_radius">22dp</dimen>
+    <dimen name="relax_small_radius">22dp</dimen>
+    <dimen name="relax_large_radius">30dp</dimen>
+    <dimen name="relax_bar_radius">12dp</dimen>
+
+    <!-- DAWN: warm serif, full pill tab bar -->
+    <dimen name="dawn_card_radius">30dp</dimen>
+    <dimen name="dawn_button_radius">24dp</dimen>
+    <dimen name="dawn_chip_radius">24dp</dimen>
+    <dimen name="dawn_tab_radius">48dp</dimen>
+    <dimen name="dawn_sheet_radius">36dp</dimen>
+    <dimen name="dawn_pin_radius">24dp</dimen>
+    <dimen name="dawn_small_radius">24dp</dimen>
+    <dimen name="dawn_large_radius">30dp</dimen>
+    <dimen name="dawn_bar_radius">12dp</dimen>
+
+    <!-- JUNGLE: leaf / asymmetric (a = large corner, b = small corner) -->
+    <dimen name="jungle_card_tl">26dp</dimen>
+    <dimen name="jungle_card_tr">8dp</dimen>
+    <dimen name="jungle_card_br">26dp</dimen>
+    <dimen name="jungle_card_bl">8dp</dimen>
+    <dimen name="jungle_button_tl">22dp</dimen>
+    <dimen name="jungle_button_tr">6dp</dimen>
+    <dimen name="jungle_button_br">22dp</dimen>
+    <dimen name="jungle_button_bl">6dp</dimen>
+    <dimen name="jungle_tab_tl">26dp</dimen>
+    <dimen name="jungle_tab_tr">10dp</dimen>
+    <dimen name="jungle_tab_br">26dp</dimen>
+    <dimen name="jungle_tab_bl">10dp</dimen>
+    <dimen name="jungle_sheet_tl">30dp</dimen>
+    <dimen name="jungle_sheet_tr">12dp</dimen>
+    <dimen name="jungle_sheet_br">30dp</dimen>
+    <dimen name="jungle_sheet_bl">12dp</dimen>
+    <dimen name="jungle_pin_tl">20dp</dimen>
+    <dimen name="jungle_pin_tr">7dp</dimen>
+    <dimen name="jungle_pin_br">20dp</dimen>
+    <dimen name="jungle_pin_bl">7dp</dimen>
+
+    <!-- OCEAN: fluid (top 20dp, bottom 28dp) -->
+    <dimen name="ocean_card_tl">20dp</dimen>
+    <dimen name="ocean_card_tr">20dp</dimen>
+    <dimen name="ocean_card_br">28dp</dimen>
+    <dimen name="ocean_card_bl">28dp</dimen>
+    <dimen name="ocean_button_radius">18dp</dimen>
+    <dimen name="ocean_chip_radius">18dp</dimen>
+    <dimen name="ocean_tab_radius">48dp</dimen>
+    <dimen name="ocean_sheet_radius">24dp</dimen>
+    <dimen name="ocean_pin_radius">18dp</dimen>
+    <dimen name="ocean_small_radius">18dp</dimen>
+    <dimen name="ocean_large_radius">28dp</dimen>
+    <dimen name="ocean_bar_radius">10dp</dimen>
+
+    <!-- EYE COMFORT: flat paper, everything 6dp -->
+    <dimen name="eye_card_radius">6dp</dimen>
+    <dimen name="eye_button_radius">6dp</dimen>
+    <dimen name="eye_chip_radius">6dp</dimen>
+    <dimen name="eye_tab_radius">0dp</dimen>
+    <dimen name="eye_sheet_radius">10dp</dimen>
+    <dimen name="eye_pin_radius">6dp</dimen>
+    <dimen name="eye_small_radius">6dp</dimen>
+    <dimen name="eye_large_radius">6dp</dimen>
+    <dimen name="eye_bar_radius">0dp</dimen>
+    <dimen name="eye_fab_radius">12dp</dimen>
+
+    <!-- ZEN: minimal, large soft radii -->
+    <dimen name="zen_card_radius">30dp</dimen>
+    <dimen name="zen_button_radius">30dp</dimen>
+    <dimen name="zen_chip_radius">30dp</dimen>
+    <dimen name="zen_tab_radius">30dp</dimen>
+    <dimen name="zen_sheet_radius">30dp</dimen>
+    <dimen name="zen_pin_radius">30dp</dimen>
+    <dimen name="zen_small_radius">30dp</dimen>
+    <dimen name="zen_large_radius">30dp</dimen>
+    <dimen name="zen_bar_radius">4dp</dimen>
+
+    <!-- HOLOGRAM: hexagon family, 10-16dp -->
+    <dimen name="holo_card_radius">12dp</dimen>
+    <dimen name="holo_button_radius">12dp</dimen>
+    <dimen name="holo_chip_radius">10dp</dimen>
+    <dimen name="holo_tab_radius">16dp</dimen>
+    <dimen name="holo_sheet_radius">16dp</dimen>
+    <dimen name="holo_pin_radius">12dp</dimen>
+    <dimen name="holo_small_radius">10dp</dimen>
+    <dimen name="holo_large_radius">16dp</dimen>
+    <dimen name="holo_bar_radius">6dp</dimen>
+</resources>

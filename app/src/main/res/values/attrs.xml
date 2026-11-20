@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    PureShield theme attributes.
+    Every theme in themes.xml (values + values-night) sets ALL of these.
+    UI code reads them via TypedArray / ?attr/ references in layouts.
+    DO NOT rename: ui.ThemeManager and the UI agents depend on these names.
+-->
+<resources>
+    <!-- Colours -->
+    <attr name="appBackground" format="color" />
+    <attr name="cardBackground" format="color" />
+    <attr name="cardBackground2" format="color" />
+    <attr name="lineColor" format="color" />
+    <attr name="inkColor" format="color" />
+    <attr name="subColor" format="color" />
+    <attr name="faintColor" format="color" />
+    <attr name="mintColor" format="color" />
+    <attr name="mintDeepColor" format="color" />
+    <attr name="mintSoftColor" format="color" />
+    <attr name="tealColor" format="color" />
+    <attr name="goldColor" format="color" />
+    <attr name="redColor" format="color" />
+    <attr name="blueColor" format="color" />
+    <attr name="trackOffColor" format="color" />
+    <attr name="tabBackground" format="color" />
+    <attr name="tileStart" format="color" />
+    <attr name="tileEnd" format="color" />
+    <attr name="accent1" format="color" />
+    <attr name="accent2" format="color" />
+    <attr name="ringStart" format="color" />
+    <attr name="ringEnd" format="color" />
+    <attr name="buttonStart" format="color" />
+    <attr name="buttonEnd" format="color" />
+    <attr name="buttonText" format="color" />
+    <attr name="fabStart" format="color" />
+    <attr name="fabEnd" format="color" />
+    <attr name="fabText" format="color" />
+    <attr name="shadowColor" format="color" />
+
+    <!-- Display font family name (system family string, e.g. "sans-serif-light").
+         Demo web fonts are mapped to the closest Android SYSTEM family:
+         Sora -> sans-serif, Quicksand -> sans-serif-light, Lora -> serif,
+         Zilla Slab -> serif, Manrope -> sans-serif, Jost -> sans-serif-light,
+         Orbitron -> monospace. Google Fonts files are binaries and cannot be
+         pushed via this project's push tool, so this mapping is intentional. -->
+    <attr name="displayFontFamily" format="string" />
+
+    <!-- Corner radii (single-value; asymmetric themes use the per-theme
+         ShapeAppearance styles in themes.xml for the real leaf/fluid shapes) -->
+    <attr name="cardCornerRadius" format="dimension" />
+    <attr name="buttonCornerRadius" format="dimension" />
+    <attr name="chipCornerRadius" format="dimension" />
+    <attr name="tabCornerRadius" format="dimension" />
+    <attr name="sheetCornerRadius" format="dimension" />
+    <attr name="pinCornerRadius" format="dimension" />
+    <attr name="smallCornerRadius" format="dimension" />
+    <attr name="largeCornerRadius" format="dimension" />
+    <attr name="barCornerRadius" format="dimension" />
+
+    <!-- Decor / behaviour flags -->
+    <attr name="decorBackground" format="reference" />
+    <attr name="showScenery" format="boolean" />
+    <attr name="showHalo" format="boolean" />
+    <attr name="quickActionColumns" format="integer" />
+    <attr name="statsColumns" format="integer" />
+    <attr name="navDocked" format="boolean" />
+    <attr name="outlineButtons" format="boolean" />
+    <attr name="hideShadows" format="boolean" />
+    <attr name="centerTitles" format="boolean" />
+    <attr name="titleItalic" format="boolean" />
+    <attr name="titleLeftBorder" format="boolean" />
+</resources>

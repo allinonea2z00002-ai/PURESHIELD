@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Theme-picker dot, LEAF (Jungle): 62% / 3px asymmetric corners.
+     Shape only — tint at runtime with ShieldTheme.dotColors[i]. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#FFFFFFFF" />
+    <corners
+        android:topLeftRadius="10dp"
+        android:topRightRadius="2dp"
+        android:bottomRightRadius="10dp"
+        android:bottomLeftRadius="2dp" />
+</shape>

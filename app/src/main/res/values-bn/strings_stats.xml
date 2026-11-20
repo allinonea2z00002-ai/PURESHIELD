@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="stats_title">পরিসংখ্যান</string>
+    <string name="stats_sub">ফোকাসে থাকার হিসাব — প্রতিদিনের লক সময়, ব্লক আর স্ট্রিক।</string>
+    <string name="stats_streak_days">%1$s দিনের স্ট্রিক</string>
+    <string name="stats_streak_sub">টানা %1$s দিন লক্ষ্য পূরণ — ব্যক্তিগত সেরা %2$s দিন</string>
+    <string name="stats_chart_title">প্রতিদিনের ফোকাস সময়</string>
+    <string name="stats_range_7">৭ দিন</string>
+    <string name="stats_range_30">৩০ দিন</string>
+    <string name="stats_empty">এখনো কোনো তথ্য নেই — লক চালু করলেই হিসাব জমবে</string>
+    <string name="stats_total_focus">%1$s / মোট ফোকাস</string>
+    <string name="stats_daily_avg">%1$s / দৈনিক গড়</string>
+    <string name="stats_total_blocks">%1$s বার / মোট ব্লক</string>
+    <string name="stats_top_title">সবচেয়ে বেশি ব্লক হয়েছে</string>
+    <string name="stats_top_empty">এখনো কোনো ব্লক হয়নি</string>
+    <string name="stats_top_times">%1$s×</string>
+    <string name="stats_hours_mins">%1$sঘ %2$sমি</string>
+    <string name="stats_hours_only">%1$sঘ</string>
+    <string name="stats_mins_only">%1$s মি</string>
+    <string name="stats_zero_time">০ মি</string>
+    <string name="stats_detail_app">অ্যাপ খোলার চেষ্টা</string>
+    <string name="stats_detail_site">সাইট খোলার চেষ্টা</string>
+    <string name="stats_detail_reels">Reels খোলার চেষ্টা</string>
+    <string name="stats_detail_keyword">কিওয়ার্ড ব্লক হয়েছে</string>
+    <string name="history_title">রুট ও হিস্ট্রি</string>
+    <string name="history_sub">গত ৩০ দিনে কোন জোনে কখন ঢুকলেন-বের হলেন</string>
+    <string name="history_empty">গত ৩০ দিনে কোনো রুট বা লক হিস্ট্রি নেই</string>
+    <string name="history_entered">%1$s-এ ঢুকলেন</string>
+    <string name="history_exited">%1$s থেকে বের হলেন</string>
+    <string name="history_lock_started">Time Lock শুরু</string>
+    <string name="history_lock_ended">Time Lock শেষ</string>
+</resources>

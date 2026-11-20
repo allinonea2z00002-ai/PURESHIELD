@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- PureShield theme names / descriptions (English).
+     Bengali versions live in values-bn/strings_theme.xml. -->
+<resources>
+    <string name="theme_original_name">Original Dark</string>
+    <string name="theme_original_desc">Cyber-sharp dark look — green grid and glowing mint light.</string>
+    <string name="theme_relax_name">Relax Mint</string>
+    <string name="theme_relax_desc">Soft mint, green hills and clouds — the most comfortable on the eyes.</string>
+    <string name="theme_dawn_name">Dawn</string>
+    <string name="theme_dawn_desc">The calm of a peach and lavender dawn — a soft morning in serif type.</string>
+    <string name="theme_jungle_name">Jungle Green</string>
+    <string name="theme_jungle_desc">Leaf-shaped jungle green — deep focus with a touch of nature.</string>
+    <string name="theme_ocean_name">Ocean Blue</string>
+    <string name="theme_ocean_desc">Ocean-blue waves and bubbles — the feeling of calm depth.</string>
+    <string name="theme_eye_name">Eye Comfort</string>
+    <string name="theme_eye_desc">Flat like paper, soft olive — eyes stay fresh even after long use.</string>
+    <string name="theme_zen_name">Relax Zen</string>
+    <string name="theme_zen_desc">Plain minimal Zen — nothing extra, only calm.</string>
+    <string name="theme_holo_name">Hologram</string>
+    <string name="theme_holo_desc">Cyan-magenta hologram — glowing with the light of the future.</string>
+    <string name="theme_picker_title">Theme</string>
+    <string name="theme_picker_subtitle">Choose the look of PureShield</string>
+</resources>

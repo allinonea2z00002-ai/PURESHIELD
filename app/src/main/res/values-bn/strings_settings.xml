@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_title">সেটিংস</string>
+    <string name="settings_sub">সুরক্ষার সব নিয়ন্ত্রণ এক জায়গায়।</string>
+    <string name="settings_premium_title">PURESHIELD Premium ✦</string>
+    <string name="settings_premium_sub">আনলিমিটেড জোন, অগ্রিম পরিসংখ্যান আর প্রায়োরিটি সাপোর্ট — ফ্রি ট্রায়াল দিয়ে শুরু করুন।</string>
+    <string name="settings_premium_cta">৭ দিন ফ্রি ট্রায়াল →</string>
+    <string name="settings_theme_section">অ্যাপ থিম</string>
+    <string name="settings_theme_changed">থিম বদলেছে — %1$s</string>
+    <string name="settings_security_section">সুরক্ষা</string>
+    <string name="settings_pin_title">পার্টনার PIN</string>
+    <string name="settings_pin_sub">জরুরি আনলকের ৪-সংখ্যার PIN সেট করা আছে</string>
+    <string name="settings_pin_sub_not_set">জরুরি আনলকের ৪-সংখ্যার PIN এখনো সেট করা হয়নি</string>
+    <string name="settings_pin_change">বদলান</string>
+    <string name="settings_pin_set">সেট করুন</string>
+    <string name="settings_strict_title">কঠোর মোড</string>
+    <string name="settings_strict_sub">চালু থাকলে লকের মাঝে সেটিংস বদলানো যায় না</string>
+    <string name="settings_guard_title">সেটিংস অ্যাপ গার্ড</string>
+    <string name="settings_guard_sub">লক চলাকালে সেটিংস/পারমিশন স্ক্রিন থেকে বের করে দেয়</string>
+    <string name="settings_boundary_title">সীমানা সতর্কতা</string>
+    <string name="settings_boundary_sub">জোনের ১০ মিটার আগে প্রবেশ/প্রস্থানের নোটিফিকেশন</string>
+    <string name="settings_general_section">সাধারণ</string>
+    <string name="settings_lang_title">ভাষা</string>
+    <string name="settings_lang_sub">বাংলা (English অপশন আছে)</string>
+    <string name="settings_lang_current_bn">বাংলা ›</string>
+    <string name="settings_lang_current_en">English ›</string>
+    <string name="settings_lang_dialog_title">ভাষা বেছে নিন</string>
+    <string name="settings_lang_changed">ভাষা বদলেছে</string>
+    <string name="settings_report_title">ডেইলি রিপোর্ট</string>
+    <string name="settings_report_sub">প্রতিদিন রাত ১০টায় সারসংক্ষেপ নোটিফিকেশন</string>
+    <string name="settings_history_title">রুট ও হিস্ট্রি (৩০ দিন)</string>
+    <string name="settings_history_sub">কোন জোনে কখন ঢুকলেন-বের হলেন</string>
+    <string name="settings_history_open">দেখুন ›</string>
+    <string name="settings_footer">PURESHIELD · সংস্করণ ১.০</string>
+    <string name="settings_strict_locked">কঠোর মোড চালু আছে — লক চলাকালে সেটিংস বদলানো যাবে না</string>
+</resources>

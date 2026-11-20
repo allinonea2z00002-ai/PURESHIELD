@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="block_title">App ও Website ব্লক</string>
+    <string name="block_sub">লক চলাকালে এই অ্যাপগুলো খুললেই ব্লক স্ক্রিন আসবে। ওয়েবসাইট আটকায় Private DNS আর URL পর্যবেক্ষণ মিলে।</string>
+    <string name="block_apps_count">%1$s / ব্লক করা অ্যাপ</string>
+    <string name="block_sites_count">%1$s / ব্লক করা সাইট + DNS ফিল্টার</string>
+    <string name="block_apps_section">অ্যাপসমূহ</string>
+    <string name="block_add_app">+ অ্যাপ যোগ</string>
+    <string name="block_app_added">%1$s ব্লক তালিকায় যোগ হয়েছে</string>
+    <string name="block_app_removed">%1$s ব্লক তালিকা থেকে সরানো হয়েছে</string>
+    <string name="block_app_today">আজ %1$s বার ব্লক হয়েছে</string>
+    <string name="block_app_not_blocked">ব্লক তালিকায় নেই</string>
+    <string name="block_toggle_on">%1$s চালু হয়েছে</string>
+    <string name="block_toggle_off">%1$s বন্ধ হয়েছে</string>
+    <string name="block_reels_section">Reels / Shorts ফিড</string>
+    <string name="block_reels_youtube">YouTube Shorts</string>
+    <string name="block_reels_youtube_sub">শর্টস ফিড স্ক্রল থামিয়ে দেয়</string>
+    <string name="block_reels_instagram">Instagram Reels</string>
+    <string name="block_reels_instagram_sub">রিলস ট্যাব খুললেই ব্লক স্ক্রিন</string>
+    <string name="block_reels_facebook">Facebook Reels</string>
+    <string name="block_reels_facebook_sub">ভিডিও ফিডে ঢুকলেই সতর্ক স্ক্রিন</string>
+    <string name="block_sites_section">ব্লক করা ওয়েবসাইট</string>
+    <string name="block_site_hint">যেমন: example.com</string>
+    <string name="block_add">যোগ</string>
+    <string name="block_site_empty">আগে সাইটের ঠিকানা লিখুন</string>
+    <string name="block_site_duplicate">এই সাইট আগেই তালিকায় আছে</string>
+    <string name="block_site_added">%1$s ব্লক তালিকায় যোগ হয়েছে</string>
+    <string name="block_site_removed">%1$s সরানো হয়েছে</string>
+    <string name="block_site_invalid">সঠিক সাইটের ঠিকানা লিখুন</string>
+    <string name="block_dns_title">Private DNS ফিল্টার</string>
+    <string name="block_dns_sub">medium.kahfguard.com — অ্যাডাল্ট, জুয়া ও ডেটিং সাইট অটো-ব্লক</string>
+    <string name="block_dns_guide">সেটআপ নির্দেশিকা</string>
+    <string name="block_dns_guide_title">Private DNS সেটআপ</string>
+    <string name="block_dns_guide_msg">১. সেটিংস খুলুন\n২. Network &amp; internet → Private DNS\n৩. “Private DNS provider hostname” বেছে নিন\n৪. লিখুন: medium.kahfguard.com\n৫. Save চাপুন\n\nPURESHIELD অ্যাপ থেকে ফোনের Private DNS সেটিং পড়া যায় না, তাই এখানে চালু/বন্ধ দেখানো হয় না।</string>
+    <string name="block_dns_open_settings">সেটিংস খুলুন</string>
+    <string name="block_kw_section">কিওয়ার্ড ব্লক</string>
+    <string name="block_kw_hint">যেমন: casino</string>
+    <string name="block_kw_note">স্ক্রিনে এই শব্দগুলো এলেই পেজ ব্লক হয়ে যায় — ব্রাউজার আর অ্যাপ, দুই জায়গাতেই।</string>
+    <string name="block_kw_added">%1$s কিওয়ার্ড তালিকায় যোগ হয়েছে</string>
+    <string name="block_kw_removed">%1$s সরানো হয়েছে</string>
+    <string name="block_kw_empty">আগে একটি কিওয়ার্ড লিখুন</string>
+    <string name="block_kw_duplicate">এই কিওয়ার্ড আগেই তালিকায় আছে</string>
+    <string name="block_no_apps">কোনো অ্যাপ পাওয়া যায়নি</string>
+    <string name="block_picker_title">অ্যাপ যোগ করুন</string>
+    <string name="block_picker_hint">অ্যাপ খুঁজুন</string>
+    <string name="block_picker_empty">ব্লক করার মতো আর কোনো অ্যাপ নেই</string>
+</resources>

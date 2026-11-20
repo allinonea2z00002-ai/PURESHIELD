@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- OCEAN hills: blue hills, NO sun (demo hides the sun for Ocean).
+     Layered under decor_bubbles by decor_ocean.xml. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="90"
+                android:startColor="#E4F5FB"
+                android:endColor="#CDEEF7"
+                android:type="linear" />
+        </shape>
+    </item>
+    <!-- hills (back, light blue) -->
+    <item
+        android:width="560dp"
+        android:height="200dp"
+        android:gravity="bottom|left"
+        android:bottom="-110dp"
+        android:left="-100dp">
+        <shape android:shape="oval">
+            <solid android:color="#7FC8E8" />
+        </shape>
+    </item>
+    <!-- hills (front, deeper blue) -->
+    <item
+        android:width="560dp"
+        android:height="200dp"
+        android:gravity="bottom|right"
+        android:bottom="-130dp"
+        android:right="-120dp">
+        <shape android:shape="oval">
+            <solid android:color="#4DB6E8" />
+        </shape>
+    </item>
+</layer-list>

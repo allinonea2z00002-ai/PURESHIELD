@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Partner PIN sheet + PIN set/change screen -->
+    <string name="pin_title">পার্টনারের PIN দিন</string>
+    <string name="pin_sub">জরুরি আনলকের জন্য ৪-সংখ্যার PIN</string>
+    <string name="pin_set_title">পার্টনার PIN সেট করুন</string>
+    <string name="pin_change_title">পার্টনার PIN বদলান</string>
+    <string name="pin_set_sub">৪-সংখ্যার PIN বেছে নিন</string>
+    <string name="pin_confirm_sub">আবার একই PIN দিন</string>
+    <string name="pin_close">বন্ধ</string>
+    <string name="pin_wrong">ভুল PIN — আবার চেষ্টা করুন</string>
+    <string name="pin_mismatch">PIN মিলছে না — আবার চেষ্টা করুন</string>
+    <string name="pin_unlocked">পার্টনার PIN দিয়ে লক খোলা হয়েছে</string>
+    <string name="pin_set_done">PIN সেট হয়েছে</string>
+    <string name="pin_changed_done">PIN বদলানো হয়েছে</string>
+
+    <!-- Block screen (shown by the accessibility service while locked) -->
+    <string name="blockscreen_title">%1$s ব্লক করা হয়েছে</string>
+    <string name="blockscreen_remaining">বাকি সময়</string>
+    <string name="blockscreen_emergency">জরুরি আনলক</string>
+    <string name="blockscreen_home">হোমে ফিরুন</string>
+</resources>

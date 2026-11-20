@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App name (also referenced by the manifest). -->
+    <string name="app_name">PURESHIELD</string>
+
+    <!-- Splash -->
+    <string name="splash_tagline">মনোযোগের সুরক্ষা, নিজের শর্তে</string>
+    <string name="splash_name_pure">PURE</string>
+    <string name="splash_name_shield">SHIELD</string>
+
+    <!-- Dashboard header -->
+    <string name="home_greeting">আসসালামু আলাইকুম</string>
+    <string name="home_dashboard_title">সুরক্ষা ড্যাশবোর্ড</string>
+    <string name="home_theme_change">থিম বদলান</string>
+    <string name="home_notif_settings">নোটিফিকেশন ও সেটিংস</string>
+    <string name="home_lock_banner">Time Lock চলছে — সব ব্লক করা অ্যাপ বন্ধ আছে</string>
+
+    <!-- Protection ring -->
+    <string name="ring_state_active">সুরক্ষা সক্রিয়</string>
+    <string name="ring_big_ready">প্রস্তুত</string>
+    <string name="ring_small_no_lock">কোনো লক চলছে না</string>
+    <string name="ring_state_lock">Time Lock চলছে</string>
+    <string name="ring_small_remaining">শেষ হতে বাকি</string>
+    <string name="ring_loc_big">সক্রিয়</string>
+    <string name="ring_loc_small">লোকেশন লক সক্রিয়</string>
+    <string name="home_focus_line">আজ ফোকাস সময় %1$s · স্ট্রিক %2$s দিন</string>
+    <string name="home_focus_line_empty">এখনো কোনো ফোকাস সময় নেই · স্ট্রিক ০ দিন</string>
+
+    <!-- Stat cards -->
+    <string name="home_stat_blocked_label">আজ ব্লক হয়েছে (অ্যাপ + সাইট)</string>
+    <string name="home_stat_saved_label">আজ বাঁচানো সময়</string>
+    <string name="home_stat_blocked_empty">এখনো কোনো ব্লক হয়নি</string>
+    <string name="home_stat_saved_empty">এখনো কোনো ফোকাস সময় নেই</string>
+    <string name="home_blocks_delta_more">▲ গতকালের চেয়ে বেশি চেষ্টা</string>
+    <string name="home_blocks_delta_less">▼ গতকালের চেয়ে কম চেষ্টা</string>
+    <string name="home_blocks_delta_same">গতকালের সমান চেষ্টা</string>
+    <string name="home_streak_delta">▲ স্ট্রিক %1$s দিন</string>
+    <string name="home_streak_delta_none">এখনো স্ট্রিক শুরু হয়নি</string>
+
+    <!-- Quick actions -->
+    <string name="home_quick_title">কুইক অ্যাকশন</string>
+    <string name="home_quick_time_lock">Time Lock</string>
+    <string name="home_quick_location">Location</string>
+    <string name="home_quick_block_list">ব্লক লিস্ট</string>
+    <string name="home_quick_report">রিপোর্ট</string>
+
+    <!-- Protection guards -->
+    <string name="home_guard_title">সুরক্ষা গার্ড</string>
+    <string name="home_guard_see_all">সব দেখুন</string>
+    <string name="guard_power_title">পাওয়ার মেনু ব্লক</string>
+    <string name="guard_power_sub">লক চলাকালে ফোন বন্ধ করা যাবে না</string>
+    <string name="guard_uninstall_title">আনইনস্টল সুরক্ষা</string>
+    <string name="guard_uninstall_sub">লক চলাকালে PURESHIELD মোছা যাবে না</string>
+    <string name="guard_strict_title">কঠোর মোড (Strict)</string>
+    <string name="guard_strict_sub">সেটিংস বদলালেও লক ভাঙা যাবে না</string>
+    <string name="home_hint">নিচের মাঝের ঢাল বোতামে Time Lock · উপরের অর্ধ-বৃত্ত বোতামে ৮টি থিম একে একে বদলে দেখুন।</string>
+    <string name="home_theme_toast">থিম: %1$s</string>
+    <string name="home_toggle_on">%1$s চালু হয়েছে</string>
+    <string name="home_toggle_off">%1$s বন্ধ হয়েছে</string>
+
+    <!-- Bottom nav -->
+    <string name="nav_home">হোম</string>
+    <string name="nav_location">লোকেশন</string>
+    <string name="nav_time_lock">Time Lock</string>
+    <string name="nav_block">ব্লক</string>
+    <string name="nav_stats">স্ট্যাটস</string>
+</resources>

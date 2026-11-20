@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Splash / drawer-header logo: same lotus-shield mark as the launcher
+     foreground, drawn larger with a soft outer ring. TRACED APPROXIMATION
+     of the raster lotus logo — vector redraw, NOT pixel-identical. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="240dp"
+    android:height="240dp"
+    android:viewportWidth="240"
+    android:viewportHeight="240">
+    <!-- soft outer ring -->
+    <path
+        android:pathData="M120,8 m-104,0 a104,104 0 1,0 208,0 a104,104 0 1,0 -208,0"
+        android:fillColor="#00000000"
+        android:strokeColor="#2F9E7E"
+        android:strokeWidth="3"
+        android:strokeAlpha="0.35" />
+    <!-- shield (scaled x2.22 from the 108 foreground) -->
+    <path
+        android:pathData="M120,13 L204,40 L204,120 C204,173 169,213 120,227 C71,213 36,173 36,120 L36,40 Z"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.95"
+        android:strokeColor="#1F7A5F"
+        android:strokeWidth="7"
+        android:strokeLineJoin="round" />
+    <!-- lotus: far-left petal -->
+    <path
+        android:pathData="M71,111 C82,124 82,140 69,151 C60,136 60,122 71,111 Z"
+        android:fillColor="#B8B0E8" />
+    <!-- lotus: far-right petal -->
+    <path
+        android:pathData="M169,111 C180,122 180,136 171,151 C158,140 158,124 169,111 Z"
+        android:fillColor="#B8B0E8" />
+    <!-- lotus: left petal -->
+    <path
+        android:pathData="M93,93 C107,111 107,133 93,147 C82,129 82,111 93,93 Z"
+        android:fillColor="#9A8AD0" />
+    <!-- lotus: right petal -->
+    <path
+        android:pathData="M147,93 C158,111 158,129 147,147 C133,133 133,111 147,93 Z"
+        android:fillColor="#9A8AD0" />
+    <!-- lotus: centre petal -->
+    <path
+        android:pathData="M120,76 C131,98 131,124 120,142 C109,124 109,98 120,76 Z"
+        android:fillColor="#7C6BB0" />
+    <!-- lotus: base arc -->
+    <path
+        android:pathData="M80,151 C98,169 142,169 160,151 C142,162 98,162 80,151 Z"
+        android:fillColor="#2F9E7E" />
+    <!-- centre dot -->
+    <path
+        android:pathData="M120,164 m-7,0 a7,7 0 1,0 14,0 a7,7 0 1,0 -14,0"
+        android:fillColor="#2F9E7E" />
+</vector>

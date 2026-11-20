@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="premium_title">PURESHIELD Premium</string>
+    <string name="premium_sub">সব ফিচার আনলক করুন — কোনো বিজ্ঞাপন নেই, বাতিল যেকোনো সময়।</string>
+    <string name="premium_gold_title">✦ Premium প্ল্যান</string>
+    <string name="premium_gold_sub">প্রথম ৭ দিন সম্পূর্ণ ফ্রি। পছন্দ না হলে ট্রায়াল শেষের আগেই বাতিল করুন — কোনো টাকা কাটবে না।</string>
+    <string name="premium_monthly_title">মাসিক</string>
+    <string name="premium_monthly_sub">নমনীয় — যেকোনো সময় বাতিল</string>
+    <string name="premium_monthly_price">৳১৯৯</string>
+    <string name="premium_yearly_title">বার্ষিক</string>
+    <string name="premium_yearly_sub">মাসে মাত্র ৳১২৫ করে</string>
+    <string name="premium_yearly_price">৳১,৪৯৯</string>
+    <string name="premium_save_tag">৩৭%% সাশ্রয়</string>
+    <string name="premium_price_monthly">৳১৯৯/মাস</string>
+    <string name="premium_price_yearly">৳১,৪৯৯/বছর</string>
+    <string name="premium_benefits_title">Premium-এ যা যা পাবেন</string>
+    <string name="premium_benefit_zones">আনলিমিটেড সেফ জোন</string>
+    <string name="premium_benefit_zones_sub">ফ্রি-তে সর্বোচ্চ ২টি জায়গা</string>
+    <string name="premium_benefit_reports">৩০ দিনের অগ্রিম রিপোর্ট</string>
+    <string name="premium_benefit_reports_sub">ঘণ্টাভিত্তিক ব্যবহারের টাইমলাইন</string>
+    <string name="premium_benefit_profiles">একাধিক প্রোফাইল</string>
+    <string name="premium_benefit_profiles_sub">পড়াশোনা, কাজ, ঘুম — আলাদা আলাদা নিয়ম</string>
+    <string name="premium_benefit_support">প্রায়োরিটি সাপোর্ট</string>
+    <string name="premium_benefit_support_sub">সরাসরি হেল্প চ্যাট</string>
+    <string name="premium_pro_tag">PRO</string>
+    <string name="premium_cta">৭ দিনের ফ্রি ট্রায়াল শুরু করুন</string>
+    <string name="premium_footer">ট্রায়ালের পর ৳১৯৯/মাস · Google Play দিয়ে পেমেন্ট</string>
+    <string name="premium_trial_title">শীঘ্রই আসছে</string>
+    <string name="premium_trial_msg">Google Play দিয়ে ইন-অ্যাপ কেনা রিলিজ বিল্ডে চালু হবে। এখন কোনো টাকা কাটবে না — রিলিজে এখান থেকেই ট্রায়াল শুরু করতে পারবেন।</string>
+</resources>

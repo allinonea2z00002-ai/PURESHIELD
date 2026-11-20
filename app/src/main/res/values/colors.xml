@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Shared colours. Theme colours themselves live as literals in themes.xml
+    via the theme attrs (see attrs.xml); only values needed by Kotlin code
+    (theme-picker dots) and by fixed-colour drawables live here.
+    Dot triplets are the exact demo picker dots: background / mint / accent.
+-->
+<resources>
+    <!-- Theme picker dots: ORIGINAL -->
+    <color name="dot_original_1">#0A0F0D</color>
+    <color name="dot_original_2">#17C98B</color>
+    <color name="dot_original_3">#2DD4BF</color>
+    <!-- RELAX -->
+    <color name="dot_relax_1">#EEF6F1</color>
+    <color name="dot_relax_2">#2F9E7E</color>
+    <color name="dot_relax_3">#7FC8BC</color>
+    <!-- DAWN -->
+    <color name="dot_dawn_1">#FDF4EC</color>
+    <color name="dot_dawn_2">#F0A06E</color>
+    <color name="dot_dawn_3">#C77FA3</color>
+    <!-- JUNGLE -->
+    <color name="dot_jungle_1">#E9F4E1</color>
+    <color name="dot_jungle_2">#2E7D32</color>
+    <color name="dot_jungle_3">#81C784</color>
+    <!-- OCEAN -->
+    <color name="dot_ocean_1">#E4F5FB</color>
+    <color name="dot_ocean_2">#0288D1</color>
+    <color name="dot_ocean_3">#4DD0E1</color>
+    <!-- EYE -->
+    <color name="dot_eye_1">#FAF6EA</color>
+    <color name="dot_eye_2">#75854E</color>
+    <color name="dot_eye_3">#C9BD7A</color>
+    <!-- ZEN -->
+    <color name="dot_zen_1">#F2F0FA</color>
+    <color name="dot_zen_2">#7C6BB0</color>
+    <color name="dot_zen_3">#B8B0E8</color>
+    <!-- HOLOGRAM -->
+    <color name="dot_holo_1">#0B1026</color>
+    <color name="dot_holo_2">#00E5FF</color>
+    <color name="dot_holo_3">#E040FB</color>
+
+    <!-- Shared accents used by fixed drawables -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="premium_title">PURESHIELD Premium</string>
+    <string name="premium_sub">Unlock every feature — no ads, cancel any time.</string>
+    <string name="premium_gold_title">✦ Premium plan</string>
+    <string name="premium_gold_sub">First 7 days completely free. If you don’t like it, cancel before the trial ends — no charge.</string>
+    <string name="premium_monthly_title">Monthly</string>
+    <string name="premium_monthly_sub">Flexible — cancel any time</string>
+    <string name="premium_monthly_price">৳199</string>
+    <string name="premium_yearly_title">Yearly</string>
+    <string name="premium_yearly_sub">Only ৳125 per month</string>
+    <string name="premium_yearly_price">৳1,499</string>
+    <string name="premium_save_tag">Save 37%%</string>
+    <string name="premium_price_monthly">৳199/month</string>
+    <string name="premium_price_yearly">৳1,499/year</string>
+    <string name="premium_benefits_title">What you get with Premium</string>
+    <string name="premium_benefit_zones">Unlimited safe zones</string>
+    <string name="premium_benefit_zones_sub">Free allows at most 2 places</string>
+    <string name="premium_benefit_reports">30-day advanced reports</string>
+    <string name="premium_benefit_reports_sub">Hourly usage timeline</string>
+    <string name="premium_benefit_profiles">Multiple profiles</string>
+    <string name="premium_benefit_profiles_sub">Study, work, sleep — separate rules each</string>
+    <string name="premium_benefit_support">Priority support</string>
+    <string name="premium_benefit_support_sub">Direct help chat</string>
+    <string name="premium_pro_tag">PRO</string>
+    <string name="premium_cta">Start your 7-day free trial</string>
+    <string name="premium_footer">৳199/month after trial · Pay with Google Play</string>
+    <string name="premium_trial_title">Coming soon</string>
+    <string name="premium_trial_msg">In-app purchase with Google Play will be available in the release build. Nothing is charged now — you will be able to start the trial from here in the release.</string>
+</resources>

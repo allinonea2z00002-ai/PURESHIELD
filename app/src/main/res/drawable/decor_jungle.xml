@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- JUNGLE composite decor: green hills + warm sun underneath, dot pattern on top.
+     NOTE: the vector dot layer stretches to fill the view, so dot spacing
+     scales slightly with screen aspect (see report). -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/decor_hills_jungle" />
+    <item android:drawable="@drawable/decor_dots" />
+</layer-list>
