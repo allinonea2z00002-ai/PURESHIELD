@@ -35,15 +35,4 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
-
-    <!-- Demo-exact glow colours (DEMO_POLISH_FINDINGS §2.6). The demo's
-         primary-button, FAB, selected-chip and avatar shadows are hardcoded
-         green in every theme except Holo (cyan); reproduce as-is. -->
-    <color name="glow_green_button">#591F7A5F</color>
-    <color name="glow_green_fab">#661F7A5F</color>
-    <color name="glow_green_ring">#592F9E7E</color>
-    <color name="glow_green_chip">#471F7A5F</color>
-    <color name="glow_cyan">#5900E5FF</color>
-    <color name="glow_cyan_strong">#8C00E5FF</color>
-    <color name="glow_warm_avatar">#59A05A3C</color>
 </resources>

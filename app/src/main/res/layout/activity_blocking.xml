@@ -1,22 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <!-- Animated background: per-theme decor + drifting clouds / sun
-         (SceneryView). The old flat ?attr/appBackground root paint is
-         gone; the theme windowBackground still supplies the base colour
-         during transitions. -->
-    <com.pureshield.app.ui.widget.SceneryView
-        android:id="@+id/sceneryView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -37,7 +24,7 @@
                 android:fontFamily="?attr/displayFontFamily"
                 android:text="@string/block_title"
                 android:textColor="?attr/inkColor"
-                android:textSize="21sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -47,8 +34,7 @@
                 android:layout_marginTop="6dp"
                 android:text="@string/block_sub"
                 android:textColor="?attr/subColor"
-                android:textSize="14sp"
-                android:lineSpacingMultiplier="1.5" />
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -57,7 +43,6 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.card.MaterialCardView
-                android:id="@+id/appsCountCard"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -84,7 +69,6 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                android:id="@+id/sitesCountCard"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
@@ -115,7 +99,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="20dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -125,7 +109,7 @@
                     android:layout_weight="1"
                     android:text="@string/block_apps_section"
                     android:textColor="?attr/inkColor"
-                    android:textSize="16.5sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <com.google.android.material.button.MaterialButton
@@ -158,14 +142,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/block_reels_section"
                 android:textColor="?attr/inkColor"
-                android:textSize="16.5sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <com.google.android.material.card.MaterialCardView
-            android:id="@+id/reelsCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -196,17 +179,15 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/block_reels_youtube"
                                 android:textColor="?attr/inkColor"
-                                android:textSize="15.5sp"
-                                android:textStyle="bold"
-                                android:lineSpacingMultiplier="1.3" />
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/block_reels_youtube_sub"
                                 android:textColor="?attr/subColor"
-                                android:textSize="13sp"
-                                android:lineSpacingMultiplier="1.35" />
+                                android:textSize="13sp" />
                         </LinearLayout>
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
@@ -238,17 +219,15 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/block_reels_instagram"
                                 android:textColor="?attr/inkColor"
-                                android:textSize="15.5sp"
-                                android:textStyle="bold"
-                                android:lineSpacingMultiplier="1.3" />
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/block_reels_instagram_sub"
                                 android:textColor="?attr/subColor"
-                                android:textSize="13sp"
-                                android:lineSpacingMultiplier="1.35" />
+                                android:textSize="13sp" />
                         </LinearLayout>
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
@@ -280,17 +259,15 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/block_reels_facebook"
                                 android:textColor="?attr/inkColor"
-                                android:textSize="15.5sp"
-                                android:textStyle="bold"
-                                android:lineSpacingMultiplier="1.3" />
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/block_reels_facebook_sub"
                                 android:textColor="?attr/subColor"
-                                android:textSize="13sp"
-                                android:lineSpacingMultiplier="1.35" />
+                                android:textSize="13sp" />
                         </LinearLayout>
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
@@ -304,10 +281,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/block_sites_section"
                 android:textColor="?attr/inkColor"
-                android:textSize="16.5sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <com.google.android.material.chip.ChipGroup
@@ -358,7 +335,6 @@
             </LinearLayout>
 
             <com.google.android.material.card.MaterialCardView
-            android:id="@+id/dnsCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -384,9 +360,8 @@
                             android:layout_height="wrap_content"
                             android:text="@string/block_dns_title"
                             android:textColor="?attr/inkColor"
-                            android:textSize="15.5sp"
-                            android:textStyle="bold"
-                            android:lineSpacingMultiplier="1.3" />
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -394,8 +369,7 @@
                             android:layout_marginTop="2dp"
                             android:text="@string/block_dns_sub"
                             android:textColor="?attr/subColor"
-                            android:textSize="13sp"
-                            android:lineSpacingMultiplier="1.35" />
+                            android:textSize="13sp" />
                     </LinearLayout>
 
                     <com.google.android.material.button.MaterialButton
@@ -412,10 +386,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/block_kw_section"
                 android:textColor="?attr/inkColor"
-                android:textSize="16.5sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <com.google.android.material.chip.ChipGroup
@@ -471,8 +445,7 @@
                 android:layout_marginTop="12dp"
                 android:text="@string/block_kw_note"
                 android:textColor="?attr/subColor"
-                android:textSize="13sp"
-                android:lineSpacingMultiplier="1.5" />
+                android:textSize="13sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -483,5 +456,4 @@
     <include
         android:id="@+id/bottomNav"
         layout="@layout/include_bottom_nav" />
-    </LinearLayout>
-</FrameLayout>
+</LinearLayout>

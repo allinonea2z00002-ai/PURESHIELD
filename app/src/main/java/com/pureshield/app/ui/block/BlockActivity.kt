@@ -11,7 +11,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.pureshield.app.Graph
 import com.pureshield.app.R
 import com.pureshield.app.databinding.ActivityBlockBinding
-import com.pureshield.app.ui.Polish
 import com.pureshield.app.ui.ThemeManager
 import com.pureshield.app.ui.pin.PinActivity
 import com.pureshield.app.ui.pin.PinEntrySheet
@@ -57,12 +56,6 @@ class BlockActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         b = ActivityBlockBinding.inflate(layoutInflater)
         setContentView(b.root)
-
-        // Visual polish (demo glow): shield-tile + primary-button glow, and
-        // Zen's wider page padding. Glow is never applied to text.
-        Polish.glowShieldTile(b.shieldTile, this)
-        Polish.glowPrimaryButton(b.homeButton, this)
-        Polish.applyZenPagePadding(this)
 
         bind(intent)
 
@@ -118,16 +111,10 @@ class BlockActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        Polish.resumeScenery(this)
         if (pendingPinSheet && Graph.secure.hasPartnerPin()) {
             pendingPinSheet = false
             showPinSheet()
         }
-    }
-
-    override fun onPause() {
-        Polish.pauseScenery(this)
-        super.onPause()
     }
 
     private fun bind(intent: Intent) {

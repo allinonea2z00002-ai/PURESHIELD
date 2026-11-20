@@ -42,13 +42,6 @@ class BarChartView @JvmOverloads constructor(
 
     private val density = resources.displayMetrics.density
     private val barPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-    /** Holo chart bars glow cyan (demo §2.5: 0 0 10px rgba(0,229,255,.5)). */
-    private val holoBarGlow: Boolean =
-        MaterialColors.getColor(this, R.attr.shadowColor, 0) == 0x5900E5FF.toInt()
-
-    init {
-        if (holoBarGlow) setLayerType(LAYER_TYPE_SOFTWARE, null)
-    }
     private val trackPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { textAlign = Paint.Align.CENTER }
     private val yTextPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { textAlign = Paint.Align.RIGHT }
@@ -93,13 +86,9 @@ class BarChartView @JvmOverloads constructor(
         barPaint.shader = LinearGradient(
             0f, chartTop, 0f, chartBottom, barTop, barBottom, Shader.TileMode.CLAMP
         )
-        if (holoBarGlow) {
-            barPaint.setShadowLayer(10f * density, 0f, 0f, 0x8000E5FF.toInt())
-        }
         trackPaint.color = track
-        // Demo chart labels are 10.5px (findings §3.3).
-        textPaint.textSize = 10.5f * density
-        yTextPaint.textSize = 10.5f * density
+        textPaint.textSize = 11 * density
+        yTextPaint.textSize = 11 * density
         yTextPaint.color = secondary
         dashedPaint.color = secondary
         dashedPaint.strokeWidth = 1.5f * density

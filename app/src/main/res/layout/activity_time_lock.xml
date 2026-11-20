@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Time Lock (TimeLockActivity). -->
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <!-- Animated background: per-theme decor + drifting clouds / sun
-         (SceneryView). The old flat ?attr/appBackground root paint is
-         gone; the theme windowBackground still supplies the base colour
-         during transitions. -->
-    <com.pureshield.app.ui.widget.SceneryView
-        android:id="@+id/sceneryView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:background="?attr/appBackground"
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -38,7 +26,7 @@
                 android:fontFamily="?attr/displayFontFamily"
                 android:text="@string/timelock_title"
                 android:textColor="?attr/inkColor"
-                android:textSize="21sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -48,8 +36,7 @@
                 android:layout_marginTop="6dp"
                 android:text="@string/timelock_sub"
                 android:textColor="?attr/subColor"
-                android:textSize="14sp"
-                android:lineSpacingMultiplier="1.5" />
+                android:textSize="14sp" />
 
             <!-- Setup card -->
             <com.google.android.material.card.MaterialCardView
@@ -86,8 +73,8 @@
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/chip1"
                             android:layout_width="0dp"
-                            android:layout_height="46dp"
-                            android:layout_margin="4dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="3dp"
                             android:layout_weight="1"
                             android:insetLeft="0dp"
                             android:insetRight="0dp"
@@ -108,8 +95,8 @@
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/chip3"
                             android:layout_width="0dp"
-                            android:layout_height="46dp"
-                            android:layout_margin="4dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="3dp"
                             android:layout_weight="1"
                             android:insetLeft="0dp"
                             android:insetRight="0dp"
@@ -130,8 +117,8 @@
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/chip10"
                             android:layout_width="0dp"
-                            android:layout_height="46dp"
-                            android:layout_margin="4dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="3dp"
                             android:layout_weight="1"
                             android:insetLeft="0dp"
                             android:insetRight="0dp"
@@ -152,8 +139,8 @@
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/chip30"
                             android:layout_width="0dp"
-                            android:layout_height="46dp"
-                            android:layout_margin="4dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="3dp"
                             android:layout_weight="1"
                             android:insetLeft="0dp"
                             android:insetRight="0dp"
@@ -174,8 +161,8 @@
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/chip60"
                             android:layout_width="0dp"
-                            android:layout_height="46dp"
-                            android:layout_margin="4dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="3dp"
                             android:layout_weight="1"
                             android:insetLeft="0dp"
                             android:insetRight="0dp"
@@ -211,8 +198,8 @@
                             android:gravity="center_vertical"
                             android:hint="@string/timelock_custom_hint"
                             android:inputType="number"
-                            android:paddingStart="13dp"
-                            android:paddingEnd="13dp"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
                             android:textColor="?attr/inkColor"
                             android:textColorHint="?attr/subColor"
                             android:textSize="15sp" />
@@ -270,8 +257,7 @@
                                 android:layout_marginTop="2dp"
                                 android:text="@string/timelock_combine_sub"
                                 android:textColor="?attr/subColor"
-                                android:textSize="13sp"
-                                android:lineSpacingMultiplier="1.35" />
+                                android:textSize="12sp" />
                         </LinearLayout>
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
@@ -336,13 +322,11 @@
                             android:text="@string/timelock_running"
                             android:textColor="?attr/redColor"
                             android:textSize="15sp"
-                            android:letterSpacing="0.04"
                             android:textStyle="bold" />
                     </LinearLayout>
 
                     <TextView
                         android:id="@+id/countdownText"
-                        android:fontFeatureSettings="tnum"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
@@ -427,8 +411,7 @@
                         android:gravity="center"
                         android:text="@string/timelock_pin_hint"
                         android:textColor="?attr/subColor"
-                        android:textSize="12sp"
-                        android:lineSpacingMultiplier="1.5" />
+                        android:textSize="12sp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -437,11 +420,11 @@
                 android:id="@+id/whileTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="?attr/displayFontFamily"
                 android:text="@string/timelock_while_title"
                 android:textColor="?attr/inkColor"
-                android:textSize="16.5sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <com.google.android.material.card.MaterialCardView
@@ -475,5 +458,4 @@
     <include
         android:id="@+id/bottomNav"
         layout="@layout/include_bottom_nav" />
-    </LinearLayout>
-</FrameLayout>
+</LinearLayout>

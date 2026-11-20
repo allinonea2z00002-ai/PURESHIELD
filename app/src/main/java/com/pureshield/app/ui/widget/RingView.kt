@@ -15,7 +15,6 @@ import android.view.View
 import android.view.animation.LinearInterpolator
 import androidx.core.graphics.ColorUtils
 import com.pureshield.app.R
-import com.pureshield.app.ui.Polish
 import com.pureshield.app.ui.attrBoolean
 import com.pureshield.app.ui.attrColor
 import kotlin.math.PI
@@ -62,7 +61,7 @@ class RingView @JvmOverloads constructor(
     private val accent1 = context.attrColor(R.attr.accent1)
     private val accent2 = context.attrColor(R.attr.accent2)
     private val lineColor = context.attrColor(R.attr.lineColor)
-    private val shadowColor = context.attrColor(R.attr.shadowColor)
+    private val mintColor = context.attrColor(R.attr.mintColor)
     private val showHalo = context.attrBoolean(R.attr.showHalo, true)
 
     private val trackPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
@@ -90,15 +89,11 @@ class RingView @JvmOverloads constructor(
     private var breathAnimator: ValueAnimator? = null
 
     init {
-        // Ring glow (demo §2.1): the base drop-shadow is a hardcoded mint
-        // green — 0 0 10px rgba(47,158,126,.35) — in EVERY theme except Holo
-        // (cyan, 12px, .55 alpha). The old code used accent2 at 14dp, which
-        // was theme-coloured and too wide.
+        // Soft glow on the progress arc.
         setLayerType(LAYER_TYPE_SOFTWARE, null)
-        val isHolo = shadowColor == Polish.GLOW_CYAN
-        val glowRadius = (if (isHolo) 12f else 10f) * resources.displayMetrics.density
-        val glowColor = if (isHolo) Polish.GLOW_CYAN_STRONG else Polish.GLOW_GREEN_RING
-        progressPaint.setShadowLayer(glowRadius, 0f, 0f, glowColor)
+        progressPaint.setShadowLayer(
+            14f * resources.displayMetrics.density, 0f, 0f, accent2
+        )
         if (showHalo) {
             breathAnimator = ValueAnimator.ofFloat(0f, 1f).apply {
                 duration = 5000
@@ -122,28 +117,12 @@ class RingView @JvmOverloads constructor(
         )
         // Halos stay inside the box even at their 1.06x peak.
         haloBaseRadius = minOf(w, h) / 2f - 9f * resources.displayMetrics.density
-        // Halo colour (demo §2.2): the base halo is the same hardcoded mint
-        // green rgba(47,158,126,.20) in every theme that shows one — NOT the
-        // theme mint. Holo's halo is cyan fading through purple.
-        haloGradient = if (shadowColor == Polish.GLOW_CYAN) {
-            RadialGradient(
-                centerX, centerY, haloBaseRadius,
-                intArrayOf(
-                    ColorUtils.setAlphaComponent(0xFF00E5FF.toInt(), 56),
-                    ColorUtils.setAlphaComponent(0xFFC86BFF.toInt(), 20),
-                    Color.TRANSPARENT
-                ),
-                floatArrayOf(0f, 0.45f, 0.68f),
-                Shader.TileMode.CLAMP
-            )
-        } else {
-            RadialGradient(
-                centerX, centerY, haloBaseRadius,
-                intArrayOf(ColorUtils.setAlphaComponent(0xFF2F9E7E.toInt(), 51), Color.TRANSPARENT),
-                floatArrayOf(0f, 0.68f),
-                Shader.TileMode.CLAMP
-            )
-        }
+        haloGradient = RadialGradient(
+            centerX, centerY, haloBaseRadius,
+            intArrayOf(ColorUtils.setAlphaComponent(mintColor, 51), Color.TRANSPARENT),
+            floatArrayOf(0f, 0.68f),
+            Shader.TileMode.CLAMP
+        )
         val sweep = SweepGradient(centerX, centerY, intArrayOf(accent1, accent2), null)
         val matrix = Matrix()
         matrix.setRotate(-90f, centerX, centerY)
