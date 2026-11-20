@@ -17,17 +17,6 @@
     <dimen name="original_large_radius">10dp</dimen>
     <dimen name="original_bar_radius">2dp</dimen>
 
-    <!-- DAWN: warm serif, full pill tab bar -->
-    <dimen name="dawn_card_radius">30dp</dimen>
-    <dimen name="dawn_button_radius">24dp</dimen>
-    <dimen name="dawn_chip_radius">24dp</dimen>
-    <dimen name="dawn_tab_radius">48dp</dimen>
-    <dimen name="dawn_sheet_radius">36dp</dimen>
-    <dimen name="dawn_pin_radius">24dp</dimen>
-    <dimen name="dawn_small_radius">24dp</dimen>
-    <dimen name="dawn_large_radius">30dp</dimen>
-    <dimen name="dawn_bar_radius">12dp</dimen>
-
     <!-- JUNGLE: leaf / asymmetric (a = large corner, b = small corner) -->
     <dimen name="jungle_card_tl">26dp</dimen>
     <dimen name="jungle_card_tr">8dp</dimen>

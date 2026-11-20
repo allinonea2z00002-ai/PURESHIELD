@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 
 /**
- * PureShield theme system — 6 full UI themes.
+ * PureShield theme system — 5 full UI themes.
  *
  * Each [ShieldTheme] is a complete look (colours + corner radii + fonts +
  * layout flags + decor), matching the PureLock web demo. Themes are applied
@@ -62,16 +62,6 @@ enum class ShieldTheme(
         quickActionColumns = 4,
         statsColumns = 2
     ),
-    DAWN(
-        id = "dawn",
-        displayNameBn = "ভোরের শান্তি",
-        displayNameEn = "Dawn",
-        descriptionBn = "পিচ আর ল্যাভেন্ডারের ভোরের শান্তি — সেরিফ অক্ষরে নরম সকাল",
-        styleRes = R.style.Theme_PureShield_Dawn,
-        dotColors = intArrayOf(0xFFFDF4EC.toInt(), 0xFFF0A06E.toInt(), 0xFFC77FA3.toInt()),
-        quickActionColumns = 4,
-        statsColumns = 2
-    ),
     JUNGLE(
         id = "jungle",
         displayNameBn = "জঙ্গল সবুজ",
@@ -116,7 +106,7 @@ enum class ShieldTheme(
     companion object {
         /** Cycle order for the dashboard half-moon button + Settings picker. */
         val ORDER: List<ShieldTheme> =
-            listOf(ORIGINAL, DAWN, JUNGLE, OCEAN, ZEN, HOLO)
+            listOf(ORIGINAL, JUNGLE, OCEAN, ZEN, HOLO)
     }
 }
 
@@ -157,7 +147,7 @@ object ThemeManager {
 
     /**
      * Advance to the next theme in cycle order
-     * (original -> dawn -> jungle -> ocean -> zen -> holo -> original),
+     * (original -> jungle -> ocean -> zen -> holo -> original),
      * persist it and return it. Caller should recreate().
      */
     fun cycle(context: Context): ShieldTheme {

@@ -27,20 +27,6 @@
         <item name="cornerSize">@dimen/original_sheet_radius</item>
     </style>
 
-    <!-- ============ ShapeAppearance: DAWN (warm, pill tab) ============ -->
-    <style name="ShapeAppearance.PureShield.Dawn.Small" parent="ShapeAppearance.Material3.SmallComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">@dimen/dawn_small_radius</item>
-    </style>
-    <style name="ShapeAppearance.PureShield.Dawn.Medium" parent="ShapeAppearance.Material3.MediumComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">@dimen/dawn_card_radius</item>
-    </style>
-    <style name="ShapeAppearance.PureShield.Dawn.Large" parent="ShapeAppearance.Material3.LargeComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">@dimen/dawn_sheet_radius</item>
-    </style>
-
     <!-- ============ ShapeAppearance: JUNGLE (leaf, asymmetric) ============ -->
     <style name="ShapeAppearance.PureShield.Jungle.Small" parent="ShapeAppearance.Material3.SmallComponent">
         <item name="cornerFamily">rounded</item>
@@ -196,95 +182,6 @@
         <item name="centerTitles">false</item>
         <item name="titleItalic">false</item>
         <item name="titleLeftBorder">true</item>
-        <item name="cardBorderless">false</item>
-    </style>
-
-    <!-- ============ DAWN (Lora serif -> serif) ============ -->
-    <style name="Theme.PureShield.Dawn" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">#E07856</item>
-        <item name="colorOnPrimary">#FFFFFF</item>
-        <item name="colorPrimaryContainer">#FFE8D6</item>
-        <item name="colorOnPrimaryContainer">#463248</item>
-        <item name="colorSecondary">#A58FD6</item>
-        <item name="colorOnSecondary">#FFFFFF</item>
-        <item name="colorTertiary">#CF7F10</item>
-        <item name="colorSurface">#FFFAF6</item>
-        <item name="colorOnSurface">#463248</item>
-        <item name="colorSurfaceVariant">#FDF1E7</item>
-        <item name="colorOnSurfaceVariant">#8A7186</item>
-        <item name="colorSurfaceContainer">#FFFAF6</item>
-        <item name="colorSurfaceContainerLow">#FDF1E7</item>
-        <item name="colorSurfaceContainerHigh">#FAE9DB</item>
-        <item name="colorSurfaceContainerLowest">#FDF4EC</item>
-        <item name="colorOutline">#F0DDCF</item>
-        <item name="colorOutlineVariant">#F0DDCF</item>
-        <item name="colorError">#E2604F</item>
-        <item name="colorOnError">#FFFFFF</item>
-        <item name="colorControlActivated">#E07856</item>
-        <item name="colorControlHighlight">#FFE8D6</item>
-        <item name="android:colorBackground">#FDF4EC</item>
-        <item name="android:windowBackground">#FDF4EC</item>
-        <item name="android:textColorPrimary">#463248</item>
-        <item name="android:textColorSecondary">#8A7186</item>
-        <item name="android:statusBarColor">#FDF4EC</item>
-        <item name="android:navigationBarColor">#FFFAF6</item>
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:windowLightNavigationBar">true</item>
-        <item name="android:fontFamily">serif</item>
-        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.PureShield.Dawn.Small</item>
-        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.PureShield.Dawn.Medium</item>
-        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.PureShield.Dawn.Large</item>
-        <item name="appBackground">#FDF4EC</item>
-        <item name="cardBackground">#FFFAF6</item>
-        <item name="cardBackground2">#FDF1E7</item>
-        <item name="lineColor">#F0DDCF</item>
-        <item name="inkColor">#463248</item>
-        <item name="subColor">#8A7186</item>
-        <item name="faintColor">#B39AA8</item>
-        <item name="mintColor">#E07856</item>
-        <item name="mintDeepColor">#B8577A</item>
-        <item name="mintSoftColor">#FFE8D6</item>
-        <item name="tealColor">#A58FD6</item>
-        <item name="goldColor">#CF7F10</item>
-        <item name="redColor">#E2604F</item>
-        <item name="blueColor">#5B9BD5</item>
-        <item name="trackOffColor">#EAD9CC</item>
-        <item name="psTabBackground">#FFFAF6</item>
-        <item name="tileStart">#FFFFFF</item>
-        <item name="tileEnd">#FFE8D6</item>
-        <item name="accent1">#F6B17C</item>
-        <item name="accent2">#C77FA3</item>
-        <item name="buttonStart">#F0A06E</item>
-        <item name="buttonEnd">#C96F8E</item>
-        <item name="buttonText">#FFFFFF</item>
-        <item name="fabStart">#F0A06E</item>
-        <item name="fabEnd">#C96F8E</item>
-        <item name="fabText">#FFFFFF</item>
-        <item name="shadowColor">#1A463248</item>
-        <item name="displayFontFamily">serif</item>
-        <item name="cardCornerRadius">@dimen/dawn_card_radius</item>
-        <item name="buttonCornerRadius">@dimen/dawn_button_radius</item>
-        <item name="psChipCornerRadius">@dimen/dawn_chip_radius</item>
-        <item name="tabCornerRadius">@dimen/dawn_tab_radius</item>
-        <item name="sheetCornerRadius">@dimen/dawn_sheet_radius</item>
-        <item name="pinCornerRadius">@dimen/dawn_pin_radius</item>
-        <item name="smallCornerRadius">@dimen/dawn_small_radius</item>
-        <item name="largeCornerRadius">@dimen/dawn_large_radius</item>
-        <item name="barCornerRadius">@dimen/dawn_bar_radius</item>
-        <item name="decorBackground">@drawable/decor_hills_lavender</item>
-        <item name="avatarBackground">@drawable/bg_avatar_dawn</item>
-        <item name="shieldBadgeBackground">@drawable/bg_badge_dawn</item>
-        <item name="iconTileRadius">20dp</item>
-        <item name="showScenery">true</item>
-        <item name="showHalo">true</item>
-        <item name="quickActionColumns">4</item>
-        <item name="statsColumns">2</item>
-        <item name="navDocked">false</item>
-        <item name="outlineButtons">false</item>
-        <item name="hideShadows">false</item>
-        <item name="centerTitles">true</item>
-        <item name="titleItalic">true</item>
-        <item name="titleLeftBorder">false</item>
         <item name="cardBorderless">false</item>
     </style>
 

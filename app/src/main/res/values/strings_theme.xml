@@ -4,8 +4,6 @@
 <resources>
     <string name="theme_original_name">Original Dark</string>
     <string name="theme_original_desc">Cyber-sharp dark look — green grid and glowing mint light.</string>
-    <string name="theme_dawn_name">Dawn</string>
-    <string name="theme_dawn_desc">The calm of a peach and lavender dawn — a soft morning in serif type.</string>
     <string name="theme_jungle_name">Jungle Green</string>
     <string name="theme_jungle_desc">Leaf-shaped jungle green — deep focus with a touch of nature.</string>
     <string name="theme_ocean_name">Ocean Blue</string>

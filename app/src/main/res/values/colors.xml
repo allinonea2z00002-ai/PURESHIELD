@@ -10,10 +10,6 @@
     <color name="dot_original_1">#0A0F0D</color>
     <color name="dot_original_2">#17C98B</color>
     <color name="dot_original_3">#2DD4BF</color>
-    <!-- DAWN -->
-    <color name="dot_dawn_1">#FDF4EC</color>
-    <color name="dot_dawn_2">#F0A06E</color>
-    <color name="dot_dawn_3">#C77FA3</color>
     <!-- JUNGLE -->
     <color name="dot_jungle_1">#E9F4E1</color>
     <color name="dot_jungle_2">#2E7D32</color>

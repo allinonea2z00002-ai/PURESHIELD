@@ -16,7 +16,7 @@ import com.pureshield.app.R
  * it paints exactly the theme background the screen had before; on top of
  * that it shows three faint, pre-rendered [R.drawable.bg_blur_blob] light
  * blobs (plain white radial gradients, alpha 0.05-0.07, so the same subtle
- * feel on all six themes). Nothing else on the screen is touched.
+ * feel on all five themes). Nothing else on the screen is touched.
  *
  * Battery-cheap by design: the blobs are pre-rendered drawables moved only
  * by translation animators (hardware-composited, no redraw, no per-frame

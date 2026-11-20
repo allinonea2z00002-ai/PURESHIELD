@@ -3,8 +3,6 @@
 <resources>
     <string name="theme_original_name">অরিজিনাল ডার্ক</string>
     <string name="theme_original_desc">সাইবার-শার্প ডার্ক লুক — সবুজ গ্রিড আর ঝলমলে মিন্ট আলো।</string>
-    <string name="theme_dawn_name">ভোরের শান্তি</string>
-    <string name="theme_dawn_desc">পিচ আর ল্যাভেন্ডারের ভোরের শান্তি — সেরিফ অক্ষরে নরম সকাল।</string>
     <string name="theme_jungle_name">জঙ্গল সবুজ</string>
     <string name="theme_jungle_desc">জঙ্গল সবুজ পাতার আকৃতি — প্রকৃতির ছোঁয়ায় গভীর ফোকাস।</string>
     <string name="theme_ocean_name">সমুদ্র নীল</string>

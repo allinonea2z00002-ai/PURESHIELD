@@ -53,7 +53,7 @@
     <string name="guard_uninstall_sub">লক চলাকালে PURESHIELD মোছা যাবে না</string>
     <string name="guard_strict_title">কঠোর মোড (Strict)</string>
     <string name="guard_strict_sub">সেটিংস বদলালেও লক ভাঙা যাবে না</string>
-    <string name="home_hint">নিচের মাঝের ঢাল বোতামে Time Lock · উপরের অর্ধ-বৃত্ত বোতামে ৬টি থিম একে একে বদলে দেখুন।</string>
+    <string name="home_hint">নিচের মাঝের ঢাল বোতামে Time Lock · উপরের অর্ধ-বৃত্ত বোতামে ৫টি থিম একে একে বদলে দেখুন।</string>
     <string name="home_theme_toast">থিম: %1$s</string>
     <string name="home_toggle_on">%1$s চালু হয়েছে</string>
     <string name="home_toggle_off">%1$s বন্ধ হয়েছে</string>

@@ -338,8 +338,8 @@ class TimeLockActivity : AppCompatActivity() {
 
     /**
      * Per-theme title treatment, mirroring MainActivity.setupSectionTitles():
-     * Dawn centres the titles and sets them italic; Original draws the mint
-     * left border + letter spacing on the section title.
+     * a theme with centerTitles centres the titles and sets them italic;
+     * Original draws the mint left border + letter spacing on the section title.
      */
     private fun setupTitles() {
         if (attrBoolean(R.attr.centerTitles, false)) {
