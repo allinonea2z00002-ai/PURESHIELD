@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Splash: 1.1s, then fades to the dashboard. Logo is the real lotus-shield
-     mark (ic_logo_splash) on the mint gradient tile; the demo's white shield
-     + mint check is the same composition with the demo's check mark. -->
+<!-- Splash: 1.1s, then fades to the dashboard. Logo is the new premium
+     shield mark (ic_logo_splash) — deep emerald shield, gold hexagon ring,
+     white check — on the theme background. -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">

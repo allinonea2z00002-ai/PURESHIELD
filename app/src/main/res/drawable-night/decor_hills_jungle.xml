@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- JUNGLE hills (night): dark variant of drawable/decor_hills_jungle.xml.
+     Resolved automatically in night mode because decor_jungle.xml references
+     @drawable/decor_hills_jungle. Gradient #0E1C0C -> #081207 (the demo's
+     dark Jungle page bg), sun dimmed to 35%, hills at 30% — matching the
+     demo's dark-mode hills opacity (.35 in-phone). -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="90"
+                android:startColor="#0E1C0C"
+                android:endColor="#081207"
+                android:type="linear" />
+        </shape>
+    </item>
+    <!-- warm sun (dimmed) -->
+    <item
+        android:width="110dp"
+        android:height="110dp"
+        android:gravity="top|right"
+        android:top="44dp"
+        android:right="28dp">
+        <shape android:shape="oval">
+            <solid android:color="#59F2C94C" />
+        </shape>
+    </item>
+    <!-- hills (back) -->
+    <item
+        android:width="560dp"
+        android:height="200dp"
+        android:gravity="bottom|left"
+        android:bottom="-110dp"
+        android:left="-100dp">
+        <shape android:shape="oval">
+            <solid android:color="#4D2E7D32" />
+        </shape>
+    </item>
+    <!-- hills (front) -->
+    <item
+        android:width="560dp"
+        android:height="200dp"
+        android:gravity="bottom|right"
+        android:bottom="-130dp"
+        android:right="-120dp">
+        <shape android:shape="oval">
+            <solid android:color="#4D43A047" />
+        </shape>
+    </item>
+</layer-list>

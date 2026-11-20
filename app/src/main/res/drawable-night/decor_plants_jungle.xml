@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- JUNGLE premium plants (night): same geometry as drawable/decor_plants_jungle.xml,
+     brighter greens so the fronds still read on the dark #0E1C0C background:
+     back #2E7D32, mid #43A047, front #66BB6A, gold midrib #F2C94C (the warm
+     sun colour). Same edge-only placement, centre stays clear. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="640dp"
+    android:viewportWidth="360"
+    android:viewportHeight="640">
+
+    <!-- LEFT cluster -->
+    <path
+        android:pathData="M -12,652 C -10,520 4,420 24,336 C 42,420 52,520 40,652 Z"
+        android:fillColor="#592E7D32" />
+    <path
+        android:pathData="M -8,652 C 2,545 20,472 50,398 C 64,478 62,570 42,652 Z"
+        android:fillColor="#5943A047" />
+    <path
+        android:pathData="M -2,652 C 12,562 32,508 72,470 C 82,542 64,612 38,652 Z"
+        android:fillColor="#6666BB6A" />
+    <!-- gold midrib on the middle left blade -->
+    <path
+        android:pathData="M 17,650 C 28,540 36,470 49,402"
+        android:fillColor="#00000000"
+        android:strokeColor="#99F2C94C"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round" />
+
+    <!-- RIGHT cluster -->
+    <path
+        android:pathData="M 372,652 C 370,530 356,440 336,362 C 318,442 308,530 320,652 Z"
+        android:fillColor="#592E7D32" />
+    <path
+        android:pathData="M 368,652 C 358,552 340,486 310,432 C 296,508 298,580 318,652 Z"
+        android:fillColor="#5943A047" />
+    <path
+        android:pathData="M 362,652 C 348,566 328,524 288,492 C 278,556 296,614 322,652 Z"
+        android:fillColor="#6666BB6A" />
+    <!-- gold midrib on the middle right blade -->
+    <path
+        android:pathData="M 343,650 C 332,548 324,488 311,434"
+        android:fillColor="#00000000"
+        android:strokeColor="#99F2C94C"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round" />
+</vector>

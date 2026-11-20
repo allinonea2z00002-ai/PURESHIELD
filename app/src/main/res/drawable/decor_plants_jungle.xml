@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- JUNGLE premium plants (light): luxury-botanical fronds rising from the
+     bottom corners. Three layered leaf blades per side — deep #1B5E20 at the
+     back, #2E7D32 mid, #43A047 front — each at ~30% alpha, with a fine gold
+     (#B07D10, the theme's existing goldColor) midrib on the middle blade.
+     Blades hug the left/right edges (tallest tips x=24 / x=336) and spread
+     only near the bottom, so the centre content area stays clear; cards are
+     opaque, so the fronds read only in the side margins and below the
+     content, never over text. Same 360x640 viewport as decor_dots so this
+     layer scales identically. Referenced only from decor_jungle.xml. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="640dp"
+    android:viewportWidth="360"
+    android:viewportHeight="640">
+
+    <!-- LEFT cluster: tall frond + two shorter blades, rising from bottom-left -->
+    <path
+        android:pathData="M -12,652 C -10,520 4,420 24,336 C 42,420 52,520 40,652 Z"
+        android:fillColor="#471B5E20" />
+    <path
+        android:pathData="M -8,652 C 2,545 20,472 50,398 C 64,478 62,570 42,652 Z"
+        android:fillColor="#4D2E7D32" />
+    <path
+        android:pathData="M -2,652 C 12,562 32,508 72,470 C 82,542 64,612 38,652 Z"
+        android:fillColor="#5243A047" />
+    <!-- gold midrib on the middle left blade -->
+    <path
+        android:pathData="M 17,650 C 28,540 36,470 49,402"
+        android:fillColor="#00000000"
+        android:strokeColor="#80B07D10"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round" />
+
+    <!-- RIGHT cluster: mirrored, varied heights so it does not look copy-pasted -->
+    <path
+        android:pathData="M 372,652 C 370,530 356,440 336,362 C 318,442 308,530 320,652 Z"
+        android:fillColor="#471B5E20" />
+    <path
+        android:pathData="M 368,652 C 358,552 340,486 310,432 C 296,508 298,580 318,652 Z"
+        android:fillColor="#4D2E7D32" />
+    <path
+        android:pathData="M 362,652 C 348,566 328,524 288,492 C 278,556 296,614 322,652 Z"
+        android:fillColor="#5243A047" />
+    <!-- gold midrib on the middle right blade -->
+    <path
+        android:pathData="M 343,650 C 332,548 324,488 311,434"
+        android:fillColor="#00000000"
+        android:strokeColor="#80B07D10"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round" />
+</vector>

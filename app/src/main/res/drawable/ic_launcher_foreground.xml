@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Launcher icon foreground: lotus-shield mark (TRACED APPROXIMATION of the
-     raster lotus logo — vector redraw, NOT pixel-identical).
-     White shield with mint-deep outline, lavender 5-petal lotus at centre,
-     mint base arc + centre dot. Keep the mark inside the 72dp safe zone:
-     shield spans x 16..92 / y 6..102 of the 108 viewport. -->
+<!-- Launcher icon foreground: premium shield mark.
+     Bold geometric shield in a deep emerald -> teal gradient, gold hexagonal
+     ring at centre with a crisp white checkmark. No fine detail: reads clearly
+     at small launcher sizes. All artwork inside the 72dp safe zone:
+     shield spans x 24..84 / y 18..90 of the 108 viewport. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
@@ -11,38 +11,38 @@
     android:viewportHeight="108">
     <!-- shield -->
     <path
-        android:pathData="M54,6 L92,18 L92,54 C92,78 76,96 54,102 C32,96 16,78 16,54 L16,18 Z"
+        android:pathData="M54,18 L84,28 L84,56 C84,74 72,84 54,90 C36,84 24,74 24,56 L24,28 Z"
+        android:strokeColor="#053B2F"
+        android:strokeWidth="2"
+        android:strokeLineJoin="round">
+        <gradient
+            android:type="linear"
+            android:startX="54"
+            android:startY="18"
+            android:endX="54"
+            android:endY="90"
+            android:startColor="#129C79"
+            android:centerColor="#0A7A5C"
+            android:endColor="#05473A" />
+    </path>
+    <!-- subtle top sheen following the shield roofline -->
+    <path
+        android:pathData="M54,18 L84,28 L84,40 L54,30 L24,40 L24,28 Z"
         android:fillColor="#FFFFFF"
-        android:fillAlpha="0.95"
-        android:strokeColor="#1F7A5F"
-        android:strokeWidth="3.5"
+        android:fillAlpha="0.10" />
+    <!-- gold hexagonal core ring -->
+    <path
+        android:pathData="M54,36 L71,46 L71,66 L54,76 L37,66 L37,46 Z"
+        android:fillColor="#00000000"
+        android:strokeColor="#F2C14E"
+        android:strokeWidth="4.5"
         android:strokeLineJoin="round" />
-    <!-- lotus: far-left petal -->
+    <!-- white checkmark -->
     <path
-        android:pathData="M32,50 C37,56 37,63 31,68 C27,61 27,55 32,50 Z"
-        android:fillColor="#B8B0E8" />
-    <!-- lotus: far-right petal -->
-    <path
-        android:pathData="M76,50 C81,55 81,61 77,68 C71,63 71,56 76,50 Z"
-        android:fillColor="#B8B0E8" />
-    <!-- lotus: left petal -->
-    <path
-        android:pathData="M42,42 C48,50 48,60 42,66 C37,58 37,50 42,42 Z"
-        android:fillColor="#9A8AD0" />
-    <!-- lotus: right petal -->
-    <path
-        android:pathData="M66,42 C71,50 71,58 66,66 C60,60 60,50 66,42 Z"
-        android:fillColor="#9A8AD0" />
-    <!-- lotus: centre petal -->
-    <path
-        android:pathData="M54,34 C59,44 59,56 54,64 C49,56 49,44 54,34 Z"
-        android:fillColor="#7C6BB0" />
-    <!-- lotus: base arc -->
-    <path
-        android:pathData="M36,68 C44,76 64,76 72,68 C64,73 44,73 36,68 Z"
-        android:fillColor="#2F9E7E" />
-    <!-- centre dot -->
-    <path
-        android:pathData="M54,74 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0"
-        android:fillColor="#2F9E7E" />
+        android:pathData="M44,56 L51.5,63.5 L65,47"
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="6.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
 </vector>

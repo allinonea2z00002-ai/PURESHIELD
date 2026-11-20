@@ -132,7 +132,11 @@
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.PureShield.Jungle.Small</item>
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.PureShield.Jungle.Medium</item>
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.PureShield.Jungle.Large</item>
-        <item name="appBackground">#0E1C0C</item>
+        <!-- Jungle appBackground is the decor drawable (not a flat colour):
+             decor_jungle paints the dark gradient itself via the
+             drawable-night hills/plants variants. The flat colour it replaces
+             was #0E1C0C. BlurBackgroundView's drifting blobs sit on top. -->
+        <item name="appBackground">@drawable/decor_jungle</item>
         <item name="cardBackground">#1A2E16</item>
         <item name="cardBackground2">#223A1C</item>
         <item name="lineColor">#2E4A26</item>

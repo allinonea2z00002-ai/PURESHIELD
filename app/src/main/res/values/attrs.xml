@@ -9,8 +9,11 @@
     Do not rename any attr back to a name Material/AppCompat already uses.
 -->
 <resources>
-    <!-- Colours -->
-    <attr name="appBackground" format="color" />
+    <!-- Colours. appBackground is color|reference (not plain color) so the
+         Jungle theme can point it at its decor drawable (@drawable/decor_jungle,
+         which paints the theme's background gradient itself); every other
+         theme still supplies a plain colour. -->
+    <attr name="appBackground" format="color|reference" />
     <attr name="cardBackground" format="color" />
     <attr name="cardBackground2" format="color" />
     <attr name="lineColor" format="color" />

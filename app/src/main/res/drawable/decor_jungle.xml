@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- JUNGLE composite decor: green hills + warm sun underneath, dot pattern on top.
-     NOTE: the vector dot layer stretches to fill the view, so dot spacing
-     scales slightly with screen aspect (see report). -->
+<!-- JUNGLE composite decor: green hills + warm sun underneath, premium plant
+     fronds in the middle, dot pattern on top.
+     Layer order (bottom -> top): decor_hills_jungle (gradient + sun + hills;
+     night variant from drawable-night) -> decor_plants_jungle (static leaf
+     fronds at the bottom corners; night variant from drawable-night) ->
+     decor_dots (leaf-dot pattern).
+     NOTE: the vector layers stretch to fill the view, so dot spacing and
+     frond proportions scale slightly with screen aspect (see report).
+     This drawable is the Jungle theme's appBackground (see values/themes.xml
+     and values-night/themes.xml), painted as BlurBackgroundView's background,
+     so the drifting white blur blobs sit ON TOP of the plants. -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@drawable/decor_hills_jungle" />
+    <item android:drawable="@drawable/decor_plants_jungle" />
     <item android:drawable="@drawable/decor_dots" />
 </layer-list>

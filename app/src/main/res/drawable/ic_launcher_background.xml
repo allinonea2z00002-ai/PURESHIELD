@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Launcher icon background: soft mint -> lavender gradient, matching the
-     Relax lotus logo (mint #D9F0E4 -> lavender #E6E0FF). -->
+<!-- Launcher icon background: deep premium green -> teal gradient, matching
+     the new shield mark (deep teal #0A3D31 -> emerald #0B5A45 -> dark #052A22). -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <gradient
         android:angle="135"
-        android:startColor="#D9F0E4"
-        android:centerColor="#DDEBF2"
-        android:endColor="#E6E0FF"
+        android:startColor="#0A3D31"
+        android:centerColor="#0B5A45"
+        android:endColor="#052A22"
         android:type="linear" />
 </shape>
