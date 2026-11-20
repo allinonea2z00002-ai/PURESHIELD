@@ -65,7 +65,7 @@ enum class PermissionKind(
         return Intent()
             .setClassName(context.packageName, "com.pureshield.app.ui.MainActivity")
             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            .putExtra(EXTRA_REQUEST_PERMISSION, key)
+            .putExtra(PermissionPrompter.EXTRA_REQUEST_PERMISSION, key)
     }
 }
 
