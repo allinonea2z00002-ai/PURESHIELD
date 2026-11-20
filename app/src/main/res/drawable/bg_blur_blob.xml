@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pre-rendered soft light blob: a radial gradient that LOOKS blurred
+     (white centre fading to transparent). No per-frame blur is ever done;
+     BlurBackgroundView only translates ImageViews using this drawable. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <gradient
+        android:type="radial"
+        android:gradientRadius="50%p"
+        android:centerX="0.5"
+        android:centerY="0.5"
+        android:startColor="#FFFFFF"
+        android:endColor="#00FFFFFF" />
+</shape>

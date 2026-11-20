@@ -111,10 +111,16 @@ class BlockActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        b.blurBackground.startMotion()
         if (pendingPinSheet && Graph.secure.hasPartnerPin()) {
             pendingPinSheet = false
             showPinSheet()
         }
+    }
+
+    override fun onPause() {
+        b.blurBackground.stopMotion()
+        super.onPause()
     }
 
     private fun bind(intent: Intent) {

@@ -78,6 +78,16 @@ class StatsActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        b.blurBackground.startMotion()
+    }
+
+    override fun onPause() {
+        b.blurBackground.stopMotion()
+        super.onPause()
+    }
+
     private fun render() {
         val today = LocalDate.now()
         val summary = StatsCalculator.summarize(days, today)

@@ -2,11 +2,21 @@
 <!-- Block screen (BlockActivity): shown by the accessibility service when a
      blocked app/site opens while locked. No bottom nav; not dismissible by
      Back while locked (see BlockActivity). -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.pureshield.app.ui.widget.BlurBackgroundView
+        android:id="@+id/blurBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/appBackground"
+        android:importantForAccessibility="no" />
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/appBackground"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="24dp">
@@ -80,3 +90,4 @@
         app:icon="@drawable/ic_home"
         app:iconTint="?attr/buttonText" />
 </LinearLayout>
+</FrameLayout>

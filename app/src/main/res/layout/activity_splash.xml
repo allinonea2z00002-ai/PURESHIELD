@@ -2,11 +2,21 @@
 <!-- Splash: 1.1s, then fades to the dashboard. Logo is the real lotus-shield
      mark (ic_logo_splash) on the mint gradient tile; the demo's white shield
      + mint check is the same composition with the demo's check mark. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.pureshield.app.ui.widget.BlurBackgroundView
+        android:id="@+id/blurBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/appBackground"
+        android:importantForAccessibility="no" />
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/splashRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/appBackground"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="24dp">
@@ -71,3 +81,4 @@
             android:background="@drawable/bg_segment" />
     </FrameLayout>
 </LinearLayout>
+</FrameLayout>

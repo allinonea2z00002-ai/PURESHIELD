@@ -166,7 +166,13 @@ class LocationActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        b.blurBackground.startMotion()
         refreshPermissions()
+    }
+
+    override fun onPause() {
+        b.blurBackground.stopMotion()
+        super.onPause()
     }
 
     // ---- rendering ----------------------------------------------------------

@@ -46,6 +46,16 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        b.blurBackground.startMotion()
+    }
+
+    override fun onPause() {
+        b.blurBackground.stopMotion()
+        super.onPause()
+    }
+
     override fun onDestroy() {
         segmentAnimator?.cancel()
         segmentAnimator = null
