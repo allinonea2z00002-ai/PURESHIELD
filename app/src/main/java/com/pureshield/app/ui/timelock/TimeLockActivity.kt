@@ -45,6 +45,7 @@ import com.pureshield.app.ui.attrColor
 import com.pureshield.app.ui.pin.PinActivity
 import com.pureshield.app.ui.pin.PinEntrySheet
 import com.pureshield.app.util.BnDigits
+import com.pureshield.app.util.PermissionPrompter
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -275,6 +276,9 @@ class TimeLockActivity : AppCompatActivity() {
                         Graph.settings.setLastLockMinutes(minutes.toInt())
                         val now = java.time.LocalTime.now()
                         Graph.settings.setLastLockStart(now.hour, now.minute)
+                        // Protection just turned on: prompt for any permission
+                        // the lock still needs (one notification per permission).
+                        PermissionPrompter.checkAndPrompt(this@TimeLockActivity)
                         Toast.makeText(
                             this@TimeLockActivity,
                             getString(

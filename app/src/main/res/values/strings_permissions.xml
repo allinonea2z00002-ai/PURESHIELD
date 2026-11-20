@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Permission prompts: one notification per still-missing permission when
+         protection is turned on, plus the same list on the Home card. -->
+    <string name="perm_card_title">Permissions still needed</string>
+    <string name="perm_allow">Allow</string>
+
+    <string name="perm_accessibility_title">Turn on Accessibility</string>
+    <string name="perm_accessibility_text">Turns on the lock, app blocking and the power-menu block.</string>
+
+    <string name="perm_usage_title">Allow Usage access</string>
+    <string name="perm_usage_text">Lets the app see which apps you use, so blocking and stats work.</string>
+
+    <string name="perm_location_title">Allow Location</string>
+    <string name="perm_location_text">Lets the location lock work at your saved places.</string>
+
+    <string name="perm_background_title">Allow location all the time</string>
+    <string name="perm_background_text">Keeps the location lock working with the screen off.</string>
+
+    <string name="perm_notifications_title">Turn on Notifications</string>
+    <string name="perm_notifications_text">So you can see lock alerts and permission reminders.</string>
+
+    <string name="perm_battery_title">Turn off Battery optimization</string>
+    <string name="perm_battery_text">Keeps the app alive in the background so the lock keeps working.</string>
+</resources>

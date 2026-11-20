@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Permission prompts: one notification per still-missing permission when
+         protection is turned on, plus the same list on the Home card. -->
+    <string name="perm_card_title">কিছু অনুমতি এখনো বাকি</string>
+    <string name="perm_allow">অনুমতি দিন</string>
+
+    <string name="perm_accessibility_title">Accessibility চালু করুন</string>
+    <string name="perm_accessibility_text">লক, অ্যাপ ব্লক আর পাওয়ার মেনু ব্লক চালু হবে।</string>
+
+    <string name="perm_usage_title">Usage access দিন</string>
+    <string name="perm_usage_text">কোন অ্যাপ কতক্ষণ চলল তা দেখা যাবে, ব্লক আর স্ট্যাটস ঠিকমতো চলবে।</string>
+
+    <string name="perm_location_title">অবস্থান (Location) দিন</string>
+    <string name="perm_location_text">সেভ করা জায়গায় লোকেশন লক চালু হবে।</string>
+
+    <string name="perm_background_title">সবসময় অবস্থান দিন</string>
+    <string name="perm_background_text">স্ক্রিন বন্ধ থাকলেও জায়গার লক চলবে।</string>
+
+    <string name="perm_notifications_title">নোটিফিকেশন চালু করুন</string>
+    <string name="perm_notifications_text">লকের খবর আর অনুমতির বার্তা পাবেন।</string>
+
+    <string name="perm_battery_title">ব্যাটারি অপটিমাইজেশন বন্ধ করুন</string>
+    <string name="perm_battery_text">অ্যাপ ব্যাকগ্রাউন্ডে বন্ধ হবে না, লক চালু থাকবে।</string>
+</resources>

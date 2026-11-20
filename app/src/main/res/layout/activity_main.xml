@@ -165,6 +165,45 @@
                 </LinearLayout>
             </FrameLayout>
 
+            <!-- Missing-permission card: the same list as the permission
+                 notifications, so it also shows when notifications are off.
+                 Hidden when nothing is missing. -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/permCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="?attr/cardBackground"
+                app:cardCornerRadius="?attr/cardCornerRadius"
+                app:cardElevation="0dp"
+                app:strokeColor="?attr/lineColor"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/permCardTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/perm_card_title"
+                        android:textColor="?attr/inkColor"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/permList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:orientation="vertical" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
             <!-- Protection ring: 218x218, custom RingView + centred overlay. -->
             <FrameLayout
                 android:id="@+id/ringFrame"

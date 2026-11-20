@@ -45,6 +45,38 @@ class Notifier(private val context: Context) {
     /** Daily summary notification. */
     fun daily(id: Int, title: String, text: String) = notify(id, CH_DAILY, title, text)
 
+    /**
+     * Permission prompt: one notification per still-missing permission.
+     * Tapping it opens [target] — exactly that permission's settings
+     * screen (or the battery-exemption dialog). Uses the high-priority
+     * alerts channel so it shows as a heads-up notification.
+     */
+    fun permissionPrompt(id: Int, title: String, text: String, target: Intent) {
+        val pending = PendingIntent.getActivity(
+            context, id, target,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+        val n = NotificationCompat.Builder(context, CH_ALERTS)
+            .setSmallIcon(android.R.drawable.ic_lock_lock)
+            .setContentTitle(title)
+            .setContentText(text)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(text))
+            .setAutoCancel(true)
+            .setContentIntent(pending)
+            .build()
+        try {
+            val manager = NotificationManagerCompat.from(context)
+            if (manager.areNotificationsEnabled()) manager.notify(id, n)
+        } catch (_: SecurityException) {
+            // Notification permission was revoked between the check and the call.
+        }
+    }
+
+    /** Cancel one posted notification (e.g. its permission was just granted). */
+    fun cancel(id: Int) {
+        NotificationManagerCompat.from(context).cancel(id)
+    }
+
     private fun notify(id: Int, channel: String, title: String, text: String) {
         val n = NotificationCompat.Builder(context, channel)
             .setSmallIcon(android.R.drawable.ic_lock_lock)

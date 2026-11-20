@@ -9,6 +9,7 @@ import com.pureshield.app.Graph
 import com.pureshield.app.data.content.ContentWatch
 import com.pureshield.app.data.db.BlockEvent
 import com.pureshield.app.data.prefs.AppSettings
+import com.pureshield.app.util.PermissionPrompter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -70,6 +71,9 @@ class PureShieldAccessibilityService : AccessibilityService() {
     override fun onServiceConnected() {
         super.onServiceConnected()
         connected = true
+        // Accessibility is on now: clear its permission prompt (if any) so
+        // the notification disappears even while the app is in the background.
+        PermissionPrompter.onAccessibilityGranted(this)
         policy = AppBlockPolicy(this)
         // The blocklist is also used by the URL watch, so load it here too.
         scope.launch { runCatching { Graph.blocklist.reload() } }

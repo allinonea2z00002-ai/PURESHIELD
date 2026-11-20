@@ -36,6 +36,7 @@ import com.pureshield.app.data.db.FocusDay
 import com.pureshield.app.data.prefs.AppSettings
 import com.pureshield.app.databinding.ActivityMainBinding
 import com.pureshield.app.databinding.ItemGuardRowBinding
+import com.pureshield.app.databinding.ItemPermissionRowBinding
 import com.pureshield.app.databinding.ItemQuickActionBinding
 import com.pureshield.app.databinding.ItemQuickActionWideBinding
 import com.pureshield.app.domain.LockSnapshot
@@ -45,6 +46,8 @@ import com.pureshield.app.ui.settings.SettingsActivity
 import com.pureshield.app.ui.stats.StatsActivity
 import com.pureshield.app.ui.timelock.TimeLockActivity
 import com.pureshield.app.util.BnDigits
+import com.pureshield.app.util.PermissionKind
+import com.pureshield.app.util.PermissionPrompter
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -107,6 +110,9 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         b.blurBackground.startMotion()
+        // The user may just have granted a permission in Settings: re-check,
+        // clear the prompts that are granted now, and sync the Home card.
+        refreshPermissions()
     }
 
     override fun onPause() {
@@ -278,6 +284,9 @@ class MainActivity : AppCompatActivity() {
                 if (!button.isPressed) return@setOnCheckedChangeListener
                 lifecycleScope.launch {
                     guard.setOn(checked)
+                    // Protection just turned on: prompt for any permission the
+                    // lock still needs (one notification per permission).
+                    if (checked) PermissionPrompter.checkAndPrompt(this@MainActivity)
                     val label = getString(guard.titleRes)
                     Toast.makeText(
                         this@MainActivity,
@@ -296,6 +305,32 @@ class MainActivity : AppCompatActivity() {
         for ((guard, row) in guardRows) {
             val on = guard.isOn(settings)
             if (row.guardSwitch.isChecked != on) row.guardSwitch.isChecked = on
+        }
+    }
+
+    // ------------------------------------------------------- permission prompts
+
+    /** Re-check every permission the lock needs, sync notifications + the Home card. */
+    private fun refreshPermissions() {
+        lifecycleScope.launch {
+            val missing = PermissionPrompter.missing(this@MainActivity)
+            PermissionPrompter.sync(this@MainActivity, missing)
+            updatePermCard(missing)
+        }
+    }
+
+    /** The Home card shows exactly the same missing list as the notifications. */
+    private fun updatePermCard(missing: List<PermissionKind>) {
+        b.permCard.isVisible = missing.isNotEmpty()
+        if (missing.isEmpty()) return
+        b.permList.removeAllViews()
+        for (kind in missing) {
+            val row = ItemPermissionRowBinding.inflate(layoutInflater, b.permList, true)
+            row.permRowTitle.setText(kind.titleRes)
+            row.permRowSub.setText(kind.textRes)
+            row.permRowButton.setOnClickListener {
+                startActivity(kind.intent(this@MainActivity).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            }
         }
     }
 
