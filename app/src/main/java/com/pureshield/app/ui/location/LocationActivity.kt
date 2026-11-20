@@ -174,7 +174,7 @@ class LocationActivity : AppCompatActivity() {
     private fun render() {
         updatingUi = true
         try {
-            val count = BnDigits.toBnDigits(zones.size.toString())
+            val count = BnDigits.toLocalizedDigits(zones.size.toString())
             b.tvMasterSub.text = if (masterOn) {
                 getString(R.string.loc_master_on, count)
             } else {
@@ -203,7 +203,7 @@ class LocationActivity : AppCompatActivity() {
 
     private fun updateRadiusLabel(radiusM: Int) {
         b.tvRadiusValue.text =
-            getString(R.string.loc_radius_value, BnDigits.toBnDigits(radiusM.toString()))
+            getString(R.string.loc_radius_value, BnDigits.toLocalizedDigits(radiusM.toString()))
     }
 
     private fun persistRadius(radiusM: Int) {
@@ -215,7 +215,7 @@ class LocationActivity : AppCompatActivity() {
                 this@LocationActivity,
                 getString(
                     R.string.loc_radius_saved_toast,
-                    BnDigits.toBnDigits(radiusM.toString())
+                    BnDigits.toLocalizedDigits(radiusM.toString())
                 ),
                 Toast.LENGTH_SHORT
             ).show()
@@ -424,7 +424,7 @@ class LocationActivity : AppCompatActivity() {
             }
 
             private fun zoneDetail(zone: SafeZone): String {
-                val radius = BnDigits.toBnDigits(zone.radiusM.toString())
+                val radius = BnDigits.toLocalizedDigits(zone.radiusM.toString())
                 val modeText = getString(
                     if (zone.modeInside) R.string.loc_mode_inside else R.string.loc_mode_away
                 )
@@ -459,13 +459,13 @@ class LocationActivity : AppCompatActivity() {
                     if (inside) getString(R.string.loc_zone_inside, radius, modeText)
                     else getString(
                         R.string.loc_zone_distance, radius, modeText,
-                        BnDigits.toBnDigits(d.toString())
+                        BnDigits.toLocalizedDigits(d.toString())
                     )
                 } else {
                     if (!inside) getString(R.string.loc_zone_outside, radius, modeText)
                     else getString(
                         R.string.loc_zone_distance, radius, modeText,
-                        BnDigits.toBnDigits(d.toString())
+                        BnDigits.toLocalizedDigits(d.toString())
                     )
                 }
             }

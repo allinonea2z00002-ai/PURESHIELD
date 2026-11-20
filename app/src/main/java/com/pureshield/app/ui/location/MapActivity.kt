@@ -272,7 +272,7 @@ class MapActivity : AppCompatActivity() {
                 val where = if (zoneActive(sel)) getString(R.string.map_inside_locking)
                 else getString(R.string.map_outside_open)
                 getString(
-                    R.string.map_m_away, BnDigits.toBnDigits(d.toInt().toString())
+                    R.string.map_m_away, BnDigits.toLocalizedDigits(d.toInt().toString())
                 ) + " · " + where
             }
             return
@@ -290,7 +290,7 @@ class MapActivity : AppCompatActivity() {
             } else {
                 val d = LocationHelper.distanceMeters(fix.latitude, fix.longitude, pla, plo)
                 getString(
-                    R.string.map_m_away, BnDigits.toBnDigits(d.toInt().toString())
+                    R.string.map_m_away, BnDigits.toLocalizedDigits(d.toInt().toString())
                 ) + " · " + coords
             }
         } else {
@@ -301,7 +301,7 @@ class MapActivity : AppCompatActivity() {
                 getString(R.string.map_no_zones)
             } else {
                 getString(
-                    R.string.map_zones_saved, BnDigits.toBnDigits(placed.toString())
+                    R.string.map_zones_saved, BnDigits.toLocalizedDigits(placed.toString())
                 )
             }
         }
@@ -327,7 +327,7 @@ class MapActivity : AppCompatActivity() {
 
     private fun syncEditControls() {
         b.tvRadiusValue.text = getString(
-            R.string.map_radius, BnDigits.toBnDigits(editRadius.toString())
+            R.string.map_radius, BnDigits.toLocalizedDigits(editRadius.toString())
         )
         b.seekRadius.progress = (editRadius - MIN_RADIUS) / RADIUS_STEP
         for (i in radiusChips.indices) radiusChips[i].isChecked = RADII[i] == editRadius

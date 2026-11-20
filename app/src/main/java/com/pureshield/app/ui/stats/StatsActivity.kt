@@ -25,7 +25,6 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.TextStyle
-import java.util.Locale
 
 /**
  * Statistics screen (demo Screen 5, verbatim labels).
@@ -85,12 +84,12 @@ class StatsActivity : AppCompatActivity() {
         val best = bestStreak(days)
         b.tvStreakDays.text = getString(
             R.string.stats_streak_days,
-            BnDigits.toBnDigits(summary.streakDays.toString())
+            BnDigits.toLocalizedDigits(summary.streakDays.toString())
         )
         b.tvStreakSub.text = getString(
             R.string.stats_streak_sub,
-            BnDigits.toBnDigits(summary.streakDays.toString()),
-            BnDigits.toBnDigits(best.toString())
+            BnDigits.toLocalizedDigits(summary.streakDays.toString()),
+            BnDigits.toLocalizedDigits(best.toString())
         )
 
         // Bars: minutes from StatsCalculator (7 or 30 entries ending today).
@@ -102,10 +101,10 @@ class StatsActivity : AppCompatActivity() {
             totalMinutes += minutes
             if (minutes > 0) anyData = true
             val label = if (rangeDays == 7) {
-                date.dayOfWeek.getDisplayName(TextStyle.SHORT, Locale("bn"))
+                date.dayOfWeek.getDisplayName(TextStyle.SHORT, BnDigits.appLocale())
             } else {
                 val offset = today.toEpochDay() - date.toEpochDay()
-                if (offset % 5 == 0L) BnDigits.toBnDigits(date.dayOfMonth.toString()) else ""
+                if (offset % 5 == 0L) BnDigits.toLocalizedDigits(date.dayOfMonth.toString()) else ""
             }
             bars.add(BarChartView.Bar(label, minutes * 60_000L))
         }
@@ -122,13 +121,13 @@ class StatsActivity : AppCompatActivity() {
             .sumOf { it.blocks }
         val avgMinutes = if (rangeDays > 0) totalMinutes / rangeDays else 0L
         b.tvTotalFocus.text = getString(
-            R.string.stats_total_focus, BnDigits.formatMinutes(totalMinutes)
+            R.string.stats_total_focus, BnDigits.formatMinutesLocalized(totalMinutes)
         )
         b.tvDailyAvg.text = getString(
-            R.string.stats_daily_avg, BnDigits.formatMinutes(avgMinutes)
+            R.string.stats_daily_avg, BnDigits.formatMinutesLocalized(avgMinutes)
         )
         b.tvTotalBlocks.text = getString(
-            R.string.stats_total_blocks, BnDigits.toBnDigits(totalBlocks.toString())
+            R.string.stats_total_blocks, BnDigits.toLocalizedDigits(totalBlocks.toString())
         )
 
         val top = events
@@ -212,7 +211,7 @@ class StatsActivity : AppCompatActivity() {
                 vb.tvDetail.text = row.detail
                 vb.tvCount.text = getString(
                     R.string.stats_top_times,
-                    BnDigits.toBnDigits(row.count.toString())
+                    BnDigits.toLocalizedDigits(row.count.toString())
                 )
             }
         }

@@ -66,7 +66,7 @@ class RouteHistoryActivity : AppCompatActivity() {
                             .filter { it.at >= since }
                             .map { event ->
                                 val name = names[event.zoneId]?.name
-                                    ?: BnDigits.toBnDigits(event.zoneId.toString())
+                                    ?: BnDigits.toLocalizedDigits(event.zoneId.toString())
                                 HistoryRow(
                                     title = getString(
                                         if (event.entered) R.string.history_entered

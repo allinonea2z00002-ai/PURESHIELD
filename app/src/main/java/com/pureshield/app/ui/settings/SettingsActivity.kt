@@ -294,8 +294,8 @@ class SettingsActivity : AppCompatActivity() {
 
             /**
              * The theme's own card corner radius, read from its style — so the
-             * dot shape really previews that theme (round for Relax, near-square
-             * for Eye Comfort, sharp for Original, …). Capped at half the dot.
+             * dot shape really previews that theme (round for Dawn, near-square
+             * for Original, leaf for Jungle, …). Capped at half the dot.
              */
             private fun themeCornerRadius(theme: com.pureshield.app.ui.ShieldTheme): Float {
                 val halfDot = 11f * resources.displayMetrics.density

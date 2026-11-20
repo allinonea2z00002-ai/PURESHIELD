@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- RELAX scenery: mint sky, warm sun, drifting white clouds, green hills.
-     Abstract layered shapes (no bitmaps). Used as decorBackground for Relax. -->
+<!-- Splash scenery: mint sky, warm sun, drifting white clouds, green hills.
+     Abstract layered shapes (no bitmaps). Used as decorBackground for the
+     Splash screen (fixed Relax Mint look). -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle">

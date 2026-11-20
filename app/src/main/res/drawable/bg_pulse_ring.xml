@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Original badge pulse ring (demo @keyframes pulse: an expanding ring,
+     mint at 35% fading to 0 over 2.6s). A plain 2dp mint outline whose View
+     is scaled 1 -> 1.22 and faded .35 -> 0 by the pulse animator; the View
+     alpha supplies the 35%. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@android:color/transparent" />
+    <corners android:radius="12dp" />
+    <stroke
+        android:width="2dp"
+        android:color="?attr/mintColor" />
+</shape>

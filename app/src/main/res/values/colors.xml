@@ -10,10 +10,6 @@
     <color name="dot_original_1">#0A0F0D</color>
     <color name="dot_original_2">#17C98B</color>
     <color name="dot_original_3">#2DD4BF</color>
-    <!-- RELAX -->
-    <color name="dot_relax_1">#EEF6F1</color>
-    <color name="dot_relax_2">#2F9E7E</color>
-    <color name="dot_relax_3">#7FC8BC</color>
     <!-- DAWN -->
     <color name="dot_dawn_1">#FDF4EC</color>
     <color name="dot_dawn_2">#F0A06E</color>
@@ -26,10 +22,6 @@
     <color name="dot_ocean_1">#E4F5FB</color>
     <color name="dot_ocean_2">#0288D1</color>
     <color name="dot_ocean_3">#4DD0E1</color>
-    <!-- EYE -->
-    <color name="dot_eye_1">#FAF6EA</color>
-    <color name="dot_eye_2">#75854E</color>
-    <color name="dot_eye_3">#C9BD7A</color>
     <!-- ZEN -->
     <color name="dot_zen_1">#F2F0FA</color>
     <color name="dot_zen_2">#7C6BB0</color>

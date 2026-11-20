@@ -93,7 +93,7 @@ class BlockActivity : AppCompatActivity() {
                 while (isActive) {
                     val snap = Graph.lockManager.snapshotNow()
                     locked = snap.active
-                    b.remainingText.text = BnDigits.formatHMS(snap.remainingMs)
+                    b.remainingText.text = BnDigits.formatHMSLocalized(snap.remainingMs)
                     if (snap.active && snap.remainingMs <= 0L) {
                         Graph.lockManager.checkpoint()
                     }

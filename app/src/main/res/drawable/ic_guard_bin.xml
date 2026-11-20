@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Uninstall protection guard icon (demo): a bin OUTLINE. Stroked white so
+     the caller can tint it (demo: blue). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M5,7h14M9,7l1,-3h4l1,3M7,7l1,13a1,1 0 0 0 1,1h6a1,1 0 0 0 1,-1l1,-13M10,11v6M14,11v6" />
+</vector>

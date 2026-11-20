@@ -27,20 +27,6 @@
         <item name="cornerSize">@dimen/original_sheet_radius</item>
     </style>
 
-    <!-- ============ ShapeAppearance: RELAX (extra-round) ============ -->
-    <style name="ShapeAppearance.PureShield.Relax.Small" parent="ShapeAppearance.Material3.SmallComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">@dimen/relax_small_radius</item>
-    </style>
-    <style name="ShapeAppearance.PureShield.Relax.Medium" parent="ShapeAppearance.Material3.MediumComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">@dimen/relax_card_radius</item>
-    </style>
-    <style name="ShapeAppearance.PureShield.Relax.Large" parent="ShapeAppearance.Material3.LargeComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">@dimen/relax_sheet_radius</item>
-    </style>
-
     <!-- ============ ShapeAppearance: DAWN (warm, pill tab) ============ -->
     <style name="ShapeAppearance.PureShield.Dawn.Small" parent="ShapeAppearance.Material3.SmallComponent">
         <item name="cornerFamily">rounded</item>
@@ -93,20 +79,6 @@
     <style name="ShapeAppearance.PureShield.Ocean.Large" parent="ShapeAppearance.Material3.LargeComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">@dimen/ocean_sheet_radius</item>
-    </style>
-
-    <!-- ============ ShapeAppearance: EYE (flat paper, 6dp) ============ -->
-    <style name="ShapeAppearance.PureShield.Eye.Small" parent="ShapeAppearance.Material3.SmallComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">@dimen/eye_small_radius</item>
-    </style>
-    <style name="ShapeAppearance.PureShield.Eye.Medium" parent="ShapeAppearance.Material3.MediumComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">@dimen/eye_card_radius</item>
-    </style>
-    <style name="ShapeAppearance.PureShield.Eye.Large" parent="ShapeAppearance.Material3.LargeComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">@dimen/eye_sheet_radius</item>
     </style>
 
     <!-- ============ ShapeAppearance: ZEN (minimal, 30dp) ============ -->
@@ -193,8 +165,6 @@
         <item name="tileEnd">#0B241A</item>
         <item name="accent1">#2EE6A8</item>
         <item name="accent2">#0D9D6C</item>
-        <item name="ringStart">#17C98B</item>
-        <item name="ringEnd">#0D9D6C</item>
         <item name="buttonStart">#1AD593</item>
         <item name="buttonEnd">#0D9D6C</item>
         <item name="buttonText">#04241A</item>
@@ -213,8 +183,11 @@
         <item name="largeCornerRadius">@dimen/original_large_radius</item>
         <item name="barCornerRadius">@dimen/original_bar_radius</item>
         <item name="decorBackground">@drawable/decor_grid</item>
+        <item name="avatarBackground">@drawable/bg_avatar_original</item>
+        <item name="shieldBadgeBackground">@drawable/bg_badge_original</item>
+        <item name="iconTileRadius">8dp</item>
         <item name="showScenery">false</item>
-        <item name="showHalo">true</item>
+        <item name="showHalo">false</item>
         <item name="quickActionColumns">4</item>
         <item name="statsColumns">2</item>
         <item name="navDocked">false</item>
@@ -223,93 +196,6 @@
         <item name="centerTitles">false</item>
         <item name="titleItalic">false</item>
         <item name="titleLeftBorder">true</item>
-    </style>
-
-    <!-- ============ RELAX MINT — DEFAULT (Quicksand -> sans-serif-light) ============ -->
-    <style name="Theme.PureShield.Relax" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">#2F9E7E</item>
-        <item name="colorOnPrimary">#FFFFFF</item>
-        <item name="colorPrimaryContainer">#D9F0E4</item>
-        <item name="colorOnPrimaryContainer">#1E3329</item>
-        <item name="colorSecondary">#7FC8BC</item>
-        <item name="colorOnSecondary">#1E3329</item>
-        <item name="colorTertiary">#DD9412</item>
-        <item name="colorSurface">#FFFFFF</item>
-        <item name="colorOnSurface">#1E3329</item>
-        <item name="colorSurfaceVariant">#F4FAF6</item>
-        <item name="colorOnSurfaceVariant">#5A7264</item>
-        <item name="colorSurfaceContainer">#FFFFFF</item>
-        <item name="colorSurfaceContainerLow">#F4FAF6</item>
-        <item name="colorSurfaceContainerHigh">#EAF4EE</item>
-        <item name="colorSurfaceContainerLowest">#EEF6F1</item>
-        <item name="colorOutline">#D8E8DD</item>
-        <item name="colorOutlineVariant">#D8E8DD</item>
-        <item name="colorError">#E2604F</item>
-        <item name="colorOnError">#FFFFFF</item>
-        <item name="colorControlActivated">#2F9E7E</item>
-        <item name="colorControlHighlight">#D9F0E4</item>
-        <item name="android:colorBackground">#EEF6F1</item>
-        <item name="android:windowBackground">#EEF6F1</item>
-        <item name="android:textColorPrimary">#1E3329</item>
-        <item name="android:textColorSecondary">#5A7264</item>
-        <item name="android:statusBarColor">#EEF6F1</item>
-        <item name="android:navigationBarColor">#FFFFFF</item>
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:windowLightNavigationBar">true</item>
-        <item name="android:fontFamily">sans-serif-light</item>
-        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.PureShield.Relax.Small</item>
-        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.PureShield.Relax.Medium</item>
-        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.PureShield.Relax.Large</item>
-        <item name="appBackground">#EEF6F1</item>
-        <item name="cardBackground">#FFFFFF</item>
-        <item name="cardBackground2">#F4FAF6</item>
-        <item name="lineColor">#D8E8DD</item>
-        <item name="inkColor">#1E3329</item>
-        <item name="subColor">#5A7264</item>
-        <item name="faintColor">#8AA596</item>
-        <item name="mintColor">#2F9E7E</item>
-        <item name="mintDeepColor">#1F7A5F</item>
-        <item name="mintSoftColor">#D9F0E4</item>
-        <item name="tealColor">#7FC8BC</item>
-        <item name="goldColor">#DD9412</item>
-        <item name="redColor">#E2604F</item>
-        <item name="blueColor">#5B9BD5</item>
-        <item name="trackOffColor">#C9DCD2</item>
-        <item name="psTabBackground">#FFFFFF</item>
-        <item name="tileStart">#FFFFFF</item>
-        <item name="tileEnd">#D9F0E4</item>
-        <item name="accent1">#7FC8BC</item>
-        <item name="accent2">#2F9E7E</item>
-        <item name="ringStart">#3CB68F</item>
-        <item name="ringEnd">#1F7A5F</item>
-        <item name="buttonStart">#3CB68F</item>
-        <item name="buttonEnd">#1F7A5F</item>
-        <item name="buttonText">#FFFFFF</item>
-        <item name="fabStart">#4CC79E</item>
-        <item name="fabEnd">#1F7A5F</item>
-        <item name="fabText">#FFFFFF</item>
-        <item name="shadowColor">#1A1E3329</item>
-        <item name="displayFontFamily">sans-serif-light</item>
-        <item name="cardCornerRadius">@dimen/relax_card_radius</item>
-        <item name="buttonCornerRadius">@dimen/relax_button_radius</item>
-        <item name="psChipCornerRadius">@dimen/relax_chip_radius</item>
-        <item name="tabCornerRadius">@dimen/relax_tab_radius</item>
-        <item name="sheetCornerRadius">@dimen/relax_sheet_radius</item>
-        <item name="pinCornerRadius">@dimen/relax_pin_radius</item>
-        <item name="smallCornerRadius">@dimen/relax_small_radius</item>
-        <item name="largeCornerRadius">@dimen/relax_large_radius</item>
-        <item name="barCornerRadius">@dimen/relax_bar_radius</item>
-        <item name="decorBackground">@drawable/decor_hills_sun</item>
-        <item name="showScenery">true</item>
-        <item name="showHalo">true</item>
-        <item name="quickActionColumns">4</item>
-        <item name="statsColumns">2</item>
-        <item name="navDocked">false</item>
-        <item name="outlineButtons">false</item>
-        <item name="hideShadows">false</item>
-        <item name="centerTitles">false</item>
-        <item name="titleItalic">false</item>
-        <item name="titleLeftBorder">false</item>
     </style>
 
     <!-- ============ DAWN (Lora serif -> serif) ============ -->
@@ -367,8 +253,6 @@
         <item name="tileEnd">#FFE8D6</item>
         <item name="accent1">#F6B17C</item>
         <item name="accent2">#C77FA3</item>
-        <item name="ringStart">#F0A06E</item>
-        <item name="ringEnd">#C96F8E</item>
         <item name="buttonStart">#F0A06E</item>
         <item name="buttonEnd">#C96F8E</item>
         <item name="buttonText">#FFFFFF</item>
@@ -387,6 +271,9 @@
         <item name="largeCornerRadius">@dimen/dawn_large_radius</item>
         <item name="barCornerRadius">@dimen/dawn_bar_radius</item>
         <item name="decorBackground">@drawable/decor_hills_lavender</item>
+        <item name="avatarBackground">@drawable/bg_avatar_dawn</item>
+        <item name="shieldBadgeBackground">@drawable/bg_badge_dawn</item>
+        <item name="iconTileRadius">20dp</item>
         <item name="showScenery">true</item>
         <item name="showHalo">true</item>
         <item name="quickActionColumns">4</item>
@@ -454,8 +341,6 @@
         <item name="tileEnd">#C5E1A5</item>
         <item name="accent1">#81C784</item>
         <item name="accent2">#2E7D32</item>
-        <item name="ringStart">#43A047</item>
-        <item name="ringEnd">#1B5E20</item>
         <item name="buttonStart">#43A047</item>
         <item name="buttonEnd">#1B5E20</item>
         <item name="buttonText">#FFFFFF</item>
@@ -474,6 +359,9 @@
         <item name="largeCornerRadius">@dimen/jungle_card_tl</item>
         <item name="barCornerRadius">6dp</item>
         <item name="decorBackground">@drawable/decor_jungle</item>
+        <item name="avatarBackground">@drawable/bg_avatar_jungle</item>
+        <item name="shieldBadgeBackground">@drawable/bg_badge_jungle</item>
+        <item name="iconTileRadius">12dp</item>
         <item name="showScenery">true</item>
         <item name="showHalo">true</item>
         <item name="quickActionColumns">4</item>
@@ -541,8 +429,6 @@
         <item name="tileEnd">#B3E5FC</item>
         <item name="accent1">#4DD0E1</item>
         <item name="accent2">#0288D1</item>
-        <item name="ringStart">#29B6F6</item>
-        <item name="ringEnd">#01579B</item>
         <item name="buttonStart">#29B6F6</item>
         <item name="buttonEnd">#01579B</item>
         <item name="buttonText">#FFFFFF</item>
@@ -561,6 +447,9 @@
         <item name="largeCornerRadius">@dimen/ocean_large_radius</item>
         <item name="barCornerRadius">@dimen/ocean_bar_radius</item>
         <item name="decorBackground">@drawable/decor_ocean</item>
+        <item name="avatarBackground">@drawable/bg_avatar_ocean</item>
+        <item name="shieldBadgeBackground">@drawable/bg_badge_ocean</item>
+        <item name="iconTileRadius">13dp</item>
         <item name="showScenery">true</item>
         <item name="showHalo">true</item>
         <item name="quickActionColumns">2</item>
@@ -568,93 +457,6 @@
         <item name="navDocked">false</item>
         <item name="outlineButtons">false</item>
         <item name="hideShadows">false</item>
-        <item name="centerTitles">false</item>
-        <item name="titleItalic">false</item>
-        <item name="titleLeftBorder">false</item>
-    </style>
-
-    <!-- ============ EYE COMFORT (Lora serif -> serif, flat paper) ============ -->
-    <style name="Theme.PureShield.Eye" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">#75854E</item>
-        <item name="colorOnPrimary">#FFFDF4</item>
-        <item name="colorPrimaryContainer">#ECE7C6</item>
-        <item name="colorOnPrimaryContainer">#3E3626</item>
-        <item name="colorSecondary">#A3A077</item>
-        <item name="colorOnSecondary">#3E3626</item>
-        <item name="colorTertiary">#A87F24</item>
-        <item name="colorSurface">#FFFDF4</item>
-        <item name="colorOnSurface">#3E3626</item>
-        <item name="colorSurfaceVariant">#F8F1DE</item>
-        <item name="colorOnSurfaceVariant">#7D7260</item>
-        <item name="colorSurfaceContainer">#FFFDF4</item>
-        <item name="colorSurfaceContainerLow">#F8F1DE</item>
-        <item name="colorSurfaceContainerHigh">#F1E9CE</item>
-        <item name="colorSurfaceContainerLowest">#FAF6EA</item>
-        <item name="colorOutline">#E3D7BA</item>
-        <item name="colorOutlineVariant">#E3D7BA</item>
-        <item name="colorError">#B85C48</item>
-        <item name="colorOnError">#FFFDF4</item>
-        <item name="colorControlActivated">#75854E</item>
-        <item name="colorControlHighlight">#ECE7C6</item>
-        <item name="android:colorBackground">#FAF6EA</item>
-        <item name="android:windowBackground">#FAF6EA</item>
-        <item name="android:textColorPrimary">#3E3626</item>
-        <item name="android:textColorSecondary">#7D7260</item>
-        <item name="android:statusBarColor">#FAF6EA</item>
-        <item name="android:navigationBarColor">#FFFDF4</item>
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:windowLightNavigationBar">true</item>
-        <item name="android:fontFamily">serif</item>
-        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.PureShield.Eye.Small</item>
-        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.PureShield.Eye.Medium</item>
-        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.PureShield.Eye.Large</item>
-        <item name="appBackground">#FAF6EA</item>
-        <item name="cardBackground">#FFFDF4</item>
-        <item name="cardBackground2">#F8F1DE</item>
-        <item name="lineColor">#E3D7BA</item>
-        <item name="inkColor">#3E3626</item>
-        <item name="subColor">#7D7260</item>
-        <item name="faintColor">#A89C80</item>
-        <item name="mintColor">#75854E</item>
-        <item name="mintDeepColor">#5D6E3A</item>
-        <item name="mintSoftColor">#ECE7C6</item>
-        <item name="tealColor">#A3A077</item>
-        <item name="goldColor">#A87F24</item>
-        <item name="redColor">#B85C48</item>
-        <item name="blueColor">#5B7A8A</item>
-        <item name="trackOffColor">#DCD2B4</item>
-        <item name="psTabBackground">#FFFDF4</item>
-        <item name="tileStart">#FFFDF4</item>
-        <item name="tileEnd">#ECE7C6</item>
-        <item name="accent1">#B5BD85</item>
-        <item name="accent2">#75854E</item>
-        <item name="ringStart">#97A468</item>
-        <item name="ringEnd">#5D6E3A</item>
-        <item name="buttonStart">#97A468</item>
-        <item name="buttonEnd">#5D6E3A</item>
-        <item name="buttonText">#FFFDF4</item>
-        <item name="fabStart">#97A468</item>
-        <item name="fabEnd">#5D6E3A</item>
-        <item name="fabText">#FFFDF4</item>
-        <item name="shadowColor">#00000000</item>
-        <item name="displayFontFamily">serif</item>
-        <item name="cardCornerRadius">@dimen/eye_card_radius</item>
-        <item name="buttonCornerRadius">@dimen/eye_button_radius</item>
-        <item name="psChipCornerRadius">@dimen/eye_chip_radius</item>
-        <item name="tabCornerRadius">@dimen/eye_tab_radius</item>
-        <item name="sheetCornerRadius">@dimen/eye_sheet_radius</item>
-        <item name="pinCornerRadius">@dimen/eye_pin_radius</item>
-        <item name="smallCornerRadius">@dimen/eye_small_radius</item>
-        <item name="largeCornerRadius">@dimen/eye_large_radius</item>
-        <item name="barCornerRadius">@dimen/eye_bar_radius</item>
-        <item name="decorBackground">@drawable/decor_eye</item>
-        <item name="showScenery">true</item>
-        <item name="showHalo">false</item>
-        <item name="quickActionColumns">4</item>
-        <item name="statsColumns">2</item>
-        <item name="navDocked">true</item>
-        <item name="outlineButtons">false</item>
-        <item name="hideShadows">true</item>
         <item name="centerTitles">false</item>
         <item name="titleItalic">false</item>
         <item name="titleLeftBorder">false</item>
@@ -715,8 +517,6 @@
         <item name="tileEnd">#E6E0FF</item>
         <item name="accent1">#B8B0E8</item>
         <item name="accent2">#7C6BB0</item>
-        <item name="ringStart">#9A8AD0</item>
-        <item name="ringEnd">#5E4FA3</item>
         <item name="buttonStart">#9A8AD0</item>
         <item name="buttonEnd">#5E4FA3</item>
         <item name="buttonText">#5E4FA3</item>
@@ -735,6 +535,9 @@
         <item name="largeCornerRadius">@dimen/zen_large_radius</item>
         <item name="barCornerRadius">@dimen/zen_bar_radius</item>
         <item name="decorBackground">@drawable/decor_plain</item>
+        <item name="avatarBackground">@drawable/bg_avatar_zen</item>
+        <item name="shieldBadgeBackground">@drawable/bg_badge_zen</item>
+        <item name="iconTileRadius">20dp</item>
         <item name="showScenery">false</item>
         <item name="showHalo">false</item>
         <item name="quickActionColumns">4</item>
@@ -802,8 +605,6 @@
         <item name="tileEnd">#3D1450</item>
         <item name="accent1">#00E5FF</item>
         <item name="accent2">#C86BFF</item>
-        <item name="ringStart">#00E5FF</item>
-        <item name="ringEnd">#7C4DFF</item>
         <item name="buttonStart">#00C2E0</item>
         <item name="buttonEnd">#7C4DFF</item>
         <item name="buttonText">#FFFFFF</item>
@@ -822,6 +623,9 @@
         <item name="largeCornerRadius">@dimen/holo_large_radius</item>
         <item name="barCornerRadius">@dimen/holo_bar_radius</item>
         <item name="decorBackground">@drawable/decor_starfield</item>
+        <item name="avatarBackground">@drawable/bg_hexagon</item>
+        <item name="shieldBadgeBackground">@drawable/bg_hexagon</item>
+        <item name="iconTileRadius">12dp</item>
         <item name="showScenery">false</item>
         <item name="showHalo">true</item>
         <item name="quickActionColumns">4</item>
@@ -856,9 +660,9 @@
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar">true</item>
         <item name="android:fontFamily">sans-serif-light</item>
-        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.PureShield.Relax.Small</item>
-        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.PureShield.Relax.Medium</item>
-        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.PureShield.Relax.Large</item>
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.PureShield.Original.Small</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.PureShield.Original.Medium</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.PureShield.Original.Large</item>
         <item name="appBackground">#EEF6F1</item>
         <item name="cardBackground">#FFFFFF</item>
         <item name="cardBackground2">#F4FAF6</item>
@@ -879,8 +683,6 @@
         <item name="tileEnd">#D9F0E4</item>
         <item name="accent1">#7FC8BC</item>
         <item name="accent2">#2F9E7E</item>
-        <item name="ringStart">#3CB68F</item>
-        <item name="ringEnd">#1F7A5F</item>
         <item name="buttonStart">#3CB68F</item>
         <item name="buttonEnd">#1F7A5F</item>
         <item name="buttonText">#FFFFFF</item>
@@ -889,15 +691,15 @@
         <item name="fabText">#FFFFFF</item>
         <item name="shadowColor">#1A1E3329</item>
         <item name="displayFontFamily">sans-serif-light</item>
-        <item name="cardCornerRadius">@dimen/relax_card_radius</item>
-        <item name="buttonCornerRadius">@dimen/relax_button_radius</item>
-        <item name="psChipCornerRadius">@dimen/relax_chip_radius</item>
-        <item name="tabCornerRadius">@dimen/relax_tab_radius</item>
-        <item name="sheetCornerRadius">@dimen/relax_sheet_radius</item>
-        <item name="pinCornerRadius">@dimen/relax_pin_radius</item>
-        <item name="smallCornerRadius">@dimen/relax_small_radius</item>
-        <item name="largeCornerRadius">@dimen/relax_large_radius</item>
-        <item name="barCornerRadius">@dimen/relax_bar_radius</item>
+        <item name="cardCornerRadius">26dp</item>
+        <item name="buttonCornerRadius">22dp</item>
+        <item name="psChipCornerRadius">22dp</item>
+        <item name="tabCornerRadius">30dp</item>
+        <item name="sheetCornerRadius">30dp</item>
+        <item name="pinCornerRadius">18dp</item>
+        <item name="smallCornerRadius">22dp</item>
+        <item name="largeCornerRadius">26dp</item>
+        <item name="barCornerRadius">10dp</item>
         <item name="decorBackground">@drawable/decor_hills_sun</item>
         <item name="showScenery">true</item>
         <item name="showHalo">true</item>

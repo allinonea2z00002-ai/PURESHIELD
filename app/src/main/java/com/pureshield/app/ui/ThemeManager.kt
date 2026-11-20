@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 
 /**
- * PureShield theme system — 8 full UI themes.
+ * PureShield theme system — 6 full UI themes.
  *
  * Each [ShieldTheme] is a complete look (colours + corner radii + fonts +
  * layout flags + decor), matching the PureLock web demo. Themes are applied
@@ -27,13 +27,13 @@ import kotlinx.coroutines.runBlocking
  *
  * Switching theme: call [ThemeManager.set] (or [ThemeManager.cycle]) and
  * then activity.recreate(). The id is persisted in DataStore
- * ("pureshield_theme", key "theme_id", default "relax") and also kept in a
+ * ("pureshield_theme", key "theme_id", default "original") and also kept in a
  * static volatile cache so recreate() picks the new theme up immediately.
  *
  * Font mapping (demo web font -> closest Android SYSTEM family; Google
  * Fonts files are binaries and cannot be pushed via this project's push
  * tool, so this mapping is the sanctioned adaptation):
- *   Sora -> sans-serif | Quicksand -> sans-serif-light | Lora -> serif
+ *   Sora -> sans-serif | Lora -> serif
  *   Zilla Slab -> serif | Manrope -> sans-serif | Jost -> sans-serif-light
  *   Orbitron -> monospace
  */
@@ -59,16 +59,6 @@ enum class ShieldTheme(
         descriptionBn = "সাইবার-শার্প ডার্ক লুক — সবুজ গ্রিড আর ঝলমলে মিন্ট আলো",
         styleRes = R.style.Theme_PureShield_Original,
         dotColors = intArrayOf(0xFF0A0F0D.toInt(), 0xFF17C98B.toInt(), 0xFF2DD4BF.toInt()),
-        quickActionColumns = 4,
-        statsColumns = 2
-    ),
-    RELAX(
-        id = "relax",
-        displayNameBn = "রিল্যাক্স মিন্ট",
-        displayNameEn = "Relax Mint",
-        descriptionBn = "হালকা মিন্ট, সবুজ পাহাড় আর মেঘ — চোখের জন্য সবচেয়ে আরামদায়ক",
-        styleRes = R.style.Theme_PureShield_Relax,
-        dotColors = intArrayOf(0xFFEEF6F1.toInt(), 0xFF2F9E7E.toInt(), 0xFF7FC8BC.toInt()),
         quickActionColumns = 4,
         statsColumns = 2
     ),
@@ -102,16 +92,6 @@ enum class ShieldTheme(
         quickActionColumns = 2,
         statsColumns = 2
     ),
-    EYE(
-        id = "eye",
-        displayNameBn = "চোখের আরাম",
-        displayNameEn = "Eye Comfort",
-        descriptionBn = "কাগজের মতো সমতল, নরম অলিভ — দীর্ঘক্ষণ তাকালেও চোখ ক্লান্ত হয় না",
-        styleRes = R.style.Theme_PureShield_Eye,
-        dotColors = intArrayOf(0xFFFAF6EA.toInt(), 0xFF75854E.toInt(), 0xFFC9BD7A.toInt()),
-        quickActionColumns = 4,
-        statsColumns = 2
-    ),
     ZEN(
         id = "zen",
         displayNameBn = "রিল্যাক্স জেন",
@@ -136,14 +116,14 @@ enum class ShieldTheme(
     companion object {
         /** Cycle order for the dashboard half-moon button + Settings picker. */
         val ORDER: List<ShieldTheme> =
-            listOf(ORIGINAL, RELAX, DAWN, JUNGLE, OCEAN, EYE, ZEN, HOLO)
+            listOf(ORIGINAL, DAWN, JUNGLE, OCEAN, ZEN, HOLO)
     }
 }
 
 object ThemeManager {
 
     private val THEME_ID_KEY = stringPreferencesKey("theme_id")
-    private const val DEFAULT_THEME_ID = "relax"
+    private const val DEFAULT_THEME_ID = "original"
 
     /** In-memory cache so recreate() picks a just-saved theme up immediately. */
     @Volatile
@@ -157,7 +137,7 @@ object ThemeManager {
         activity.setTheme(current(activity).styleRes)
     }
 
-    /** The currently persisted theme (default [ShieldTheme.RELAX]). */
+    /** The currently persisted theme (default [ShieldTheme.ORIGINAL]). */
     fun current(context: Context): ShieldTheme {
         val id = cachedId ?: runBlocking(Dispatchers.IO) {
             context.themeDataStore.data
@@ -177,8 +157,8 @@ object ThemeManager {
 
     /**
      * Advance to the next theme in cycle order
-     * (original -> relax -> dawn -> jungle -> ocean -> eye -> zen -> holo
-     * -> original), persist it and return it. Caller should recreate().
+     * (original -> dawn -> jungle -> ocean -> zen -> holo -> original),
+     * persist it and return it. Caller should recreate().
      */
     fun cycle(context: Context): ShieldTheme {
         val order = ShieldTheme.ORDER
@@ -191,9 +171,9 @@ object ThemeManager {
     /** All themes in cycle order. */
     fun all(): List<ShieldTheme> = ShieldTheme.ORDER
 
-    /** Theme for [id], or [ShieldTheme.RELAX] for an unknown id. */
+    /** Theme for [id], or [ShieldTheme.ORIGINAL] for an unknown id. */
     fun themeById(id: String?): ShieldTheme {
-        if (id == null) return ShieldTheme.RELAX
-        return ShieldTheme.ORDER.firstOrNull { it.id == id } ?: ShieldTheme.RELAX
+        if (id == null) return ShieldTheme.ORIGINAL
+        return ShieldTheme.ORDER.firstOrNull { it.id == id } ?: ShieldTheme.ORIGINAL
     }
 }

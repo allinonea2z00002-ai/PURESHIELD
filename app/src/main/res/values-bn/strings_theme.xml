@@ -3,16 +3,12 @@
 <resources>
     <string name="theme_original_name">অরিজিনাল ডার্ক</string>
     <string name="theme_original_desc">সাইবার-শার্প ডার্ক লুক — সবুজ গ্রিড আর ঝলমলে মিন্ট আলো।</string>
-    <string name="theme_relax_name">রিল্যাক্স মিন্ট</string>
-    <string name="theme_relax_desc">হালকা মিন্ট, সবুজ পাহাড় আর মেঘ — চোখের জন্য সবচেয়ে আরামদায়ক।</string>
     <string name="theme_dawn_name">ভোরের শান্তি</string>
     <string name="theme_dawn_desc">পিচ আর ল্যাভেন্ডারের ভোরের শান্তি — সেরিফ অক্ষরে নরম সকাল।</string>
     <string name="theme_jungle_name">জঙ্গল সবুজ</string>
     <string name="theme_jungle_desc">জঙ্গল সবুজ পাতার আকৃতি — প্রকৃতির ছোঁয়ায় গভীর ফোকাস।</string>
     <string name="theme_ocean_name">সমুদ্র নীল</string>
     <string name="theme_ocean_desc">সমুদ্র নীল ঢেউ আর বুদবুদ — প্রশান্ত গভীরতার অনুভূতি।</string>
-    <string name="theme_eye_name">চোখের আরাম</string>
-    <string name="theme_eye_desc">কাগজের মতো সমতল, নরম অলিভ — দীর্ঘক্ষণ তাকালেও চোখ ক্লান্ত হয় না।</string>
     <string name="theme_zen_name">রিল্যাক্স জেন</string>
     <string name="theme_zen_desc">সাদামাটা মিনিমাল জেন — বাড়তি কিছু নেই, শুধু শান্তি।</string>
     <string name="theme_holo_name">হোলোগ্রাম</string>

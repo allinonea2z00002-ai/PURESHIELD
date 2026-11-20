@@ -234,7 +234,7 @@ class TimeLockActivity : AppCompatActivity() {
                             this@TimeLockActivity,
                             getString(
                                 R.string.timelock_started,
-                                BnDigits.toBnDigits(minutes.toString())
+                                BnDigits.toLocalizedDigits(minutes.toString())
                             ),
                             Toast.LENGTH_SHORT
                         ).show()
@@ -325,7 +325,7 @@ class TimeLockActivity : AppCompatActivity() {
                         appsRow.lockSub.text = if (count > 0) {
                             getString(
                                 R.string.timelock_row_apps_sub,
-                                BnDigits.toBnDigits(count.toString())
+                                BnDigits.toLocalizedDigits(count.toString())
                             )
                         } else {
                             getString(R.string.timelock_row_apps_none)
@@ -375,13 +375,13 @@ class TimeLockActivity : AppCompatActivity() {
         b.runningCard.isVisible = running
         if (!running) return
 
-        b.countdownText.text = BnDigits.formatHMS(snap.remainingMs)
-        b.endsText.text = getString(R.string.timelock_ends, endTimeBn())
+        b.countdownText.text = BnDigits.formatHMSLocalized(snap.remainingMs)
+        b.endsText.text = getString(R.string.timelock_ends, endTimeText())
         b.lockProgress.progress = (snap.progress * 1000f).toInt()
     }
 
-    /** End time of the running lock as a Bengali 12-hour "H:MM". */
-    private fun endTimeBn(): String {
+    /** End time of the running lock as a 12-hour "H:MM" in the UI language. */
+    private fun endTimeText(): String {
         val state = lastState ?: return ""
         if (state.durationMs <= 0L) return ""
         val end = Instant.ofEpochMilli(state.startEpoch + state.durationMs)
@@ -390,6 +390,6 @@ class TimeLockActivity : AppCompatActivity() {
             0 -> 12
             else -> h
         }
-        return BnDigits.toBnDigits("%d:%02d".format(hour12, end.minute))
+        return BnDigits.toLocalizedDigits("%d:%02d".format(hour12, end.minute))
     }
 }

@@ -22,6 +22,13 @@ internal fun Context.attrColor(@AttrRes attr: Int): Int {
     return value.data
 }
 
+/** Resolves a theme dimension attribute (e.g. R.attr.iconTileRadius) to pixels. */
+internal fun Context.attrDimension(@AttrRes attr: Int): Float {
+    val value = TypedValue()
+    if (!theme.resolveAttribute(attr, value, true)) return 0f
+    return TypedValue.complexToDimension(value.data, resources.displayMetrics)
+}
+
 /** Resolves a theme boolean attribute, returning [default] when it is not set. */
 internal fun Context.attrBoolean(@AttrRes attr: Int, default: Boolean): Boolean {
     val value = TypedValue()

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Theme-picker dot, ROUND (Relax / Dawn). Shape only — tint at runtime
+<!-- Theme-picker dot, ROUND (Dawn). Shape only — tint at runtime
      with ShieldTheme.dotColors[i] via android:backgroundTint. -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">

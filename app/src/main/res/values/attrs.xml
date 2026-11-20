@@ -30,8 +30,6 @@
     <attr name="tileEnd" format="color" />
     <attr name="accent1" format="color" />
     <attr name="accent2" format="color" />
-    <attr name="ringStart" format="color" />
-    <attr name="ringEnd" format="color" />
     <attr name="buttonStart" format="color" />
     <attr name="buttonEnd" format="color" />
     <attr name="buttonText" format="color" />
@@ -62,6 +60,9 @@
 
     <!-- Decor / behaviour flags -->
     <attr name="decorBackground" format="reference" />
+    <attr name="avatarBackground" format="reference" />
+    <attr name="shieldBadgeBackground" format="reference" />
+    <attr name="iconTileRadius" format="dimension" />
     <attr name="showScenery" format="boolean" />
     <attr name="showHalo" format="boolean" />
     <attr name="quickActionColumns" format="integer" />

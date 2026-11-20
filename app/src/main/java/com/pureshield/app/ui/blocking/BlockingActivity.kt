@@ -141,10 +141,10 @@ class BlockingActivity : AppCompatActivity() {
     private fun renderCounts() {
         val apps = blockedApps.count { it.blocked }
         b.tvAppsCount.text = getString(
-            R.string.block_apps_count, BnDigits.toBnDigits(apps.toString())
+            R.string.block_apps_count, BnDigits.toLocalizedDigits(apps.toString())
         )
         b.tvSitesCount.text = getString(
-            R.string.block_sites_count, BnDigits.toBnDigits(sites.size.toString())
+            R.string.block_sites_count, BnDigits.toLocalizedDigits(sites.size.toString())
         )
     }
 
@@ -392,7 +392,7 @@ class BlockingActivity : AppCompatActivity() {
                 vb.tvSub.text = if (row.blocked) {
                     getString(
                         R.string.block_app_today,
-                        BnDigits.toBnDigits(row.todayCount.toString())
+                        BnDigits.toLocalizedDigits(row.todayCount.toString())
                     )
                 } else {
                     getString(R.string.block_app_not_blocked)

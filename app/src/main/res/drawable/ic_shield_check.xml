@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ring centre badge icon (demo): a MINT shield with a WHITE check.
+     The shield fill follows the theme mint; the check stays white. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="?attr/mintColor"
+        android:pathData="M12,2.5l7.5,3v5.7c0,4.9 -3.2,8.3 -7.5,10.3 -4.3,-2 -7.5,-5.4 -7.5,-10.3V5.5L12,2.5z" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M8.5,12.2l2.4,2.4l4.6,-5" />
+</vector>

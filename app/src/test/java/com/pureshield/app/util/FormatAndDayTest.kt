@@ -97,4 +97,34 @@ class FormatAndDayTest {
         assertEquals("০১:৩০", BnDigits.formatClockHHMM(90 * 60_000L))
         assertEquals("০০:০৫", BnDigits.formatClockHHMM(5 * 60_000L))
     }
+
+    // ------------------------------------------------------- Localized digits
+
+    @Test
+    fun `localized digits follow the UI language`() {
+        // Locale.US (set in fixLocale): English UI -> Western digits/units.
+        assertEquals("12:30", BnDigits.toLocalizedDigits("12:30"))
+        assertEquals("02:05", BnDigits.formatHMSLocalized(125_000))
+        assertEquals("01:02:05", BnDigits.formatHMSLocalized(3_725_000))
+        assertEquals("45 minutes", BnDigits.formatMinutesLocalized(45))
+        assertEquals("1 hour 30 minutes", BnDigits.formatMinutesLocalized(90))
+        assertEquals("1 hour", BnDigits.formatMinutesLocalized(60))
+        assertEquals("0 min", BnDigits.formatMinutesShort(0))
+        assertEquals("45 min", BnDigits.formatMinutesShort(45))
+        assertEquals("2 hr 10 min", BnDigits.formatMinutesShort(130))
+        assertEquals("2 hr", BnDigits.formatMinutesShort(120))
+
+        // Bengali device locale: same functions produce Bengali digits/units.
+        Locale.setDefault(Locale("bn"))
+        try {
+            assertEquals("১২:৩০", BnDigits.toLocalizedDigits("12:30"))
+            assertEquals("০২:০৫", BnDigits.formatHMSLocalized(125_000))
+            assertEquals("৪৫ মিনিট", BnDigits.formatMinutesLocalized(45))
+            assertEquals("১ ঘণ্টা ৩০ মিনিট", BnDigits.formatMinutesLocalized(90))
+            assertEquals("০ মি", BnDigits.formatMinutesShort(0))
+            assertEquals("২ ঘ ১০ মি", BnDigits.formatMinutesShort(130))
+        } finally {
+            Locale.setDefault(Locale.US)
+        }
+    }
 }

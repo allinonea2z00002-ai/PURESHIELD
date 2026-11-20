@@ -133,13 +133,6 @@ class BarChartView @JvmOverloads constructor(
 
     private fun defaultValueText(valueMs: Long): String {
         val minutes = (valueMs / 60_000L).toInt()
-        val hours = minutes / 60
-        val mins = minutes % 60
-        return if (hours > 0) {
-            BnDigits.toBnDigits(hours.toString()) + "ঘ " +
-                BnDigits.toBnDigits(mins.toString()) + "মি"
-        } else {
-            BnDigits.toBnDigits(mins.toString()) + " মি"
-        }
+        return BnDigits.formatMinutesShort(minutes.toLong())
     }
 }

@@ -7,7 +7,7 @@
 -->
 <resources>
     <!-- ORIGINAL DARK: cyber-sharp -->
-    <dimen name="original_card_radius">8dp</dimen>
+    <dimen name="original_card_radius">10dp</dimen>
     <dimen name="original_button_radius">10dp</dimen>
     <dimen name="original_chip_radius">8dp</dimen>
     <dimen name="original_tab_radius">14dp</dimen>
@@ -16,17 +16,6 @@
     <dimen name="original_small_radius">8dp</dimen>
     <dimen name="original_large_radius">10dp</dimen>
     <dimen name="original_bar_radius">2dp</dimen>
-
-    <!-- RELAX MINT: extra-round -->
-    <dimen name="relax_card_radius">26dp</dimen>
-    <dimen name="relax_button_radius">22dp</dimen>
-    <dimen name="relax_chip_radius">22dp</dimen>
-    <dimen name="relax_tab_radius">30dp</dimen>
-    <dimen name="relax_sheet_radius">32dp</dimen>
-    <dimen name="relax_pin_radius">22dp</dimen>
-    <dimen name="relax_small_radius">22dp</dimen>
-    <dimen name="relax_large_radius">30dp</dimen>
-    <dimen name="relax_bar_radius">12dp</dimen>
 
     <!-- DAWN: warm serif, full pill tab bar -->
     <dimen name="dawn_card_radius">30dp</dimen>
@@ -74,18 +63,6 @@
     <dimen name="ocean_small_radius">18dp</dimen>
     <dimen name="ocean_large_radius">28dp</dimen>
     <dimen name="ocean_bar_radius">10dp</dimen>
-
-    <!-- EYE COMFORT: flat paper, everything 6dp -->
-    <dimen name="eye_card_radius">6dp</dimen>
-    <dimen name="eye_button_radius">6dp</dimen>
-    <dimen name="eye_chip_radius">6dp</dimen>
-    <dimen name="eye_tab_radius">0dp</dimen>
-    <dimen name="eye_sheet_radius">10dp</dimen>
-    <dimen name="eye_pin_radius">6dp</dimen>
-    <dimen name="eye_small_radius">6dp</dimen>
-    <dimen name="eye_large_radius">6dp</dimen>
-    <dimen name="eye_bar_radius">0dp</dimen>
-    <dimen name="eye_fab_radius">12dp</dimen>
 
     <!-- ZEN: minimal, large soft radii -->
     <dimen name="zen_card_radius">30dp</dimen>
