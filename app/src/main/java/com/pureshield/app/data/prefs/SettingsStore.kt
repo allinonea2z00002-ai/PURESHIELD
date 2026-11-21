@@ -23,6 +23,10 @@ data class AppSettings(
     val uninstallProtection: Boolean = true,
     /** Strict mode: extra hardening (no emergency override without the partner PIN). */
     val strictMode: Boolean = false,
+    /** Standalone App Lock: a locked app asks for PIN / biometrics even with
+     *  no time lock running. The block list only exists to lock apps, so the
+     *  default is ON. */
+    val appLockEnabled: Boolean = true,
     /** Guard the app's own Settings screens while a lock is active. */
     val settingsGuard: Boolean = true,
     /** Notify shortly before entering / leaving a saved place. */
@@ -65,6 +69,7 @@ object SettingsKeys {
     val POWER_MENU_BLOCK = booleanPreferencesKey("power_menu_block")
     val UNINSTALL_PROTECTION = booleanPreferencesKey("uninstall_protection")
     val STRICT_MODE = booleanPreferencesKey("strict_mode")
+    val APP_LOCK_ENABLED = booleanPreferencesKey("app_lock_enabled")
     val SETTINGS_GUARD = booleanPreferencesKey("settings_guard")
     val BOUNDARY_ALERT = booleanPreferencesKey("boundary_alert")
     val DAILY_REPORT = booleanPreferencesKey("daily_report")
@@ -94,6 +99,7 @@ class SettingsStore(private val context: Context) {
             powerMenuBlock = p[SettingsKeys.POWER_MENU_BLOCK] ?: true,
             uninstallProtection = p[SettingsKeys.UNINSTALL_PROTECTION] ?: true,
             strictMode = p[SettingsKeys.STRICT_MODE] ?: false,
+            appLockEnabled = p[SettingsKeys.APP_LOCK_ENABLED] ?: true,
             settingsGuard = p[SettingsKeys.SETTINGS_GUARD] ?: true,
             boundaryAlert = p[SettingsKeys.BOUNDARY_ALERT] ?: true,
             dailyReport = p[SettingsKeys.DAILY_REPORT] ?: true,
@@ -125,6 +131,7 @@ class SettingsStore(private val context: Context) {
     suspend fun setPowerMenuBlock(value: Boolean) = set(SettingsKeys.POWER_MENU_BLOCK, value)
     suspend fun setUninstallProtection(value: Boolean) = set(SettingsKeys.UNINSTALL_PROTECTION, value)
     suspend fun setStrictMode(value: Boolean) = set(SettingsKeys.STRICT_MODE, value)
+    suspend fun setAppLockEnabled(value: Boolean) = set(SettingsKeys.APP_LOCK_ENABLED, value)
     suspend fun setSettingsGuard(value: Boolean) = set(SettingsKeys.SETTINGS_GUARD, value)
     suspend fun setBoundaryAlert(value: Boolean) = set(SettingsKeys.BOUNDARY_ALERT, value)
     suspend fun setDailyReport(value: Boolean) = set(SettingsKeys.DAILY_REPORT, value)

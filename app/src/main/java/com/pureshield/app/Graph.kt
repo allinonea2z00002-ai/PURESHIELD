@@ -81,6 +81,7 @@ object Graph {
         settings.set(SettingsKeys.POWER_MENU_BLOCK, true)
         settings.set(SettingsKeys.UNINSTALL_PROTECTION, true)
         settings.set(SettingsKeys.STRICT_MODE, false)
+        settings.set(SettingsKeys.APP_LOCK_ENABLED, true)
         settings.set(SettingsKeys.SETTINGS_GUARD, true)
         settings.set(SettingsKeys.BOUNDARY_ALERT, true)
         settings.set(SettingsKeys.DAILY_REPORT, true)

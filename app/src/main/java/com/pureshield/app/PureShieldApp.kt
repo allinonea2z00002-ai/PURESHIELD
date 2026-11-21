@@ -1,6 +1,7 @@
 package com.pureshield.app
 
 import android.app.Application
+import com.pureshield.app.service.KeepAliveService
 import com.pureshield.app.service.WorkScheduler
 import kotlinx.coroutines.launch
 
@@ -19,6 +20,12 @@ class PureShieldApp : Application() {
             Graph.seedIfFirstRun()
             Graph.blocklist.reload()
             Graph.lockManager.checkpoint()
+            // A lock that survived a process death needs its foreground
+            // service back, or the next swipe / Home press kills protection
+            // again. checkpoint() above already finished an expired lock,
+            // so protecting() here is the live answer. Silent no-op when
+            // the service cannot start from the background.
+            if (Graph.lockManager.protecting()) KeepAliveService.start(this@PureShieldApp)
         }
     }
 }

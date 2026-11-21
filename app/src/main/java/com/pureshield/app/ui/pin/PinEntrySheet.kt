@@ -33,6 +33,11 @@ import kotlinx.coroutines.launch
  *
  * Callers must check Graph.secure.hasPartnerPin() first: if no PIN is set
  * yet, they route to PinActivity's set flow instead of showing this sheet.
+ *
+ * Modes ([newInstance]): MODE_EMERGENCY ends the running time lock (the
+ * original behaviour); MODE_APP_AUTH only verifies the PIN against
+ * SecureStore and reports RESULT_APP_UNLOCKED (wrong PIN reports
+ * RESULT_AUTH_WRONG and the sheet stays open) — the lock is untouched.
  */
 class PinEntrySheet : BottomSheetDialogFragment() {
 
@@ -41,7 +46,23 @@ class PinEntrySheet : BottomSheetDialogFragment() {
         const val REQUEST_KEY = "pin_entry_sheet"
         const val RESULT_UNLOCKED = "unlocked"
 
-        fun newInstance() = PinEntrySheet()
+        /** App Lock auth result: the entered PIN matched the partner PIN. */
+        const val RESULT_APP_UNLOCKED = "app_unlocked"
+
+        /** App Lock auth result: a wrong PIN was entered (the sheet stays open). */
+        const val RESULT_AUTH_WRONG = "auth_wrong"
+
+        const val ARG_MODE = "mode"
+
+        /** Emergency unlock: ends the running time lock (the original behaviour). */
+        const val MODE_EMERGENCY = "emergency"
+
+        /** App Lock auth: verifies the PIN only — the lock is untouched. */
+        const val MODE_APP_AUTH = "app_auth"
+
+        fun newInstance(mode: String = MODE_EMERGENCY) = PinEntrySheet().apply {
+            arguments = bundleOf(ARG_MODE to mode)
+        }
     }
 
     private var _b: SheetPinBinding? = null
@@ -105,17 +126,29 @@ class PinEntrySheet : BottomSheetDialogFragment() {
     private fun verify() {
         verifying = true
         val entered = pin.toString()
+        val appAuth = isAppAuth()
         viewLifecycleOwner.lifecycleScope.launch {
-            val ok = Graph.lockManager.emergencyUnlock(entered)
+            // Emergency mode ends the time lock; App Lock mode only checks
+            // the PIN (the lock is untouched — the app is what opens).
+            val ok = if (appAuth) Graph.secure.verifyPartnerPin(entered)
+            else Graph.lockManager.emergencyUnlock(entered)
             if (!isAdded) return@launch
             if (ok) {
                 delay(250)
                 parentFragmentManager.setFragmentResult(
                     REQUEST_KEY,
-                    bundleOf(RESULT_UNLOCKED to true)
+                    bundleOf(
+                        (if (appAuth) RESULT_APP_UNLOCKED else RESULT_UNLOCKED) to true
+                    )
                 )
                 dismiss()
             } else {
+                if (appAuth) {
+                    parentFragmentManager.setFragmentResult(
+                        REQUEST_KEY,
+                        bundleOf(RESULT_AUTH_WRONG to true)
+                    )
+                }
                 setDotsWrong()
                 ObjectAnimator.ofFloat(b.sheetDots, "translationX", 0f, -12f, 12f, -8f, 8f, 0f)
                     .setDuration(400)
@@ -128,6 +161,9 @@ class PinEntrySheet : BottomSheetDialogFragment() {
             }
         }
     }
+
+    private fun isAppAuth(): Boolean =
+        arguments?.getString(ARG_MODE) == MODE_APP_AUTH
 
     private fun updateDots() {
         val mint = requireContext().attrColor(R.attr.mintColor)

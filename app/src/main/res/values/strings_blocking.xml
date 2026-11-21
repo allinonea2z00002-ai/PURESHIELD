@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="block_title">App &amp; Website Blocking</string>
-    <string name="block_sub">While a lock is running, opening these apps shows the block screen. Websites are stopped by Private DNS together with URL monitoring.</string>
+    <string name="block_sub">Locked apps ask for your PIN or biometrics — or, while a time lock is running, show the block screen. Websites are stopped by Private DNS together with URL monitoring.</string>
+    <string name="applock_title">App Lock</string>
+    <string name="applock_sub">Locked apps ask for your PIN or biometrics before opening — even with no time lock running.</string>
+    <string name="auth_title">%1$s is locked</string>
+    <string name="auth_sub">Enter your PIN or use biometrics to open it.</string>
+    <string name="auth_pin_button">Unlock with PIN</string>
+    <string name="auth_bio_button">Unlock with biometrics</string>
+    <string name="auth_set_pin_button">Set App Lock PIN</string>
+    <string name="auth_bio_title">Verify to open %1$s</string>
+    <string name="auth_bio_sub">Confirm it’s you</string>
+    <string name="auth_bio_failed">Biometric didn’t match — try again</string>
+    <string name="auth_no_launch">Couldn’t open the app</string>
     <string name="block_apps_count">%1$s / blocked apps</string>
     <string name="block_sites_count">%1$s / blocked sites + DNS filter</string>
     <string name="block_apps_section">Apps</string>

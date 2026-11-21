@@ -92,7 +92,11 @@ class PureShieldAccessibilityService : AccessibilityService() {
                 keywordsOn = appSettings.keywordsEnabled
                 reelsOn = appSettings.reelsEnabled
                 settings = appSettings
-                policy.lockBlocksApps = protecting
+                // App Lock is standalone: a locked app is blocked while a
+                // lock runs OR while the App Lock switch is on. The settings
+                // flow re-emits on every toggle, so the switch (and any
+                // block-list edit) takes effect immediately.
+                policy.lockBlocksApps = protecting || appSettings.appLockEnabled
                 policy.blocked = blockedApps.associateBy { it.packageName }
             }.collect { }
         }
@@ -124,6 +128,17 @@ class PureShieldAccessibilityService : AccessibilityService() {
                 .apply()
         }
 
+        // App Lock re-verification: the foreground app changed, so every
+        // unlock except the newly foregrounded app's is dropped. Opening
+        // Recents (SystemUI) clears the unlock too, so returning from
+        // Recents to a locked app asks for authentication again.
+        if (event.eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED &&
+            pkg != lastForegroundPackage
+        ) {
+            UnlockSession.retainOnly(pkg)
+            lastForegroundPackage = pkg
+        }
+
         // Power menu: any SystemUI package's power window while protection is active.
         // Vivo ships its own SystemUI package, so match by substring, not the AOSP name.
         if (pkg.contains("systemui")) {
@@ -146,7 +161,6 @@ class PureShieldAccessibilityService : AccessibilityService() {
 
         when (event.eventType) {
             AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED -> {
-                lastForegroundPackage = pkg
                 // The app-block policy wins: a fully blocked app never reaches the content checks.
                 policy.reason(pkg)?.let { reason ->
                     block(pkg, reason)
@@ -336,12 +350,14 @@ class PureShieldAccessibilityService : AccessibilityService() {
         }.getOrDefault(pkg)
         // BlockActivity lives in the UI layer; launch by component name so the engine does not
         // depend on the UI classes at compile time. Contract (see README): the activity reads
-        // the extras EXTRA_LABEL (String) and EXTRA_REASON (String, a BlockReason name).
+        // the extras EXTRA_LABEL (String), EXTRA_REASON (String, a BlockReason name) and
+        // EXTRA_PKG (String, the blocked app's package, for the App Lock auth screen).
         startActivity(
             Intent().setClassName(packageName, "com.pureshield.app.ui.block.BlockActivity")
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 .putExtra(EXTRA_LABEL, label)
                 .putExtra(EXTRA_REASON, reason.name)
+                .putExtra(EXTRA_PKG, pkg)
         )
     }
 
@@ -382,6 +398,7 @@ class PureShieldAccessibilityService : AccessibilityService() {
         /** Intent extras read by BlockActivity (UI layer). */
         const val EXTRA_LABEL = "extra_label"
         const val EXTRA_REASON = "extra_reason"
+        const val EXTRA_PKG = "extra_pkg"
 
         /** Literal app name used by the Settings guard (avoids depending on the UI strings). */
         const val APP_NAME_TEXT = "PURESHIELD"

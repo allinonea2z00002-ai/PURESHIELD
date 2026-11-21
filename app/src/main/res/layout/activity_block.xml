@@ -15,6 +15,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/lockGroup"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -90,4 +91,116 @@
         app:icon="@drawable/ic_home"
         app:iconTint="?attr/buttonText" />
 </LinearLayout>
+
+    <!-- App Lock auth screen: shown instead of the lock screen when no lock
+         is active and the reason is LOCK. Same shield tile, same buttons. -->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/authGroup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:visibility="gone">
+
+        <FrameLayout
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:background="@drawable/bg_shield_tile">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/authAppIcon"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_logo_splash" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/authTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="?attr/displayFontFamily"
+            android:gravity="center"
+            android:textColor="?attr/inkColor"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="@string/auth_sub"
+            android:textColor="?attr/subColor"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/authError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:textColor="?attr/redColor"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/authPinButton"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_button_gradient"
+            android:text="@string/auth_pin_button"
+            android:textColor="?attr/buttonText"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null"
+            app:icon="@drawable/ic_key"
+            app:iconTint="?attr/buttonText" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/authBioButton"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_button_ghost_red"
+            android:text="@string/auth_bio_button"
+            android:textColor="?attr/inkColor"
+            android:textSize="15sp"
+            app:backgroundTint="@null"
+            app:icon="@drawable/ic_shield_check"
+            app:iconTint="?attr/mintDeepColor" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/authSetPinButton"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_button_gradient"
+            android:text="@string/auth_set_pin_button"
+            android:textColor="?attr/buttonText"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null"
+            app:icon="@drawable/ic_key"
+            app:iconTint="?attr/buttonText" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/authHomeButton"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_button_ghost_red"
+            android:text="@string/blockscreen_home"
+            android:textColor="?attr/inkColor"
+            android:textSize="15sp"
+            app:backgroundTint="@null"
+            app:icon="@drawable/ic_home"
+            app:iconTint="?attr/inkColor" />
+    </LinearLayout>
 </FrameLayout>

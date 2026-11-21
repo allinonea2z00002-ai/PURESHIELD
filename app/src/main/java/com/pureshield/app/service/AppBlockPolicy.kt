@@ -13,9 +13,12 @@ enum class BlockReason {
  * Decides whether opening an app should be blocked. The cache is refreshed from the database by
  * the accessibility service, so decisions never touch the database on the event path.
  *
- * The demo has one rule only: while protection is active ([lockBlocksApps]), an app the user
- * marked as blocked is blocked. There are no profiles, modes, conditions or usage limits in
- * this engine — those were Stay Focused features, deliberately omitted.
+ * Two rules, either of which blocks:
+ * - protection is active ([lockBlocksApps] from a time session or the location lock), or
+ * - standalone App Lock is on (same [lockBlocksApps] flag, set from the setting too).
+ * An app the user just unlocked with PIN / biometrics ([UnlockSession]) is never blocked
+ * until the foreground changes again. There are no profiles, modes, conditions or usage
+ * limits in this engine — those were Stay Focused features, deliberately omitted.
  */
 class AppBlockPolicy(private val context: Context) {
 
@@ -30,6 +33,7 @@ class AppBlockPolicy(private val context: Context) {
     /** The block reason for [packageName], or null when the app may open. */
     fun reason(packageName: String): BlockReason? {
         if (packageName in neverBlock) return null
+        if (UnlockSession.isUnlocked(packageName)) return null
         if (!lockBlocksApps) return null
         val rule = blocked[packageName] ?: return null
         if (!rule.blocked) return null

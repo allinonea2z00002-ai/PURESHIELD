@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="block_title">App ও Website ব্লক</string>
-    <string name="block_sub">লক চলাকালে এই অ্যাপগুলো খুললেই ব্লক স্ক্রিন আসবে। ওয়েবসাইট আটকায় Private DNS আর URL পর্যবেক্ষণ মিলে।</string>
+    <string name="block_sub">লক করা অ্যাপ খুলতে PIN বা বায়োমেট্রিক লাগবে — আর টাইম লক চললে ব্লক স্ক্রিন আসবে। ওয়েবসাইট আটকায় Private DNS আর URL পর্যবেক্ষণ মিলে।</string>
+    <string name="applock_title">অ্যাপ লক</string>
+    <string name="applock_sub">লক করা অ্যাপ খুলতে PIN বা বায়োমেট্রিক লাগবে — টাইম লক না চললেও।</string>
+    <string name="auth_title">%1$s লক করা আছে</string>
+    <string name="auth_sub">খুলতে PIN দিন অথবা বায়োমেট্রিক ব্যবহার করুন।</string>
+    <string name="auth_pin_button">PIN দিয়ে খুলুন</string>
+    <string name="auth_bio_button">বায়োমেট্রিক দিয়ে খুলুন</string>
+    <string name="auth_set_pin_button">App Lock PIN সেট করুন</string>
+    <string name="auth_bio_title">%1$s খুলতে যাচাই করুন</string>
+    <string name="auth_bio_sub">আপনার পরিচয় যাচাই করুন</string>
+    <string name="auth_bio_failed">বায়োমেট্রিক মেলেনি — আবার চেষ্টা করুন</string>
+    <string name="auth_no_launch">অ্যাপটি খোলা যায়নি</string>
     <string name="block_apps_count">%1$s / ব্লক করা অ্যাপ</string>
     <string name="block_sites_count">%1$s / ব্লক করা সাইট + DNS ফিল্টার</string>
     <string name="block_apps_section">অ্যাপসমূহ</string>

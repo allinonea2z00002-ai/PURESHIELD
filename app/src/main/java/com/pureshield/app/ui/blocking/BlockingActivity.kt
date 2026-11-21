@@ -97,8 +97,7 @@ class BlockingActivity : AppCompatActivity() {
             b.switchReelsYoutube,
             { on -> Graph.settings.setYoutubeShorts(on) },
             getString(R.string.block_reels_youtube)
-        )
-        bindReelSwitch(
+        )        bindReelSwitch(
             b.switchReelsInstagram,
             { on -> Graph.settings.setInstagramReels(on) },
             getString(R.string.block_reels_instagram)
@@ -108,6 +107,25 @@ class BlockingActivity : AppCompatActivity() {
             { on -> Graph.settings.setFacebookReels(on) },
             getString(R.string.block_reels_facebook)
         )
+
+        // App Lock master switch. Unlike the Reels switches it is NOT refused
+        // mid-lock: during a lock, protection already dominates
+        // (protecting || appLockEnabled), so flipping it changes nothing
+        // until the lock ends — the user's explicit choice then applies.
+        b.switchAppLock.setOnCheckedChangeListener { _, on ->
+            if (updatingSwitches) return@setOnCheckedChangeListener
+            lifecycleScope.launch {
+                Graph.settings.setAppLockEnabled(on)
+                Toast.makeText(
+                    this@BlockingActivity,
+                    getString(
+                        if (on) R.string.block_toggle_on else R.string.block_toggle_off,
+                        getString(R.string.applock_title)
+                    ),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
 
         lifecycleScope.launch {
             installed = loadInstalledApps()
@@ -137,6 +155,7 @@ class BlockingActivity : AppCompatActivity() {
                     Graph.settings.flow.collect { settings ->
                         updatingSwitches = true
                         try {
+                            b.switchAppLock.isChecked = settings.appLockEnabled
                             b.switchReelsYoutube.isChecked = settings.youtubeShorts
                             b.switchReelsInstagram.isChecked = settings.instagramReels
                             b.switchReelsFacebook.isChecked = settings.facebookReels
