@@ -73,43 +73,90 @@ class PureShieldAccessibilityService : AccessibilityService() {
     override fun onServiceConnected() {
         super.onServiceConnected()
         connected = true
+        try {
+            onServiceConnectedSafe()
+        } catch (_: Throwable) {
+            // Setup failed partway: the service stays bound and connected.
+            // A dead bind is worse than a partial setup — the collectors
+            // below retry once each if they were the failing part.
+        }
+    }
+
+    /**
+     * Bind-time setup. `policy` is assigned before anything that can
+     * throw, so event handling never sees an uninitialized policy.
+     */
+    private fun onServiceConnectedSafe() {
         // Accessibility is on now: clear its permission prompt (if any) so
         // the notification disappears even while the app is in the background.
         PermissionPrompter.onAccessibilityGranted(this)
         policy = AppBlockPolicy(this)
         // The blocklist is also used by the URL watch, so load it here too.
         scope.launch { runCatching { Graph.blocklist.reload() } }
-        scope.launch {
-            // 3 flows only: combine() with more than 4 flows fails overload resolution.
-            combine(
-                Graph.db.lockStateDao().observe(),
-                Graph.db.blockedAppDao().observeAll(),
-                Graph.settings.flow
-            ) { lockState, blockedApps, appSettings ->
-                protecting = (lockState?.active == true) || (lockState?.locProtecting == true)
-                uninstallProtection = appSettings.uninstallProtection
-                powerMenuBlock = appSettings.powerMenuBlock
-                adultFilterOn = appSettings.filterEnabled
-                keywordsOn = appSettings.keywordsEnabled
-                reelsOn = appSettings.reelsEnabled
-                settings = appSettings
-                // App Lock is standalone: a locked app is blocked while a
-                // lock runs OR while the App Lock switch is on. The settings
-                // flow re-emits on every toggle, so the switch (and any
-                // block-list edit) takes effect immediately.
-                policy.lockBlocksApps = protecting || appSettings.appLockEnabled
-                policy.blocked = blockedApps.associateBy { it.packageName }
-            }.collect { }
-        }
-        scope.launch {
-            combine(
-                Graph.db.keywordDao().observeAll(),
-                Graph.settings.flow
-            ) { keywordRows, _ ->
-                keywords = keywordRows.map { it.word }
-            }.collect { }
-        }
+        startMainCollector()
+        startKeywordsCollector()
         recheckHandler.postDelayed(recheckRunnable, RECHECK_INTERVAL_MS)
+    }
+
+    /**
+     * Lock state + blocklist + settings collector. A throwing emission
+     * (Room/DataStore read error) must never kill the service: it is
+     * caught here and retried exactly once after ~10 s. A second failure
+     * stays silent — the service stays bound with its last good values.
+     */
+    private fun startMainCollector(retry: Boolean = true) {
+        scope.launch {
+            try {
+                // 3 flows only: combine() with more than 4 flows fails overload resolution.
+                combine(
+                    Graph.db.lockStateDao().observe(),
+                    Graph.db.blockedAppDao().observeAll(),
+                    Graph.settings.flow
+                ) { lockState, blockedApps, appSettings ->
+                    protecting = (lockState?.active == true) || (lockState?.locProtecting == true)
+                    uninstallProtection = appSettings.uninstallProtection
+                    powerMenuBlock = appSettings.powerMenuBlock
+                    adultFilterOn = appSettings.filterEnabled
+                    keywordsOn = appSettings.keywordsEnabled
+                    reelsOn = appSettings.reelsEnabled
+                    settings = appSettings
+                    // App Lock is standalone: a locked app is blocked while a
+                    // lock runs OR while the App Lock switch is on. The settings
+                    // flow re-emits on every toggle, so the switch (and any
+                    // block-list edit) takes effect immediately.
+                    policy.lockBlocksApps = protecting || appSettings.appLockEnabled
+                    policy.blocked = blockedApps.associateBy { it.packageName }
+                }.collect { }
+            } catch (_: Throwable) {
+                if (retry) {
+                    recheckHandler.postDelayed(
+                        { if (connected) startMainCollector(retry = false) },
+                        COLLECTOR_RETRY_MS
+                    )
+                }
+            }
+        }
+    }
+
+    /** Keyword collector: same one-retry guard as [startMainCollector]. */
+    private fun startKeywordsCollector(retry: Boolean = true) {
+        scope.launch {
+            try {
+                combine(
+                    Graph.db.keywordDao().observeAll(),
+                    Graph.settings.flow
+                ) { keywordRows, _ ->
+                    keywords = keywordRows.map { it.word }
+                }.collect { }
+            } catch (_: Throwable) {
+                if (retry) {
+                    recheckHandler.postDelayed(
+                        { if (connected) startKeywordsCollector(retry = false) },
+                        COLLECTOR_RETRY_MS
+                    )
+                }
+            }
+        }
     }
 
     override fun onAccessibilityEvent(event: AccessibilityEvent) {
@@ -455,6 +502,8 @@ class PureShieldAccessibilityService : AccessibilityService() {
 
         private const val CONTENT_SCAN_THROTTLE_MS = 2_000L
         private const val RECHECK_INTERVAL_MS = 60_000L
+        /** One delayed retry for a throwing flow collector in onServiceConnected. */
+        private const val COLLECTOR_RETRY_MS = 10_000L
         /** At most one power-menu text scan per second (SystemUI content changes are frequent). */
         private const val POWER_MENU_SCAN_THROTTLE_MS = 1_000L
 
