@@ -70,6 +70,14 @@
     <string name="diag_never">Not yet</string>
     <string name="diag_time_ago">%1$s · %2$s ago</string>
     <string name="diag_just_now">%1$s · just now</string>
+    <string name="diag_a11y_state_label">Accessibility</string>
+    <string name="diag_a11y_state_on">On</string>
+    <string name="diag_a11y_state_off">Off — turn on in Settings</string>
+    <string name="diag_a11y_state_stale">Not responding — turn OFF and ON again</string>
+    <string name="a11y_watchdog_off_title">Accessibility is off</string>
+    <string name="a11y_watchdog_off_text">PURESHIELD blocking is not working. Turn on PURESHIELD in Settings → Accessibility.</string>
+    <string name="a11y_watchdog_stale_title">Accessibility is not responding</string>
+    <string name="a11y_watchdog_stale_text">Accessibility is on but not responding. Turn it OFF and ON again in Settings → Accessibility.</string>
 
     <!-- Bottom nav -->
     <string name="nav_home">Home</string>

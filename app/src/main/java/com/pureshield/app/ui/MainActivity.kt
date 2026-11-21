@@ -456,6 +456,18 @@ class MainActivity : AppCompatActivity() {
         b.diagProtecting.text = getString(
             if (protecting) R.string.diag_protecting_on else R.string.diag_protecting_off
         )
+        // 5th row: accessibility state in plain words. The tick stores it;
+        // before any tick has run (fresh install), derive it live so the
+        // row never shows a hardcoded value.
+        val a11yState = prefs.getString(KeepAliveService.KEY_A11Y_STATE, null)
+            ?: KeepAliveService.deriveA11yState(this)
+        b.diagA11yState.text = getString(
+            when (a11yState) {
+                KeepAliveService.A11Y_STATE_OFF -> R.string.diag_a11y_state_off
+                KeepAliveService.A11Y_STATE_STALE -> R.string.diag_a11y_state_stale
+                else -> R.string.diag_a11y_state_on
+            }
+        )
     }
 
     /** Epoch millis -> "২১:০৫:৩৩ · ২ মি আগে" (or "এখনো আসেনি" when never). */

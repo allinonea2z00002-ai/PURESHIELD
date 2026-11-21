@@ -9,10 +9,12 @@ import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
 import android.os.SystemClock
+import android.provider.Settings
 import com.pureshield.app.Graph
 import com.pureshield.app.R
 import com.pureshield.app.location.PlaceWatcher
 import com.pureshield.app.util.DurationFormat
+import com.pureshield.app.util.PermissionPrompter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -102,6 +104,7 @@ class KeepAliveService : Service() {
         // actually alive. Written on every tick and on every service start.
         getSharedPreferences(DIAG_PREFS, Context.MODE_PRIVATE).edit()
             .putLong(KEY_LAST_KEEPALIVE_TICK, System.currentTimeMillis()).apply()
+        checkA11yWatchdog()
         scope.launch {
             val snapshot = runCatching { Graph.lockManager.snapshotNow() }.getOrNull() ?: return@launch
             val text = when {
@@ -121,6 +124,71 @@ class KeepAliveService : Service() {
         }
     }
 
+    /**
+     * Accessibility watchdog, run on every 30 s tick. Derives the state
+     * (Settings check + last-event age) and stores it in the "diag" prefs
+     * under KEY_A11Y_STATE — the Home card's 5th row reads it.
+     *
+     * Notifications post ONLY on a transition into "off" or "stale", and
+     * are cancelled on the transition back to "on" — never every tick.
+     * A "stale" candidate must persist across a second tick before it
+     * counts, so turning accessibility on does not flash a false alert
+     * before the first event arrives.
+     */
+    private fun checkA11yWatchdog() {
+        val candidate = deriveA11yState(this)
+        val prefs = getSharedPreferences(DIAG_PREFS, Context.MODE_PRIVATE)
+        val prev = prefs.getString(KEY_A11Y_STATE, null)
+        val now = System.currentTimeMillis()
+        if (candidate == A11Y_STATE_STALE) {
+            val since = prefs.getLong(KEY_A11Y_STALE_SINCE, 0L)
+            if (since <= 0L) {
+                prefs.edit().putLong(KEY_A11Y_STALE_SINCE, now).apply()
+                return
+            }
+            if (now - since < A11Y_STALE_CONFIRM_MS) return
+            prefs.edit().remove(KEY_A11Y_STALE_SINCE).apply()
+        } else if (prefs.contains(KEY_A11Y_STALE_SINCE)) {
+            prefs.edit().remove(KEY_A11Y_STALE_SINCE).apply()
+        }
+        if (candidate == prev) return
+        prefs.edit().putString(KEY_A11Y_STATE, candidate).apply()
+        onA11yStateChanged(candidate)
+    }
+
+    /** Posts the watchdog alert for the new state, cancelling the other one. */
+    private fun onA11yStateChanged(state: String) {
+        val nm = Graph.notifier
+        when (state) {
+            A11Y_STATE_OFF -> {
+                nm.cancel(NOTIF_A11Y_STALE_ID)
+                nm.permissionPrompt(
+                    NOTIF_A11Y_OFF_ID,
+                    getString(R.string.a11y_watchdog_off_title),
+                    getString(R.string.a11y_watchdog_off_text),
+                    accessibilitySettingsIntent()
+                )
+            }
+            A11Y_STATE_STALE -> {
+                nm.cancel(NOTIF_A11Y_OFF_ID)
+                nm.permissionPrompt(
+                    NOTIF_A11Y_STALE_ID,
+                    getString(R.string.a11y_watchdog_stale_title),
+                    getString(R.string.a11y_watchdog_stale_text),
+                    accessibilitySettingsIntent()
+                )
+            }
+            else -> {
+                nm.cancel(NOTIF_A11Y_OFF_ID)
+                nm.cancel(NOTIF_A11Y_STALE_ID)
+            }
+        }
+    }
+
+    private fun accessibilitySettingsIntent(): Intent =
+        Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
     companion object {
         // Diagnostics prefs shared with the Home "সার্ভিস স্ট্যাটাস" card and the
         // accessibility service: one file, no new dependency.
@@ -130,6 +198,45 @@ class KeepAliveService : Service() {
         const val KEY_LAST_A11Y_PKG = "last_a11y_pkg"
         /** Most recent window-state event, short "pkg/Class · STATE" form. */
         const val KEY_LAST_EVENT = "last_event"
+
+        /** Accessibility watchdog state (see checkA11yWatchdog): "on" /
+         *  "off" / "stale". Written by the tick; the Home card reads it. */
+        const val KEY_A11Y_STATE = "a11y_state"
+        const val A11Y_STATE_ON = "on"
+        const val A11Y_STATE_OFF = "off"
+        const val A11Y_STATE_STALE = "stale"
+
+        /** No window-state event for this long while accessibility is on
+         *  in Settings = "not responding". */
+        private const val A11Y_STALE_MS = 3 * 60_000L
+        /** A "stale" candidate must persist this long before it counts, so
+         *  turning accessibility on does not flash a false alert. */
+        private const val A11Y_STALE_CONFIRM_MS = 60_000L
+        private const val KEY_A11Y_STALE_SINCE = "a11y_stale_since"
+        /** Notification ids for the watchdog alerts (2001-2006 are the
+         *  permission prompts, 2100 is the ongoing lock notification). */
+        private const val NOTIF_A11Y_OFF_ID = 2101
+        private const val NOTIF_A11Y_STALE_ID = 2102
+
+        /**
+         * Derives the accessibility state from the Settings check + the age
+         * of the last window-state event: "off" when the service is not
+         * enabled in Settings, "stale" when it is enabled but no event
+         * arrived within [A11Y_STALE_MS], "on" otherwise. Pure (no writes),
+         * so the Home card can use it as a live fallback too.
+         */
+        fun deriveA11yState(context: Context): String {
+            if (!PermissionPrompter.isAccessibilityEnabled(context)) return A11Y_STATE_OFF
+            val lastEvent = context.getSharedPreferences(DIAG_PREFS, Context.MODE_PRIVATE)
+                .getLong(KEY_LAST_A11Y_EVENT, 0L)
+            return if (lastEvent <= 0L ||
+                System.currentTimeMillis() - lastEvent > A11Y_STALE_MS
+            ) {
+                A11Y_STATE_STALE
+            } else {
+                A11Y_STATE_ON
+            }
+        }
 
         // NOTE: 2100 on purpose — the permission prompts use 2001-2006, and
         // sharing an id would let one notification cancel/replace the other.

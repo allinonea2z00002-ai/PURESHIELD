@@ -320,6 +320,28 @@
                             android:textColor="?attr/inkColor"
                             android:textSize="13sp" />
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/diag_a11y_state_label"
+                            android:textColor="?attr/inkColor"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/diagA11yState"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="?attr/inkColor"
+                            android:textSize="13sp" />
+                    </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 

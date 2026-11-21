@@ -113,6 +113,18 @@ class PureShieldAccessibilityService : AccessibilityService() {
     }
 
     override fun onAccessibilityEvent(event: AccessibilityEvent) {
+        // One bad event must never kill the service: any throw inside the
+        // handler (e.g. a stale node from the tree walk) is swallowed here,
+        // so the service stays alive for the next event. No event contents
+        // are logged.
+        try {
+            onAccessibilityEventSafe(event)
+        } catch (_: Throwable) {
+            // Service stays alive for the next event.
+        }
+    }
+
+    private fun onAccessibilityEventSafe(event: AccessibilityEvent) {
         if (!::policy.isInitialized) return
         val pkg = event.packageName?.toString() ?: return
         if (pkg == packageName) return
@@ -191,14 +203,14 @@ class PureShieldAccessibilityService : AccessibilityService() {
             if (now - (lastContentScanAt[pkg] ?: 0L) < CONTENT_SCAN_THROTTLE_MS) return
             lastContentScanAt[pkg] = now
         }
-        val root = rootInActiveWindow ?: return
+        val root = runCatching { rootInActiveWindow }.getOrNull() ?: return
         // Only judge the app that is actually in front; a background app's content change must
         // never block the foreground app.
         if (root.packageName?.toString() != pkg) return
 
         // (a) URL watch: when the adult-content filter is on, the address bar shown on screen is checked
         //   against the blocklist (allowlist wins) and a match sends the user home.
-        val host = ContentWatch.findAddressBarHost(root)
+        val host = runCatching { ContentWatch.findAddressBarHost(root) }.getOrNull()
         if (host != null) {
             if (adultFilterOn && Graph.blocklist.isBlocked(host)) {
                 blockContent(pkg, BlockReason.SITE, recordBlock = true, hostOrKeyword = host)
@@ -207,7 +219,7 @@ class PureShieldAccessibilityService : AccessibilityService() {
         }
 
         val texts = ArrayList<String>()
-        ContentWatch.collectTexts(root, texts)
+        runCatching { ContentWatch.collectTexts(root, texts) }
         if (texts.isEmpty()) return
 
         // (b) Keyword scan: only while keyword blocking is on and keywords exist.
@@ -233,11 +245,15 @@ class PureShieldAccessibilityService : AccessibilityService() {
 
     /** Re-applies the app-block policy to the foreground app, so a rule change fires in place. */
     private fun recheckForeground() {
-        if (!::policy.isInitialized) return
-        val pkg = lastForegroundPackage ?: return
-        if (pkg == packageName || policy.isNeverBlocked(pkg)) return
-        val reason = policy.reason(pkg) ?: return
-        block(pkg, reason)
+        // Runs on the main looper: a throw here would kill the process, so
+        // guard it the same way as the event handler.
+        runCatching {
+            if (!::policy.isInitialized) return@runCatching
+            val pkg = lastForegroundPackage ?: return@runCatching
+            if (pkg == packageName || policy.isNeverBlocked(pkg)) return@runCatching
+            val reason = policy.reason(pkg) ?: return@runCatching
+            block(pkg, reason)
+        }
     }
 
     /**
@@ -250,8 +266,8 @@ class PureShieldAccessibilityService : AccessibilityService() {
         val now = System.currentTimeMillis()
         if (now - lastSettingsScan < 700) return
         lastSettingsScan = now
-        val root = rootInActiveWindow ?: return
-        val found = root.findAccessibilityNodeInfosByText(APP_NAME_TEXT)
+        val root = runCatching { rootInActiveWindow }.getOrNull() ?: return
+        val found = runCatching { root.findAccessibilityNodeInfosByText(APP_NAME_TEXT) }.getOrNull()
         if (!found.isNullOrEmpty()) block(root.packageName?.toString() ?: "", BlockReason.SELF_PROTECT)
     }
 
@@ -318,9 +334,9 @@ class PureShieldAccessibilityService : AccessibilityService() {
 
     /** True when the active window's visible text looks like a power menu. */
     private fun isPowerMenuText(): Boolean {
-        val root = rootInActiveWindow ?: return false
+        val root = runCatching { rootInActiveWindow }.getOrNull() ?: return false
         val texts = ArrayList<String>()
-        ContentWatch.collectTexts(root, texts)
+        runCatching { ContentWatch.collectTexts(root, texts) }
         if (texts.isEmpty()) return false
         val joined = texts.joinToString(" ")
         return POWER_MENU_TEXT_PARTS.any { joined.contains(it, ignoreCase = true) }
