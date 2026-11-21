@@ -37,6 +37,7 @@
     <string name="block_reels_app_snapchat">Snapchat</string>
     <string name="block_reels_app_wabusiness">WA Business</string>
     <string name="block_reels_app_facebook">Facebook</string>
+    <string name="block_reels_app_telegram">Telegram</string>
     <string name="block_reels_instagram_stories">Instagram Stories</string>
     <string name="block_reels_whatsapp_status">WhatsApp Status</string>
     <string name="block_reels_whatsapp_channels">WhatsApp Channels</string>
@@ -50,6 +51,7 @@
     <string name="block_reels_instagram_sub">Block screen when the Reels tab opens</string>
     <string name="block_reels_facebook">Facebook Reels</string>
     <string name="block_reels_facebook_sub">Warning screen when the video feed opens</string>
+    <string name="block_reels_telegram_stories">Telegram Stories</string>
     <string name="block_sites_section">Blocked websites</string>
     <string name="block_site_hint">e.g. example.com</string>
     <string name="block_add">Add</string>

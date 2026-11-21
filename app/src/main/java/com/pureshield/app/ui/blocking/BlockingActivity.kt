@@ -144,6 +144,11 @@ class BlockingActivity : AppCompatActivity() {
             { on -> Graph.settings.setFacebookReels(on) },
             getString(R.string.block_reels_facebook)
         )
+        bindReelSwitch(
+            b.switchReelsTelegram,
+            { on -> Graph.settings.setTelegramStories(on) },
+            getString(R.string.block_reels_telegram_stories)
+        )
 
         // Brand icons for the Reels app groups (generic icon when the app
         // is not installed — the toggle still works).
@@ -153,6 +158,7 @@ class BlockingActivity : AppCompatActivity() {
         setReelIcon(b.ivReelsSnapchat, ContentWatch.PKG_SNAPCHAT)
         setReelIcon(b.ivReelsWaBusiness, ContentWatch.PKG_WA_BUSINESS)
         setReelIcon(b.ivReelsFacebook, ContentWatch.PKG_FACEBOOK)
+        setReelIcon(b.ivReelsTelegram, ContentWatch.PKG_TELEGRAM)
 
         // App Lock master switch. Unlike the Reels switches it is NOT refused
         // mid-lock: during a lock, protection already dominates
@@ -212,6 +218,7 @@ class BlockingActivity : AppCompatActivity() {
                             b.switchReelsWaBusinessStatus.isChecked = settings.waBusinessStatus
                             b.switchReelsWaBusinessChannels.isChecked = settings.waBusinessChannels
                             b.switchReelsFacebook.isChecked = settings.facebookReels
+                            b.switchReelsTelegram.isChecked = settings.telegramStories
                         } finally {
                             updatingSwitches = false
                         }

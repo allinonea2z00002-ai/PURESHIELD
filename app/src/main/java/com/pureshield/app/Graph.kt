@@ -94,7 +94,8 @@ object Graph {
         settings.set(SettingsKeys.SNAPCHAT_STORIES, false)
         settings.set(SettingsKeys.WA_BUSINESS_STATUS, false)
         settings.set(SettingsKeys.WA_BUSINESS_CHANNELS, false)
-        settings.set(SettingsKeys.FACEBOOK_REELS, false)
+        settings.set(SettingsKeys.FACEBOOK_REELS, true)
+        settings.set(SettingsKeys.TELEGRAM_STORIES, true)
 
         settings.setFirstRun(false)
     }

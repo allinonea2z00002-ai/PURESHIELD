@@ -24,6 +24,7 @@ class PureShieldApp : Application() {
             // Seed the demo defaults on first run, load the filter lists and bring the
             // lock state up to date after any process restart.
             runCatching { Graph.seedIfFirstRun() }
+            runCatching { Graph.settings.migrateFacebookReelsDefault() }
             runCatching { Graph.blocklist.reload() }
             runCatching { Graph.lockManager.checkpoint() }
             // A lock that survived a process death needs its foreground

@@ -286,6 +286,21 @@ class PureShieldAccessibilityService : AccessibilityService() {
                 Graph.settings.feedEnabled(appSettings, feed.storeKey)
             ) {
                 blockContent(pkg, BlockReason.FEED, recordBlock = false, hostOrKeyword = feed.name)
+                return
+            }
+        }
+
+        // (d) YouTube Shorts player: its visible text never says "Shorts"
+        //   (the tab bar hides while a Short plays), so a Short opened
+        //   from the Home feed slips past (c). A fullscreen portrait
+        //   video surface is the player — a regular video is a 16:9
+        //   letterbox in portrait. Gated by the same YouTube Shorts switch.
+        if (reelsOn && pkg == ContentWatch.PKG_YOUTUBE) {
+            val appSettings = settings
+            if (appSettings != null && appSettings.youtubeShorts &&
+                ContentWatch.hasTallVideoSurface(root, resources.displayMetrics.heightPixels)
+            ) {
+                blockContent(pkg, BlockReason.FEED, recordBlock = false, hostOrKeyword = "YOUTUBE_SHORTS_PLAYER")
             }
         }
     }

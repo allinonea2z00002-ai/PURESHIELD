@@ -24,6 +24,8 @@ object ContentWatch {
     const val PKG_WHATSAPP = "com.whatsapp"
     const val PKG_SNAPCHAT = "com.snapchat.android"
     const val PKG_WA_BUSINESS = "com.whatsapp.w4b"
+    const val PKG_TELEGRAM = "org.telegram.messenger"
+    const val PKG_TELEGRAM_WEB = "org.telegram.messenger.web"
 
     /** One distracting in-app feed: which app it lives in and which SettingsStore key gates it. */
     enum class Feed(val packageName: String, val storeKey: String) {
@@ -37,7 +39,9 @@ object ContentWatch {
         WA_BUSINESS_STATUS(PKG_WA_BUSINESS, SettingsStore.FEED_WA_BUSINESS_STATUS),
         WA_BUSINESS_CHANNELS(PKG_WA_BUSINESS, SettingsStore.FEED_WA_BUSINESS_CHANNELS),
         FACEBOOK_REELS(PKG_FACEBOOK, SettingsStore.FEED_FACEBOOK_REELS),
-        FACEBOOK_REELS_LITE(PKG_FACEBOOK_LITE, SettingsStore.FEED_FACEBOOK_REELS);
+        FACEBOOK_REELS_LITE(PKG_FACEBOOK_LITE, SettingsStore.FEED_FACEBOOK_REELS),
+        TELEGRAM_STORIES(PKG_TELEGRAM, SettingsStore.FEED_TELEGRAM_STORIES),
+        TELEGRAM_STORIES_WEB(PKG_TELEGRAM_WEB, SettingsStore.FEED_TELEGRAM_STORIES);
 
         companion object {
             fun forPackage(packageName: String): List<Feed> =
@@ -97,6 +101,24 @@ object ContentWatch {
         Feed.WA_BUSINESS_CHANNELS -> containsWord(joinedText, "channels")
         Feed.FACEBOOK_REELS, Feed.FACEBOOK_REELS_LITE ->
             containsWord(joinedText, "reels")
+        Feed.TELEGRAM_STORIES, Feed.TELEGRAM_STORIES_WEB ->
+            matchesTelegramStory(joinedText)
+    }
+
+    /**
+     * Telegram Stories viewer. The viewer shows "You can't reply to this
+     * story" (replies off) and no search bar, while the main screen always
+     * shows "Search Chats" and a chat screen always shows the "Message"
+     * input hint — so a "story" word only counts when neither of those two
+     * markers is present, otherwise opening Telegram or a chat that mentions
+     * "story" would false-fire. Stories with replies on show no "story"
+     * word at all, so they slip through (best-effort, documented).
+     */
+    private fun matchesTelegramStory(joinedText: String): Boolean {
+        if (joinedText.contains("You can't reply to this story", ignoreCase = true)) return true
+        if (joinedText.contains("Search Chats", ignoreCase = true)) return false
+        if (containsWord(joinedText, "message")) return false
+        return containsWord(joinedText, "story") || containsWord(joinedText, "stories")
     }
 
     /** Whole-word match, so "shorts" does not fire on "shortstop" or a video title like "shortsale". */
@@ -135,6 +157,45 @@ object ContentWatch {
                 node.getChild(i)?.let { stack.addLast(it) }
             }
         }
+    }
+
+    // --- fullscreen vertical video (YouTube Shorts player) -------------------------
+
+    /**
+     * True when the tree contains a video surface (SurfaceView / TextureView)
+     * that fills the screen in portrait — the YouTube Shorts player. The
+     * player's visible text never says "Shorts" (the bottom tab bar hides
+     * while a Short plays), so tab text alone cannot catch a Short opened
+     * from the Home feed. A regular video in portrait is a 16:9 letterbox
+     * (~25% of the height), feed thumbnails and the miniplayer are small,
+     * so a surface taller than 75% of the screen in portrait is a Short.
+     * A portrait video uploaded as a regular video also matches — accepted
+     * over-block, it is still a fullscreen vertical video.
+     */
+    fun hasTallVideoSurface(
+        root: AccessibilityNodeInfo?,
+        screenHeightPx: Int,
+        minFraction: Float = 0.75f
+    ): Boolean {
+        if (root == null || screenHeightPx <= 0) return false
+        val minHeight = (screenHeightPx * minFraction).toInt()
+        val stack = ArrayDeque<AccessibilityNodeInfo>()
+        val rect = android.graphics.Rect()
+        stack.addLast(root)
+        var nodes = 0
+        while (stack.isNotEmpty() && nodes < 400) {
+            val node = stack.removeLast()
+            nodes++
+            val cls = node.className?.toString()
+            if (cls == "android.view.SurfaceView" || cls == "android.view.TextureView") {
+                node.getBoundsInScreen(rect)
+                if (rect.height() >= minHeight && rect.height() > rect.width()) return true
+            }
+            for (i in 0 until node.childCount) {
+                node.getChild(i)?.let { stack.addLast(it) }
+            }
+        }
+        return false
     }
 
     // --- URL watch ----------------------------------------------------------------------------

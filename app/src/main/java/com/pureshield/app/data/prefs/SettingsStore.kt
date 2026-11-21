@@ -45,8 +45,11 @@ data class AppSettings(
     val keywordsEnabled: Boolean = true,
     /** Reels / Shorts blocking master. */
     val reelsEnabled: Boolean = true,
-    /** Per-feed Reels / Shorts switches. Defaults match the reference screen:
-     *  YouTube Shorts, Instagram Reels and Snapchat Spotlight ON, the rest OFF. */
+    /** Per-feed Reels / Shorts switches. YouTube Shorts, Instagram Reels,
+     *  Snapchat Spotlight, Facebook Reels and Telegram Stories are ON;
+     *  the rest are OFF. (Facebook Reels was OFF until the 2026-11-21
+     *  fix round — the user reported Lite Reels playing freely — so it
+     *  now defaults ON, with a one-time migration for existing installs.) */
     val youtubeShorts: Boolean = true,
     val instagramReels: Boolean = true,
     val instagramStories: Boolean = false,
@@ -56,7 +59,8 @@ data class AppSettings(
     val snapchatStories: Boolean = false,
     val waBusinessStatus: Boolean = false,
     val waBusinessChannels: Boolean = false,
-    val facebookReels: Boolean = false,
+    val facebookReels: Boolean = true,
+    val telegramStories: Boolean = true,
     /** Time Lock "Location Lock-এর সাথে মিলিয়ে" switch: when on, leaving a safe zone
      *  ends a running time lock (time OR distance, whichever first). Mirrored from the
      *  Time Lock screen's own store so the engine/worker can read it. */
@@ -97,6 +101,9 @@ object SettingsKeys {
     val WA_BUSINESS_STATUS = booleanPreferencesKey("wa_business_status")
     val WA_BUSINESS_CHANNELS = booleanPreferencesKey("wa_business_channels")
     val FACEBOOK_REELS = booleanPreferencesKey("facebook_reels")
+    val TELEGRAM_STORIES = booleanPreferencesKey("telegram_stories")
+    /** Set once by [SettingsStore.migrateFacebookReelsDefault]. */
+    val FB_REELS_MIGRATED_V1 = booleanPreferencesKey("fb_reels_migrated_v1")
     val COMBINE_WITH_LOCATION = booleanPreferencesKey("combine_with_location")
     val REPEAT_DAYS_MASK = intPreferencesKey("repeat_days_mask")
     val LAST_LOCK_MINUTES = intPreferencesKey("last_lock_minutes")
@@ -133,7 +140,8 @@ class SettingsStore(private val context: Context) {
             snapchatStories = p[SettingsKeys.SNAPCHAT_STORIES] ?: false,
             waBusinessStatus = p[SettingsKeys.WA_BUSINESS_STATUS] ?: false,
             waBusinessChannels = p[SettingsKeys.WA_BUSINESS_CHANNELS] ?: false,
-            facebookReels = p[SettingsKeys.FACEBOOK_REELS] ?: false,
+            facebookReels = p[SettingsKeys.FACEBOOK_REELS] ?: true,
+            telegramStories = p[SettingsKeys.TELEGRAM_STORIES] ?: true,
             combineWithLocation = p[SettingsKeys.COMBINE_WITH_LOCATION] ?: true,
             repeatDaysMask = p[SettingsKeys.REPEAT_DAYS_MASK] ?: 22,
             lastLockMinutes = p[SettingsKeys.LAST_LOCK_MINUTES] ?: 10,
@@ -173,6 +181,7 @@ class SettingsStore(private val context: Context) {
     suspend fun setWaBusinessStatus(value: Boolean) = set(SettingsKeys.WA_BUSINESS_STATUS, value)
     suspend fun setWaBusinessChannels(value: Boolean) = set(SettingsKeys.WA_BUSINESS_CHANNELS, value)
     suspend fun setFacebookReels(value: Boolean) = set(SettingsKeys.FACEBOOK_REELS, value)
+    suspend fun setTelegramStories(value: Boolean) = set(SettingsKeys.TELEGRAM_STORIES, value)
     suspend fun setCombineWithLocation(value: Boolean) = set(SettingsKeys.COMBINE_WITH_LOCATION, value)
     suspend fun setRepeatDaysMask(value: Int) = set(SettingsKeys.REPEAT_DAYS_MASK, value)
     suspend fun setLastLockMinutes(value: Int) = set(SettingsKeys.LAST_LOCK_MINUTES, value)
@@ -196,7 +205,24 @@ class SettingsStore(private val context: Context) {
         FEED_WA_BUSINESS_STATUS -> settings.waBusinessStatus
         FEED_WA_BUSINESS_CHANNELS -> settings.waBusinessChannels
         FEED_FACEBOOK_REELS -> settings.facebookReels
+        FEED_TELEGRAM_STORIES -> settings.telegramStories
         else -> false
+    }
+
+    /**
+     * One-time migration: Facebook Reels was seeded OFF, so phones that
+     * already ran the app have `false` stored and a new default alone
+     * would never reach them. The first launch of the build that carries
+     * this flips it ON once; a later manual OFF stays OFF (the flag is
+     * already set, so this never runs again).
+     */
+    suspend fun migrateFacebookReelsDefault() {
+        context.settingsDataStore.edit { prefs ->
+            if (prefs[SettingsKeys.FB_REELS_MIGRATED_V1] != true) {
+                prefs[SettingsKeys.FACEBOOK_REELS] = true
+                prefs[SettingsKeys.FB_REELS_MIGRATED_V1] = true
+            }
+        }
     }
 
     suspend fun clear() {
@@ -214,5 +240,6 @@ class SettingsStore(private val context: Context) {
         const val FEED_WA_BUSINESS_STATUS = "wa_business_status"
         const val FEED_WA_BUSINESS_CHANNELS = "wa_business_channels"
         const val FEED_FACEBOOK_REELS = "facebook_reels"
+        const val FEED_TELEGRAM_STORIES = "telegram_stories"
     }
 }

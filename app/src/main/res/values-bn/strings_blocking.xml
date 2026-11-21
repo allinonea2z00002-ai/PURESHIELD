@@ -37,6 +37,7 @@
     <string name="block_reels_app_snapchat">Snapchat</string>
     <string name="block_reels_app_wabusiness">WA Business</string>
     <string name="block_reels_app_facebook">Facebook</string>
+    <string name="block_reels_app_telegram">Telegram</string>
     <string name="block_reels_instagram_stories">Instagram Stories</string>
     <string name="block_reels_whatsapp_status">WhatsApp Status</string>
     <string name="block_reels_whatsapp_channels">WhatsApp Channels</string>
@@ -50,6 +51,7 @@
     <string name="block_reels_instagram_sub">রিলস ট্যাব খুললেই ব্লক স্ক্রিন</string>
     <string name="block_reels_facebook">Facebook Reels</string>
     <string name="block_reels_facebook_sub">ভিডিও ফিডে ঢুকলেই সতর্ক স্ক্রিন</string>
+    <string name="block_reels_telegram_stories">Telegram Stories</string>
     <string name="block_sites_section">ব্লক করা ওয়েবসাইট</string>
     <string name="block_site_hint">যেমন: example.com</string>
     <string name="block_add">যোগ</string>
