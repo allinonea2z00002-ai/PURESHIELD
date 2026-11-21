@@ -97,7 +97,8 @@ class BlockingActivity : AppCompatActivity() {
             b.switchReelsYoutube,
             { on -> Graph.settings.setYoutubeShorts(on) },
             getString(R.string.block_reels_youtube)
-        )        bindReelSwitch(
+        )
+        bindReelSwitch(
             b.switchReelsInstagram,
             { on -> Graph.settings.setInstagramReels(on) },
             getString(R.string.block_reels_instagram)
