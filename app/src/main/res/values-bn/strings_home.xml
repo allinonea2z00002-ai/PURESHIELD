@@ -59,6 +59,17 @@
     <string name="home_toggle_off">%1$s বন্ধ হয়েছে</string>
     <string name="locked_change_blocked">লক চলছে — আগে লক শেষ করুন, অথবা Time Lock স্ক্রিন থেকে পার্টনারের PIN দিয়ে আগেই খুলুন</string>
 
+    <!-- Service diagnostics (Home "সার্ভিস স্ট্যাটাস" card) -->
+    <string name="diag_title">সার্ভিস স্ট্যাটাস</string>
+    <string name="diag_keepalive_label">Keep-alive শেষ সিগন্যাল</string>
+    <string name="diag_a11y_label">Accessibility শেষ ইভেন্ট</string>
+    <string name="diag_protecting_label">সুরক্ষা এখন</string>
+    <string name="diag_protecting_on">সক্রিয়</string>
+    <string name="diag_protecting_off">নিষ্ক্রিয়</string>
+    <string name="diag_never">এখনো আসেনি</string>
+    <string name="diag_time_ago">%1$s · %2$s আগে</string>
+    <string name="diag_just_now">%1$s · এইমাত্র</string>
+
     <!-- Bottom nav -->
     <string name="nav_home">হোম</string>
     <string name="nav_location">লোকেশন</string>

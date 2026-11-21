@@ -1,6 +1,7 @@
 package com.pureshield.app.service
 
 import android.accessibilityservice.AccessibilityService
+import android.content.Context
 import android.content.Intent
 import android.os.Handler
 import android.os.Looper
@@ -110,6 +111,18 @@ class PureShieldAccessibilityService : AccessibilityService() {
         if (!::policy.isInitialized) return
         val pkg = event.packageName?.toString() ?: return
         if (pkg == packageName) return
+
+        // Diagnostics (Home "সার্ভিস স্ট্যাটাস" card): prove the service is
+        // alive and receiving window changes. Window-state events only, so
+        // the prefs write stays rare (one per app switch, not per content
+        // change). Written before the early returns below, so systemui and
+        // settings screens count as proof too.
+        if (event.eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
+            getSharedPreferences(KeepAliveService.DIAG_PREFS, Context.MODE_PRIVATE).edit()
+                .putLong(KeepAliveService.KEY_LAST_A11Y_EVENT, System.currentTimeMillis())
+                .putString(KeepAliveService.KEY_LAST_A11Y_PKG, pkg)
+                .apply()
+        }
 
         // Power menu: any SystemUI package's power window while protection is active.
         // Vivo ships its own SystemUI package, so match by substring, not the AOSP name.

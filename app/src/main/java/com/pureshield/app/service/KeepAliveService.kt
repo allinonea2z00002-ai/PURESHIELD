@@ -28,6 +28,16 @@ import kotlinx.coroutines.launch
  * - Restarts itself via AlarmManager.setAlarmClock (no permission, always exact, and it
  *   carries a foreground-service-start exemption) when it is killed or swiped away.
  *
+ * Why foregroundServiceType is dataSync, not location: on Android 14+ a service
+ * promoted with the location type throws SecurityException unless the app already
+ * holds ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION — and location is only
+ * granted when the location lock is used, so most users have not granted it. The
+ * crash happened inside onCreate (after startForegroundService had already
+ * returned), so the keep-alive silently never ran and the process died the moment
+ * the app left the foreground. dataSync needs no runtime permission, and the
+ * keep-alive itself does not need location access (the PlaceWatcher loop checks
+ * the permission itself on every iteration).
+ *
  * Limit (same as PowerLock): if the system force-stops the app, alarms and receivers stay
  * dead until the app is opened again — Recents lock + Autostart on + battery optimisation
  * off remain required on Vivo/MIUI devices.
@@ -88,6 +98,10 @@ class KeepAliveService : Service() {
     override fun onBind(intent: Intent?): IBinder? = null
 
     private fun refreshNotification() {
+        // Diagnostics (Home "সার্ভিস স্ট্যাটাস" card): prove the keep-alive is
+        // actually alive. Written on every tick and on every service start.
+        getSharedPreferences(DIAG_PREFS, Context.MODE_PRIVATE).edit()
+            .putLong(KEY_LAST_KEEPALIVE_TICK, System.currentTimeMillis()).apply()
         scope.launch {
             val snapshot = runCatching { Graph.lockManager.snapshotNow() }.getOrNull() ?: return@launch
             val text = when {
@@ -108,6 +122,13 @@ class KeepAliveService : Service() {
     }
 
     companion object {
+        // Diagnostics prefs shared with the Home "সার্ভিস স্ট্যাটাস" card and the
+        // accessibility service: one file, no new dependency.
+        const val DIAG_PREFS = "diag"
+        const val KEY_LAST_KEEPALIVE_TICK = "last_keepalive_tick"
+        const val KEY_LAST_A11Y_EVENT = "last_a11y_event"
+        const val KEY_LAST_A11Y_PKG = "last_a11y_pkg"
+
         // NOTE: 2100 on purpose — the permission prompts use 2001-2006, and
         // sharing an id would let one notification cancel/replace the other.
         const val NOTIF_ID = 2100

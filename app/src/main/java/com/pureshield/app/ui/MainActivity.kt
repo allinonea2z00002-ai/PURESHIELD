@@ -3,6 +3,7 @@ package com.pureshield.app.ui
 import android.Manifest
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Typeface
@@ -43,6 +44,7 @@ import com.pureshield.app.databinding.ItemPermissionRowBinding
 import com.pureshield.app.databinding.ItemQuickActionBinding
 import com.pureshield.app.databinding.ItemQuickActionWideBinding
 import com.pureshield.app.domain.LockSnapshot
+import com.pureshield.app.service.KeepAliveService
 import com.pureshield.app.ui.blocking.BlockingActivity
 import com.pureshield.app.ui.location.LocationActivity
 import com.pureshield.app.ui.settings.SettingsActivity
@@ -54,8 +56,10 @@ import com.pureshield.app.util.PermissionPrompter
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalTime
+import java.time.ZoneId
 
 /**
  * Dashboard (demo Screen 1): header with Bengali clock, lock banner, the
@@ -169,6 +173,10 @@ class MainActivity : AppCompatActivity() {
         // The user may just have granted a permission in Settings: re-check,
         // clear the prompts that are granted now, and sync the Home card.
         refreshPermissions()
+        // Diagnostics card: fresh on every return to Home.
+        lifecycleScope.launch {
+            refreshDiagCard(Graph.lockManager.snapshotNow().protecting)
+        }
         // A permission notification was tapped: fire the in-app system dialog
         // once, then drop the extra so coming back from the dialog does not
         // re-fire it.
@@ -424,6 +432,40 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // ------------------------------------------------------- service diagnostics
+
+    /** Home "সার্ভিস স্ট্যাটাস" card: last keep-alive tick, last accessibility
+     *  event, and whether protection is on right now. Refreshed on resume and
+     *  by the 500 ms lock ticker, so a dead service shows up as a stale time
+     *  instead of a vague "কাজ করছে না". */
+    private fun refreshDiagCard(protecting: Boolean) {
+        val prefs = getSharedPreferences(KeepAliveService.DIAG_PREFS, Context.MODE_PRIVATE)
+        val now = System.currentTimeMillis()
+        val tickAt = prefs.getLong(KeepAliveService.KEY_LAST_KEEPALIVE_TICK, 0L)
+        val a11yAt = prefs.getLong(KeepAliveService.KEY_LAST_A11Y_EVENT, 0L)
+        val a11yPkg = prefs.getString(KeepAliveService.KEY_LAST_A11Y_PKG, null)
+        b.diagKeepAlive.text = diagTimeAgo(tickAt, now)
+        val a11yText = diagTimeAgo(a11yAt, now)
+        b.diagA11y.text = if (a11yAt > 0L && !a11yPkg.isNullOrEmpty()) {
+            "$a11yText · ${a11yPkg.substringAfterLast('.')}"
+        } else {
+            a11yText
+        }
+        b.diagProtecting.text = getString(
+            if (protecting) R.string.diag_protecting_on else R.string.diag_protecting_off
+        )
+    }
+
+    /** Epoch millis -> "২১:০৫:৩৩ · ২ মি আগে" (or "এখনো আসেনি" when never). */
+    private fun diagTimeAgo(atMs: Long, nowMs: Long): String {
+        if (atMs <= 0L) return getString(R.string.diag_never)
+        val t = LocalTime.ofInstant(Instant.ofEpochMilli(atMs), ZoneId.systemDefault())
+        val clock = BnDigits.toLocalizedDigits("%02d:%02d:%02d".format(t.hour, t.minute, t.second))
+        val agoMin = (nowMs - atMs) / 60_000L
+        return if (agoMin <= 0L) getString(R.string.diag_just_now, clock)
+        else getString(R.string.diag_time_ago, clock, BnDigits.formatMinutesShort(agoMin))
+    }
+
     /** Fine location is a runtime permission: ask with the system dialog. */
     private fun requestLocationPermission() {
         locationPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -516,6 +558,7 @@ class MainActivity : AppCompatActivity() {
                 while (isActive) {
                     val snap = Graph.lockManager.snapshotNow()
                     updateLockUi(snap)
+                    refreshDiagCard(snap.protecting)
                     if (snap.active && snap.remainingMs <= 0L) {
                         // Time is up: finish the lock in the engine (the
                         // UnlockWorker does the same when the app is closed).

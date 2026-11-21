@@ -59,6 +59,17 @@
     <string name="home_toggle_off">%1$s turned off</string>
     <string name="locked_change_blocked">A lock is running — finish it first, or unlock early with the partner PIN on the Time Lock screen</string>
 
+    <!-- Service diagnostics (Home "Service status" card) -->
+    <string name="diag_title">Service status</string>
+    <string name="diag_keepalive_label">Keep-alive last signal</string>
+    <string name="diag_a11y_label">Accessibility last event</string>
+    <string name="diag_protecting_label">Protection now</string>
+    <string name="diag_protecting_on">Active</string>
+    <string name="diag_protecting_off">Inactive</string>
+    <string name="diag_never">Not yet</string>
+    <string name="diag_time_ago">%1$s · %2$s ago</string>
+    <string name="diag_just_now">%1$s · just now</string>
+
     <!-- Bottom nav -->
     <string name="nav_home">Home</string>
     <string name="nav_location">Location</string>
