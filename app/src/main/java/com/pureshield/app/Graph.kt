@@ -87,6 +87,13 @@ object Graph {
         settings.set(SettingsKeys.DAILY_REPORT, true)
         settings.set(SettingsKeys.YOUTUBE_SHORTS, true)
         settings.set(SettingsKeys.INSTAGRAM_REELS, true)
+        settings.set(SettingsKeys.INSTAGRAM_STORIES, false)
+        settings.set(SettingsKeys.WHATSAPP_STATUS, false)
+        settings.set(SettingsKeys.WHATSAPP_CHANNELS, false)
+        settings.set(SettingsKeys.SNAPCHAT_SPOTLIGHT, true)
+        settings.set(SettingsKeys.SNAPCHAT_STORIES, false)
+        settings.set(SettingsKeys.WA_BUSINESS_STATUS, false)
+        settings.set(SettingsKeys.WA_BUSINESS_CHANNELS, false)
         settings.set(SettingsKeys.FACEBOOK_REELS, false)
 
         settings.setFirstRun(false)

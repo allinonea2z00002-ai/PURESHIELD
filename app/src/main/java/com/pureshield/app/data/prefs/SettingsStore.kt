@@ -45,9 +45,17 @@ data class AppSettings(
     val keywordsEnabled: Boolean = true,
     /** Reels / Shorts blocking master. */
     val reelsEnabled: Boolean = true,
-    /** Per-feed Reels / Shorts switches. */
+    /** Per-feed Reels / Shorts switches. Defaults match the reference screen:
+     *  YouTube Shorts, Instagram Reels and Snapchat Spotlight ON, the rest OFF. */
     val youtubeShorts: Boolean = true,
     val instagramReels: Boolean = true,
+    val instagramStories: Boolean = false,
+    val whatsappStatus: Boolean = false,
+    val whatsappChannels: Boolean = false,
+    val snapchatSpotlight: Boolean = true,
+    val snapchatStories: Boolean = false,
+    val waBusinessStatus: Boolean = false,
+    val waBusinessChannels: Boolean = false,
     val facebookReels: Boolean = false,
     /** Time Lock "Location Lock-এর সাথে মিলিয়ে" switch: when on, leaving a safe zone
      *  ends a running time lock (time OR distance, whichever first). Mirrored from the
@@ -81,6 +89,13 @@ object SettingsKeys {
     val REELS_ENABLED = booleanPreferencesKey("reels_enabled")
     val YOUTUBE_SHORTS = booleanPreferencesKey("youtube_shorts")
     val INSTAGRAM_REELS = booleanPreferencesKey("instagram_reels")
+    val INSTAGRAM_STORIES = booleanPreferencesKey("instagram_stories")
+    val WHATSAPP_STATUS = booleanPreferencesKey("whatsapp_status")
+    val WHATSAPP_CHANNELS = booleanPreferencesKey("whatsapp_channels")
+    val SNAPCHAT_SPOTLIGHT = booleanPreferencesKey("snapchat_spotlight")
+    val SNAPCHAT_STORIES = booleanPreferencesKey("snapchat_stories")
+    val WA_BUSINESS_STATUS = booleanPreferencesKey("wa_business_status")
+    val WA_BUSINESS_CHANNELS = booleanPreferencesKey("wa_business_channels")
     val FACEBOOK_REELS = booleanPreferencesKey("facebook_reels")
     val COMBINE_WITH_LOCATION = booleanPreferencesKey("combine_with_location")
     val REPEAT_DAYS_MASK = intPreferencesKey("repeat_days_mask")
@@ -111,6 +126,13 @@ class SettingsStore(private val context: Context) {
             reelsEnabled = p[SettingsKeys.REELS_ENABLED] ?: true,
             youtubeShorts = p[SettingsKeys.YOUTUBE_SHORTS] ?: true,
             instagramReels = p[SettingsKeys.INSTAGRAM_REELS] ?: true,
+            instagramStories = p[SettingsKeys.INSTAGRAM_STORIES] ?: false,
+            whatsappStatus = p[SettingsKeys.WHATSAPP_STATUS] ?: false,
+            whatsappChannels = p[SettingsKeys.WHATSAPP_CHANNELS] ?: false,
+            snapchatSpotlight = p[SettingsKeys.SNAPCHAT_SPOTLIGHT] ?: true,
+            snapchatStories = p[SettingsKeys.SNAPCHAT_STORIES] ?: false,
+            waBusinessStatus = p[SettingsKeys.WA_BUSINESS_STATUS] ?: false,
+            waBusinessChannels = p[SettingsKeys.WA_BUSINESS_CHANNELS] ?: false,
             facebookReels = p[SettingsKeys.FACEBOOK_REELS] ?: false,
             combineWithLocation = p[SettingsKeys.COMBINE_WITH_LOCATION] ?: true,
             repeatDaysMask = p[SettingsKeys.REPEAT_DAYS_MASK] ?: 22,
@@ -143,6 +165,13 @@ class SettingsStore(private val context: Context) {
     suspend fun setReelsEnabled(value: Boolean) = set(SettingsKeys.REELS_ENABLED, value)
     suspend fun setYoutubeShorts(value: Boolean) = set(SettingsKeys.YOUTUBE_SHORTS, value)
     suspend fun setInstagramReels(value: Boolean) = set(SettingsKeys.INSTAGRAM_REELS, value)
+    suspend fun setInstagramStories(value: Boolean) = set(SettingsKeys.INSTAGRAM_STORIES, value)
+    suspend fun setWhatsappStatus(value: Boolean) = set(SettingsKeys.WHATSAPP_STATUS, value)
+    suspend fun setWhatsappChannels(value: Boolean) = set(SettingsKeys.WHATSAPP_CHANNELS, value)
+    suspend fun setSnapchatSpotlight(value: Boolean) = set(SettingsKeys.SNAPCHAT_SPOTLIGHT, value)
+    suspend fun setSnapchatStories(value: Boolean) = set(SettingsKeys.SNAPCHAT_STORIES, value)
+    suspend fun setWaBusinessStatus(value: Boolean) = set(SettingsKeys.WA_BUSINESS_STATUS, value)
+    suspend fun setWaBusinessChannels(value: Boolean) = set(SettingsKeys.WA_BUSINESS_CHANNELS, value)
     suspend fun setFacebookReels(value: Boolean) = set(SettingsKeys.FACEBOOK_REELS, value)
     suspend fun setCombineWithLocation(value: Boolean) = set(SettingsKeys.COMBINE_WITH_LOCATION, value)
     suspend fun setRepeatDaysMask(value: Int) = set(SettingsKeys.REPEAT_DAYS_MASK, value)
@@ -159,6 +188,13 @@ class SettingsStore(private val context: Context) {
     fun feedEnabled(settings: AppSettings, feedStoreKey: String): Boolean = when (feedStoreKey) {
         FEED_YOUTUBE_SHORTS -> settings.youtubeShorts
         FEED_INSTAGRAM_REELS -> settings.instagramReels
+        FEED_INSTAGRAM_STORIES -> settings.instagramStories
+        FEED_WHATSAPP_STATUS -> settings.whatsappStatus
+        FEED_WHATSAPP_CHANNELS -> settings.whatsappChannels
+        FEED_SNAPCHAT_SPOTLIGHT -> settings.snapchatSpotlight
+        FEED_SNAPCHAT_STORIES -> settings.snapchatStories
+        FEED_WA_BUSINESS_STATUS -> settings.waBusinessStatus
+        FEED_WA_BUSINESS_CHANNELS -> settings.waBusinessChannels
         FEED_FACEBOOK_REELS -> settings.facebookReels
         else -> false
     }
@@ -170,6 +206,13 @@ class SettingsStore(private val context: Context) {
     companion object {
         const val FEED_YOUTUBE_SHORTS = "youtube_shorts"
         const val FEED_INSTAGRAM_REELS = "instagram_reels"
+        const val FEED_INSTAGRAM_STORIES = "instagram_stories"
+        const val FEED_WHATSAPP_STATUS = "whatsapp_status"
+        const val FEED_WHATSAPP_CHANNELS = "whatsapp_channels"
+        const val FEED_SNAPCHAT_SPOTLIGHT = "snapchat_spotlight"
+        const val FEED_SNAPCHAT_STORIES = "snapchat_stories"
+        const val FEED_WA_BUSINESS_STATUS = "wa_business_status"
+        const val FEED_WA_BUSINESS_CHANNELS = "wa_business_channels"
         const val FEED_FACEBOOK_REELS = "facebook_reels"
     }
 }

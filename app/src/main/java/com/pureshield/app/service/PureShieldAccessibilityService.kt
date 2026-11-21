@@ -58,6 +58,7 @@ class PureShieldAccessibilityService : AccessibilityService() {
     private var lastSettingsScan = 0L
     private var lastGuardAt = 0L
     private var lastPowerMenuAt = 0L
+    private var lastPowerMenuScanAt = 0L
     private var lastForegroundPackage: String? = null
     private val lastContentScanAt = HashMap<String, Long>()
 
@@ -120,11 +121,17 @@ class PureShieldAccessibilityService : AccessibilityService() {
         // alive and receiving window changes. Window-state events only, so
         // the prefs write stays rare (one per app switch, not per content
         // change). Written before the early returns below, so systemui and
-        // settings screens count as proof too.
+        // settings screens count as proof too. The last-event string
+        // ("pkg/Class · STATE") is the 4th diagnostics row: next time the
+        // power menu is not blocked, it shows exactly which window the
+        // service last saw.
         if (event.eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
+            val shortPkg = pkg.substringAfterLast('.')
+            val shortClass = (event.className?.toString() ?: "?").substringAfterLast('.')
             getSharedPreferences(KeepAliveService.DIAG_PREFS, Context.MODE_PRIVATE).edit()
                 .putLong(KeepAliveService.KEY_LAST_A11Y_EVENT, System.currentTimeMillis())
                 .putString(KeepAliveService.KEY_LAST_A11Y_PKG, pkg)
+                .putString(KeepAliveService.KEY_LAST_EVENT, "$shortPkg/$shortClass · STATE")
                 .apply()
         }
 
@@ -272,24 +279,51 @@ class PureShieldAccessibilityService : AccessibilityService() {
 
     /**
      * Power-menu dismiss (best-effort): the SystemUI power menu is the GlobalActions window.
-     * The class name check keeps the notification shade and other SystemUI windows untouched.
-     * Vivo's power dialog uses different class names (Shutdown / Reboot / PowerDialog), so
-     * those are matched too — but ONLY on a class that looks like a power menu.
+     * Two detectors, because Vivo's swipe menu ("Swipe to power off") does not
+     * always arrive as a GlobalActions window-state event:
+     * (1) class-name match on window-state events (existing behaviour);
+     * (2) visible-text match on the active window ("Swipe to power off" /
+     * "Swipe to restart" / "Swipe for SOS" / "Power off"), for state AND
+     * content-changed events — the swipe menu may populate its content after
+     * the window opens. The text scan is throttled to once a second, and the
+     * notification shade (StatusBar / Shade windows) is skipped, so pulling
+     * the shade down is never treated as the power menu.
+     * Dismissal stays Back + Home, throttled to once per 1.5 s.
      */
     private fun guardPowerMenu(event: AccessibilityEvent) {
-        if (event.eventType != AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) return
         val className = event.className?.toString() ?: ""
-        if (!className.contains("GlobalActions", ignoreCase = true) &&
-            !className.contains("PowerMenu", ignoreCase = true) &&
-            !className.contains("Shutdown", ignoreCase = true) &&
-            !className.contains("Reboot", ignoreCase = true) &&
-            !className.contains("PowerDialog", ignoreCase = true)
+        if (event.eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED &&
+            POWER_MENU_CLASS_PARTS.any { className.contains(it, ignoreCase = true) }
+        ) {
+            dismissPowerMenu()
+            return
+        }
+        if (className.contains("statusbar", ignoreCase = true) ||
+            className.contains("shade", ignoreCase = true) ||
+            className.contains("notification", ignoreCase = true)
         ) return
+        val now = System.currentTimeMillis()
+        if (now - lastPowerMenuScanAt < POWER_MENU_SCAN_THROTTLE_MS) return
+        lastPowerMenuScanAt = now
+        if (isPowerMenuText()) dismissPowerMenu()
+    }
+
+    private fun dismissPowerMenu() {
         val now = System.currentTimeMillis()
         if (now - lastPowerMenuAt < 1_500) return
         lastPowerMenuAt = now
         performGlobalAction(GLOBAL_ACTION_BACK)
         performGlobalAction(GLOBAL_ACTION_HOME)
+    }
+
+    /** True when the active window's visible text looks like a power menu. */
+    private fun isPowerMenuText(): Boolean {
+        val root = rootInActiveWindow ?: return false
+        val texts = ArrayList<String>()
+        ContentWatch.collectTexts(root, texts)
+        if (texts.isEmpty()) return false
+        val joined = texts.joinToString(" ")
+        return POWER_MENU_TEXT_PARTS.any { joined.contains(it, ignoreCase = true) }
     }
 
     /** Shared 1.5-second de-duplication for every block path, so one screen cannot spam blocks. */
@@ -405,6 +439,17 @@ class PureShieldAccessibilityService : AccessibilityService() {
 
         private const val CONTENT_SCAN_THROTTLE_MS = 2_000L
         private const val RECHECK_INTERVAL_MS = 60_000L
+        /** At most one power-menu text scan per second (SystemUI content changes are frequent). */
+        private const val POWER_MENU_SCAN_THROTTLE_MS = 1_000L
+
+        /** Class-name parts of a power-menu window (AOSP + Vivo). */
+        private val POWER_MENU_CLASS_PARTS =
+            listOf("GlobalActions", "PowerMenu", "Shutdown", "Reboot", "PowerDialog")
+
+        /** Visible-text phrases of a power menu (Vivo's swipe menu + the AOSP label). */
+        private val POWER_MENU_TEXT_PARTS = listOf(
+            "Swipe to power off", "Swipe to restart", "Swipe for SOS", "Power off"
+        )
 
         private val SETTINGS_PACKAGES = setOf(
             "com.android.settings",

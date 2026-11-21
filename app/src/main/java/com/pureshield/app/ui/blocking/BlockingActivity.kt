@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.pureshield.app.Graph
 import com.pureshield.app.R
+import com.pureshield.app.data.content.ContentWatch
 import com.pureshield.app.data.db.BlockedApp
 import com.pureshield.app.data.db.BlockedSite
 import com.pureshield.app.data.db.Keyword
@@ -104,10 +105,54 @@ class BlockingActivity : AppCompatActivity() {
             getString(R.string.block_reels_instagram)
         )
         bindReelSwitch(
+            b.switchReelsInstagramStories,
+            { on -> Graph.settings.setInstagramStories(on) },
+            getString(R.string.block_reels_instagram_stories)
+        )
+        bindReelSwitch(
+            b.switchReelsWhatsappStatus,
+            { on -> Graph.settings.setWhatsappStatus(on) },
+            getString(R.string.block_reels_whatsapp_status)
+        )
+        bindReelSwitch(
+            b.switchReelsWhatsappChannels,
+            { on -> Graph.settings.setWhatsappChannels(on) },
+            getString(R.string.block_reels_whatsapp_channels)
+        )
+        bindReelSwitch(
+            b.switchReelsSnapchatSpotlight,
+            { on -> Graph.settings.setSnapchatSpotlight(on) },
+            getString(R.string.block_reels_snapchat_spotlight)
+        )
+        bindReelSwitch(
+            b.switchReelsSnapchatStories,
+            { on -> Graph.settings.setSnapchatStories(on) },
+            getString(R.string.block_reels_snapchat_stories)
+        )
+        bindReelSwitch(
+            b.switchReelsWaBusinessStatus,
+            { on -> Graph.settings.setWaBusinessStatus(on) },
+            getString(R.string.block_reels_wabusiness_status)
+        )
+        bindReelSwitch(
+            b.switchReelsWaBusinessChannels,
+            { on -> Graph.settings.setWaBusinessChannels(on) },
+            getString(R.string.block_reels_wabusiness_channels)
+        )
+        bindReelSwitch(
             b.switchReelsFacebook,
             { on -> Graph.settings.setFacebookReels(on) },
             getString(R.string.block_reels_facebook)
         )
+
+        // Brand icons for the Reels app groups (generic icon when the app
+        // is not installed — the toggle still works).
+        setReelIcon(b.ivReelsYoutube, ContentWatch.PKG_YOUTUBE)
+        setReelIcon(b.ivReelsInstagram, ContentWatch.PKG_INSTAGRAM)
+        setReelIcon(b.ivReelsWhatsapp, ContentWatch.PKG_WHATSAPP)
+        setReelIcon(b.ivReelsSnapchat, ContentWatch.PKG_SNAPCHAT)
+        setReelIcon(b.ivReelsWaBusiness, ContentWatch.PKG_WA_BUSINESS)
+        setReelIcon(b.ivReelsFacebook, ContentWatch.PKG_FACEBOOK)
 
         // App Lock master switch. Unlike the Reels switches it is NOT refused
         // mid-lock: during a lock, protection already dominates
@@ -159,6 +204,13 @@ class BlockingActivity : AppCompatActivity() {
                             b.switchAppLock.isChecked = settings.appLockEnabled
                             b.switchReelsYoutube.isChecked = settings.youtubeShorts
                             b.switchReelsInstagram.isChecked = settings.instagramReels
+                            b.switchReelsInstagramStories.isChecked = settings.instagramStories
+                            b.switchReelsWhatsappStatus.isChecked = settings.whatsappStatus
+                            b.switchReelsWhatsappChannels.isChecked = settings.whatsappChannels
+                            b.switchReelsSnapchatSpotlight.isChecked = settings.snapchatSpotlight
+                            b.switchReelsSnapchatStories.isChecked = settings.snapchatStories
+                            b.switchReelsWaBusinessStatus.isChecked = settings.waBusinessStatus
+                            b.switchReelsWaBusinessChannels.isChecked = settings.waBusinessChannels
                             b.switchReelsFacebook.isChecked = settings.facebookReels
                         } finally {
                             updatingSwitches = false
@@ -374,6 +426,14 @@ class BlockingActivity : AppCompatActivity() {
     }
 
     // ---- reels switches ----------------------------------------------------------
+
+    /** Brand icon for a Reels app group; generic icon when the app is not installed. */
+    private fun setReelIcon(view: android.widget.ImageView, packageName: String) {
+        view.setImageDrawable(
+            runCatching { packageManager.getApplicationIcon(packageName) }.getOrNull()
+                ?: getDrawable(android.R.drawable.sym_def_app_icon)
+        )
+    }
 
     private fun bindReelSwitch(
         switch: com.google.android.material.switchmaterial.SwitchMaterial,

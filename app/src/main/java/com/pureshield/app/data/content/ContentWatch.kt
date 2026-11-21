@@ -21,11 +21,21 @@ object ContentWatch {
     const val PKG_INSTAGRAM = "com.instagram.android"
     const val PKG_FACEBOOK = "com.facebook.katana"
     const val PKG_FACEBOOK_LITE = "com.facebook.lite"
+    const val PKG_WHATSAPP = "com.whatsapp"
+    const val PKG_SNAPCHAT = "com.snapchat.android"
+    const val PKG_WA_BUSINESS = "com.whatsapp.w4b"
 
     /** One distracting in-app feed: which app it lives in and which SettingsStore key gates it. */
     enum class Feed(val packageName: String, val storeKey: String) {
         YOUTUBE_SHORTS(PKG_YOUTUBE, SettingsStore.FEED_YOUTUBE_SHORTS),
         INSTAGRAM_REELS(PKG_INSTAGRAM, SettingsStore.FEED_INSTAGRAM_REELS),
+        INSTAGRAM_STORIES(PKG_INSTAGRAM, SettingsStore.FEED_INSTAGRAM_STORIES),
+        WHATSAPP_STATUS(PKG_WHATSAPP, SettingsStore.FEED_WHATSAPP_STATUS),
+        WHATSAPP_CHANNELS(PKG_WHATSAPP, SettingsStore.FEED_WHATSAPP_CHANNELS),
+        SNAPCHAT_SPOTLIGHT(PKG_SNAPCHAT, SettingsStore.FEED_SNAPCHAT_SPOTLIGHT),
+        SNAPCHAT_STORIES(PKG_SNAPCHAT, SettingsStore.FEED_SNAPCHAT_STORIES),
+        WA_BUSINESS_STATUS(PKG_WA_BUSINESS, SettingsStore.FEED_WA_BUSINESS_STATUS),
+        WA_BUSINESS_CHANNELS(PKG_WA_BUSINESS, SettingsStore.FEED_WA_BUSINESS_CHANNELS),
         FACEBOOK_REELS(PKG_FACEBOOK, SettingsStore.FEED_FACEBOOK_REELS),
         FACEBOOK_REELS_LITE(PKG_FACEBOOK_LITE, SettingsStore.FEED_FACEBOOK_REELS);
 
@@ -57,9 +67,13 @@ object ContentWatch {
     // --- feed detection ---------------------------------------------------------------------
 
     /**
-     * Detects a distracting feed from the visible text of the foreground app. Matches on the
-     * feed's own tab/label words (for example "Shorts" on YouTube, "Reels" on Instagram).
-     * Returns the first matching feed for this package, or null.
+     * Detects a distracting feed from the visible text of the foreground app.
+     * Matches on the feed's own tab/label words (for example "Shorts" on
+     * YouTube, "Stories" on Instagram). Returns the first matching feed for
+     * this package, or null. All feeds here are tab labels the apps show as
+     * text, so all are detectable the same best-effort way — with the usual
+     * caveat that a matching word inside a chat message or a video title can
+     * also fire (e.g. the word "status" in a WhatsApp chat).
      */
     fun detectFeed(packageName: String, texts: Iterable<String>): Feed? {
         val feeds = Feed.forPackage(packageName)
@@ -74,6 +88,13 @@ object ContentWatch {
     private fun matchesFeed(feed: Feed, joinedText: String): Boolean = when (feed) {
         Feed.YOUTUBE_SHORTS -> containsWord(joinedText, "shorts")
         Feed.INSTAGRAM_REELS -> containsWord(joinedText, "reels")
+        Feed.INSTAGRAM_STORIES -> containsWord(joinedText, "stories")
+        Feed.WHATSAPP_STATUS -> containsWord(joinedText, "status")
+        Feed.WHATSAPP_CHANNELS -> containsWord(joinedText, "channels")
+        Feed.SNAPCHAT_SPOTLIGHT -> containsWord(joinedText, "spotlight")
+        Feed.SNAPCHAT_STORIES -> containsWord(joinedText, "stories")
+        Feed.WA_BUSINESS_STATUS -> containsWord(joinedText, "status")
+        Feed.WA_BUSINESS_CHANNELS -> containsWord(joinedText, "channels")
         Feed.FACEBOOK_REELS, Feed.FACEBOOK_REELS_LITE ->
             containsWord(joinedText, "reels")
     }

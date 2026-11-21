@@ -128,6 +128,8 @@ class KeepAliveService : Service() {
         const val KEY_LAST_KEEPALIVE_TICK = "last_keepalive_tick"
         const val KEY_LAST_A11Y_EVENT = "last_a11y_event"
         const val KEY_LAST_A11Y_PKG = "last_a11y_pkg"
+        /** Most recent window-state event, short "pkg/Class · STATE" form. */
+        const val KEY_LAST_EVENT = "last_event"
 
         // NOTE: 2100 on purpose — the permission prompts use 2001-2006, and
         // sharing an id would let one notification cancel/replace the other.

@@ -451,6 +451,8 @@ class MainActivity : AppCompatActivity() {
         } else {
             a11yText
         }
+        val lastEvent = prefs.getString(KeepAliveService.KEY_LAST_EVENT, null)
+        b.diagLastEvent.text = lastEvent ?: getString(R.string.diag_never)
         b.diagProtecting.text = getString(
             if (protecting) R.string.diag_protecting_on else R.string.diag_protecting_off
         )
