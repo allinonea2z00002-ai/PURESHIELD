@@ -468,6 +468,16 @@ class MainActivity : AppCompatActivity() {
                 else -> R.string.diag_a11y_state_on
             }
         )
+        // 6th row: last uncaught crash, as recorded by the crash recorder
+        // in PureShieldApp.onCreate. Stored values only — never a
+        // hardcoded value, and "none" when no crash was ever recorded.
+        val crashAt = prefs.getLong(KeepAliveService.KEY_LAST_CRASH_AT, 0L)
+        val crashLine = prefs.getString(KeepAliveService.KEY_LAST_CRASH, null)
+        b.diagLastCrash.text = if (crashAt > 0L && !crashLine.isNullOrEmpty()) {
+            "${diagTimeAgo(crashAt, now)} · $crashLine"
+        } else {
+            getString(R.string.diag_crash_none)
+        }
     }
 
     /** Epoch millis -> "২১:০৫:৩৩ · ২ মি আগে" (or "এখনো আসেনি" when never). */

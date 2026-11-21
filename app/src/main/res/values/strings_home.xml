@@ -74,6 +74,8 @@
     <string name="diag_a11y_state_on">On</string>
     <string name="diag_a11y_state_off">Off — turn on in Settings</string>
     <string name="diag_a11y_state_stale">Not responding — turn OFF and ON again</string>
+    <string name="diag_crash_label">Last crash</string>
+    <string name="diag_crash_none">No crash recorded</string>
     <string name="a11y_watchdog_off_title">Accessibility is off</string>
     <string name="a11y_watchdog_off_text">PURESHIELD blocking is not working. Turn on PURESHIELD in Settings → Accessibility.</string>
     <string name="a11y_watchdog_stale_title">Accessibility is not responding</string>

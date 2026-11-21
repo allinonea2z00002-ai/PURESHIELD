@@ -74,6 +74,8 @@
     <string name="diag_a11y_state_on">চালু আছে</string>
     <string name="diag_a11y_state_off">বন্ধ — Settings থেকে চালু করো</string>
     <string name="diag_a11y_state_stale">সাড়া দিচ্ছে না — OFF করে ON করো</string>
+    <string name="diag_crash_label">শেষ ক্র্যাশ</string>
+    <string name="diag_crash_none">কোনো ক্র্যাশ নেই</string>
     <string name="a11y_watchdog_off_title">Accessibility বন্ধ আছে</string>
     <string name="a11y_watchdog_off_text">PURESHIELD-এর ব্লক কাজ করছে না। Settings → Accessibility থেকে PURESHIELD চালু করো।</string>
     <string name="a11y_watchdog_stale_title">Accessibility সাড়া দিচ্ছে না</string>

@@ -52,7 +52,10 @@ class KeepAliveService : Service() {
 
     private val tickRunnable = object : Runnable {
         override fun run() {
-            refreshNotification()
+            // A throwing tick (watchdog notification, nm.notify,
+            // getString) must never kill the process — and the tick
+            // itself must keep running, so the re-post stays outside.
+            runCatching { refreshNotification() }
             handler.postDelayed(this, TICK_MS)
         }
     }
@@ -60,18 +63,27 @@ class KeepAliveService : Service() {
     override fun onCreate() {
         super.onCreate()
         isRunning = true
-        startForeground(NOTIF_ID, Graph.notifier.ongoingLockNotification(getString(R.string.notif_lock_running_text)))
+        // startForeground can throw (e.g. background-start restrictions):
+        // swallow it — a crash here would kill the whole process and
+        // the service with it.
+        runCatching {
+            startForeground(NOTIF_ID, Graph.notifier.ongoingLockNotification(getString(R.string.notif_lock_running_text)))
+        }
         handler.postDelayed(tickRunnable, TICK_MS)
         scope.launch {
-            if (Graph.settings.get().locationLockEnabled) {
-                PlaceWatcher.startForegroundLoop(this@KeepAliveService)
+            runCatching {
+                if (Graph.settings.get().locationLockEnabled) {
+                    PlaceWatcher.startForegroundLoop(this@KeepAliveService)
+                }
             }
         }
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        startForeground(NOTIF_ID, Graph.notifier.ongoingLockNotification(getString(R.string.notif_lock_running_text)))
-        refreshNotification()
+        runCatching {
+            startForeground(NOTIF_ID, Graph.notifier.ongoingLockNotification(getString(R.string.notif_lock_running_text)))
+            refreshNotification()
+        }
         return START_STICKY
     }
 
@@ -202,6 +214,13 @@ class KeepAliveService : Service() {
         /** Accessibility watchdog state (see checkA11yWatchdog): "on" /
          *  "off" / "stale". Written by the tick; the Home card reads it. */
         const val KEY_A11Y_STATE = "a11y_state"
+
+        /** Last uncaught crash, one short line "<Exception>: <first message
+         *  line>" + when it happened. Written by the crash recorder
+         *  installed in PureShieldApp.onCreate; the Home card's 6th row
+         *  reads it. Never a full stack trace, never user data. */
+        const val KEY_LAST_CRASH = "last_crash"
+        const val KEY_LAST_CRASH_AT = "last_crash_at"
         const val A11Y_STATE_ON = "on"
         const val A11Y_STATE_OFF = "off"
         const val A11Y_STATE_STALE = "stale"
