@@ -103,6 +103,9 @@ interface BlockEventDao {
 
     @Query("DELETE FROM block_event WHERE at < :olderThan")
     suspend fun deleteOlderThan(olderThan: Long)
+
+    @Query("DELETE FROM block_event")
+    suspend fun deleteAll()
 }
 
 @Dao

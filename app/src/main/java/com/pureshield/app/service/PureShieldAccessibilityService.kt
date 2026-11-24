@@ -417,12 +417,24 @@ class PureShieldAccessibilityService : AccessibilityService() {
         if (!tryBlock(pkg)) return
         performGlobalAction(GLOBAL_ACTION_HOME)
         startBlockActivity(pkg, reason)
-        if (reason != BlockReason.SELF_PROTECT) {
-            scope.launch {
-                runCatching {
-                    Graph.db.blockEventDao().insert(
-                        BlockEvent(packageNameOrHost = pkg, kind = "APP", at = System.currentTimeMillis())
+        // Diagnostics: every block is logged with the reason. LOCK while a
+        // time/location lock runs vs standalone App Lock are told apart, so
+        // the log shows which one kicked the user out. The stats counter
+        // still counts only app blocks (not self-protect), as before.
+        val storedReason = if (reason == BlockReason.LOCK && !protecting) "APP_LOCK" else reason.name
+        scope.launch {
+            runCatching {
+                Graph.db.blockEventDao().insert(
+                    BlockEvent(
+                        packageNameOrHost = pkg,
+                        kind = "APP",
+                        at = System.currentTimeMillis(),
+                        reason = storedReason,
+                        pkg = pkg,
+                        detail = ""
                     )
+                )
+                if (reason != BlockReason.SELF_PROTECT) {
                     Graph.stats.recordAppBlock()
                     val app = Graph.db.blockedAppDao().get(pkg)
                     if (app != null) {
@@ -438,20 +450,30 @@ class PureShieldAccessibilityService : AccessibilityService() {
     /**
      * Content block (blocked site, keyword hit, distracting feed). Shown like any other block.
      * A site block is recorded as a website block; keyword/feed blocks are not counted in
-     * either total.
+     * either total — but every content block is written to the diagnostics log, with the
+     * reason and what matched, so the log shows what caught it.
      */
     private fun blockContent(pkg: String, reason: BlockReason, recordBlock: Boolean, hostOrKeyword: String) {
         if (!tryBlock(pkg)) return
         performGlobalAction(GLOBAL_ACTION_HOME)
         startBlockActivity(pkg, reason)
-        if (recordBlock) {
-            scope.launch {
-                runCatching {
-                    Graph.db.blockEventDao().insert(
-                        BlockEvent(packageNameOrHost = hostOrKeyword, kind = "SITE", at = System.currentTimeMillis())
+        scope.launch {
+            runCatching {
+                Graph.db.blockEventDao().insert(
+                    BlockEvent(
+                        packageNameOrHost = hostOrKeyword,
+                        kind = when (reason) {
+                            BlockReason.SITE -> "SITE"
+                            BlockReason.KEYWORD -> "KEYWORD"
+                            else -> "FEED"
+                        },
+                        at = System.currentTimeMillis(),
+                        reason = reason.name,
+                        pkg = pkg,
+                        detail = hostOrKeyword
                     )
-                    Graph.stats.recordWebsiteBlock()
-                }
+                )
+                if (recordBlock) Graph.stats.recordWebsiteBlock()
             }
         }
     }

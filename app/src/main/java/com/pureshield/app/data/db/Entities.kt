@@ -58,7 +58,14 @@ data class BlockEvent(
     val packageNameOrHost: String,
     /** "APP", "SITE", "KEYWORD" or "FEED". */
     val kind: String,
-    val at: Long = 0
+    val at: Long = 0,
+    /** Why it was blocked: LOCK (a lock was running), APP_LOCK (standalone App Lock),
+     * SITE, KEYWORD, FEED or SELF_PROTECT. Empty on rows written before v2. */
+    val reason: String = "",
+    /** Foreground app package — the app the user was kicked out of. Empty on old rows. */
+    val pkg: String = "",
+    /** What matched: host for a site, keyword for a keyword hit, feed name for a feed. */
+    val detail: String = ""
 )
 
 /** Aggregated per local calendar day (date = yyyy-MM-dd). Only real, recorded events are counted. */

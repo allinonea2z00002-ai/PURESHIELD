@@ -1,5 +1,6 @@
 package com.pureshield.app.ui.stats
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -61,6 +62,10 @@ class StatsActivity : AppCompatActivity() {
             if (!isChecked) return@addOnButtonCheckedListener
             rangeDays = if (checkedId == R.id.btnRange30) 30 else 7
             render()
+        }
+
+        b.btnDiagnostics.setOnClickListener {
+            startActivity(Intent(this, DiagnosticsActivity::class.java))
         }
 
         lifecycleScope.launch {
