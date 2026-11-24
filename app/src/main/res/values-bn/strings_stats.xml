@@ -22,7 +22,7 @@
     <string name="stats_detail_site">সাইট খোলার চেষ্টা</string>
     <string name="stats_detail_reels">Reels খোলার চেষ্টা</string>
     <string name="stats_detail_keyword">কিওয়ার্ড ব্লক হয়েছে</string>
-    <string name="diag_title">ডায়াগনস্টিক</string>
+    <string name="diag_log_title">ডায়াগনস্টিক</string>
     <string name="diag_sub">প্রতিটি ব্লক — কেন ব্লক হলো আর কী ধরা পড়লো।</string>
     <string name="diag_empty">এখনো কোনো ব্লক হয়নি — ব্লক হলে এখানে দেখাবে।</string>
     <string name="diag_clear">লগ মুছুন</string>

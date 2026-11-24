@@ -22,7 +22,7 @@
     <string name="stats_detail_site">Tried to open the site</string>
     <string name="stats_detail_reels">Tried to open Reels</string>
     <string name="stats_detail_keyword">Blocked by keyword</string>
-    <string name="diag_title">Diagnostics</string>
+    <string name="diag_log_title">Diagnostics</string>
     <string name="diag_sub">Every block, with the reason and what triggered it.</string>
     <string name="diag_empty">No blocks yet — when the app blocks something, it will show up here.</string>
     <string name="diag_clear">Clear log</string>
